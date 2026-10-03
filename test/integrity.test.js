@@ -7,10 +7,11 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 
-const root = path.join(__dirname, "..");
+const repoRoot = path.join(__dirname, "..");
+const root = path.join(repoRoot, "src");
 
 function runScript(script, args = []) {
-  const result = spawnSync(process.execPath, [path.join(root, "scripts", script), ...args], { cwd: root, encoding: "utf8" });
+  const result = spawnSync(process.execPath, [path.join(repoRoot, "scripts", script), ...args], { cwd: repoRoot, encoding: "utf8" });
   return { status: result.status, output: `${result.stdout}${result.stderr}` };
 }
 

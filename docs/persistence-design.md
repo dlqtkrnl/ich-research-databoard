@@ -31,7 +31,7 @@ mechanism implies.
 ## Design goals / constraints
 
 1. **The no-build-step, file://-openable MVP must keep working unchanged.** Opening
-   `index.html` directly, or via `npx serve .`, with no server running, must behave
+   `index.html` directly, or via `npx serve src`, with no server running, must behave
    exactly as it does today — same localStorage-only persistence, same latency, same UX.
 2. **Opt-in, not required.** Nobody should have to install or run anything extra to use
    the app as before.
@@ -78,7 +78,7 @@ everything else about the render/event pipeline is unchanged.
 ### Server (`server.mjs`)
 
 A single-file Node script using only `node:http`/`node:fs`/`node:path`, run with
-`node server.mjs` (optionally `PORT=4000 node server.mjs` or `node server.mjs 4000`;
+`npm run serve` (`node src/server.mjs`) (optionally `PORT=4000 node src/server.mjs` or `node src/server.mjs 4000`;
 defaults to `http://127.0.0.1:8787`). It does two things on one port, deliberately, so
 the browser's requests to `/api/*` are same-origin and need **no CORS configuration**:
 
@@ -98,9 +98,9 @@ the browser's requests to `/api/*` are same-origin and need **no CORS configurat
    - `:key` is validated against `^[A-Za-z0-9_.-]{1,128}$` and the resolved path is checked
      to stay inside `state/` (defense in depth beyond the regex)
 
-To use it: run `node server.mjs`, then open `http://127.0.0.1:8787/` instead of
+To use it: run `npm run serve` (`node src/server.mjs`), then open `http://127.0.0.1:8787/` instead of
 `index.html` directly. Everyone who instead opens `index.html` via `file://` or
-`npx serve .` (no API on that origin) gets a fast, harmless 404/network-error health check
+`npx serve src` (no API on that origin) gets a fast, harmless 404/network-error health check
 and falls straight back to localStorage — nothing about their experience changes.
 
 State is written to `state/<key>.json` (one file per storage key; today the app only ever
@@ -160,15 +160,15 @@ rather than quietly under-building and calling it done):
 
 ```text
 # Terminal — start the optional persistence server (from the repo root)
-node server.mjs
+node src/server.mjs
 # -> listens on http://127.0.0.1:8787, creates state/ if missing
 
 # Then open http://127.0.0.1:8787/ in a browser (NOT index.html via file://) to get
-# server-backed persistence. Everything else — index.html via file://, npx serve . — keeps
+# server-backed persistence. Everything else — index.html via file://, npx serve src — keeps
 # working exactly as before, falling back to localStorage automatically.
 ```
 
-Optional: `PORT=4000 node server.mjs` or `node server.mjs 4000` to use a different port.
+Optional: `PORT=4000 node src/server.mjs` or `node src/server.mjs 4000` to use a different port.
 
 No build step, no dependency install — `server.mjs` runs as-is with any reasonably
 current Node (built and tested against Node 24).

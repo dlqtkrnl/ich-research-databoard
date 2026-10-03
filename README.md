@@ -24,15 +24,15 @@ The case data comes from Jiangxi ramie-cloth (夏布, *xiabu*) textile heritage,
 CC0 museum image set and a CC BY 4.0 knowledge-graph triple set as the real,
 re-hashable evidence.
 
-No build step and no dependencies: open `index.html` in a browser.
+No build step and no dependencies: open `src/index.html` in a browser.
 
 ## Quick start
 
 ```text
-# 1. Run the app: open index.html directly (file://) in any modern browser.
+# 1. Run the app: open src/index.html directly (file://) in any modern browser.
 
 # 2. Optional: serve it with persistent state on disk instead of browser storage.
-node server.mjs                 # http://127.0.0.1:8787
+npm run serve                   # http://127.0.0.1:8787 (runs src/server.mjs)
 
 # 3. Run the tests (Node.js 22 or later).
 npm test
@@ -122,7 +122,7 @@ original bytes), so the registered hashes hold on Windows, macOS and Linux check
 
 | Dataset | What it is | Rights Gate | Redistributable |
 |---|---|---|---|
-| `JXICH-XBEMB-KG-P12` | 32 source-linked KG triples on Xiabu embroidery (夏布绣) from the author's own manuscript | pass | Yes, **CC BY 4.0** ([`data/kg_sources/LICENSE.md`](./data/kg_sources/LICENSE.md)) |
+| `JXICH-XBEMB-KG-P12` | 32 source-linked KG triples on Xiabu embroidery (夏布绣) from the author's own manuscript | pass | Yes, **CC BY 4.0** ([`data/kg_sources/LICENSE.md`](./src/data/kg_sources/LICENSE.md)) |
 | `PUB-CHNDM-HEMP-JP-009` | 8 images of 3 Japanese hemp textiles (katagami stencils, *umakake*), Cooper Hewitt, Smithsonian Open Access | pass | Yes, **CC0** |
 | `JXICH-XB-001` | Jiangxi Xiabu pilot: metadata structure only, 4 example sample rows, inheritor consent pending | blocked | No (placeholder / pilot) |
 | `PUB-DTD-001`, `PUB-FASHIONPEDIA-002`, `PUB-DEEPFASHION2-004` | Metadata connectors for public datasets; no files included | blocked | No (no files bundled) |
@@ -153,7 +153,7 @@ Notes on the real data:
 - Generation Lab outputs are AI-generated, are always badged
   "AI-GENERATED — NOT AN AUTHENTIC ARTIFACT", and carry
   `content_class: "ai_generated_not_authentic"` in exported manifests.
-- Without `server.mjs`, state lives in browser `localStorage` and is lost if site data is
+- Without `src/server.mjs`, state lives in browser `localStorage` and is lost if site data is
   cleared; use **Export package** for backups. The optional server is a single-user local
   convenience with no authentication (see [`docs/persistence-design.md`](./docs/persistence-design.md)).
 - Dataset names, categories and analyses in `data/*.json` are shown in their original
@@ -180,24 +180,28 @@ GitHub Actions runs the suite on Ubuntu and Windows with Node 22 and 24
 ## Project structure
 
 ```text
-index.html, app.js, styles.css   the application (no build step)
-i18n.js                          English / Chinese interface strings
-server.mjs                       optional local persistence server
-data/                            manifests, ontology, evidence source files
+src/
+  index.html, app.js, styles.css the application (no build step)
+  i18n.js                        English / Chinese interface strings
+  server.mjs                     optional local persistence server
+  data/                          manifests, ontology, evidence source files
 scripts/                         hashing, bundle generation, ontology validation
 test/                            Node test suites
 docs/                            design notes
 ```
 
+Data paths elsewhere in this README (`data/...`) are relative to `src/`, which is also
+how the manifests record them.
+
 ## License
 
 Code and data are licensed separately.
 
-- **Code** (`index.html`, `app.js`, `i18n.js`, `styles.css`, `server.mjs`, `scripts/`,
-  `test/`): [MIT License](./LICENSE), © 2026 Yun Kyung Lee.
-- **Data** (`data/`): not covered by the MIT License. Rights are recorded per dataset in
-  [`data/rights_manifest.json`](./data/rights_manifest.json) and
-  [`data/evidence_manifest.json`](./data/evidence_manifest.json). Only the two datasets
+- **Code** (`src/index.html`, `src/app.js`, `src/i18n.js`, `src/styles.css`,
+  `src/server.mjs`, `scripts/`, `test/`): [MIT License](./LICENSE.txt), © 2026 Yun Kyung Lee.
+- **Data** (`src/data/`): not covered by the MIT License. Rights are recorded per dataset in
+  [`data/rights_manifest.json`](./src/data/rights_manifest.json) and
+  [`data/evidence_manifest.json`](./src/data/evidence_manifest.json). Only the two datasets
   marked redistributable above may be reused: the Cooper Hewitt images (CC0) and the KG
   triples (CC BY 4.0). Everything else under `data/` is placeholder or pilot material.
 

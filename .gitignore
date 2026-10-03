@@ -1,4 +1,4 @@
-# Runtime data written by the optional persistence server (server.mjs). Not source —
+# Runtime data written by the optional persistence server (src/server.mjs). Not source —
 # see docs/persistence-design.md. Safe to delete at any time; server.mjs recreates it.
 /state/
 

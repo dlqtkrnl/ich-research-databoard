@@ -4,15 +4,15 @@
 
 > 영문 [`README.md`](./README.md)가 기준 문서입니다. 이 한국어판은 내용이 늦게 반영될 수 있습니다.
 
-브라우저 단독 실행(MVP) 연구 데이터 거버넌스 인터랙티브 프로토타입입니다. 빌드 도구나 서버 없이 `index.html`을 열면 바로 동작합니다. 江西省 非遗(무형문화유산) 시각 데이터의 수집·권리·훈련/평가 분할·지식그래프(KG)·AI 생성 실험을 하나의 워크플로로 연결하는 것이 목표입니다.
+브라우저 단독 실행(MVP) 연구 데이터 거버넌스 인터랙티브 프로토타입입니다. 빌드 도구나 서버 없이 `src/index.html`을 열면 바로 동작합니다. 江西省 非遗(무형문화유산) 시각 데이터의 수집·권리·훈련/평가 분할·지식그래프(KG)·AI 생성 실험을 하나의 워크플로로 연결하는 것이 목표입니다.
 
 ## 실행 방법
 
 ```text
-index.html 을 브라우저로 열기
+src/index.html 을 브라우저로 열기
 ```
 
-또는 로컬 서버(`npx serve .` 등)에서 열어도 됩니다. 외부 의존성·빌드 단계가 없습니다.
+또는 `npm run serve`(src/server.mjs)로 열어도 됩니다. 이 문서의 `data/...` 경로는 모두 `src/` 기준입니다. 외부 의존성·빌드 단계가 없습니다.
 
 ## 현재 화면 구성 (5개 탭)
 
@@ -64,7 +64,7 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
 
 `data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv`는 **placeholder가 아닌 실제 파일**입니다. 저자 본인의 별도 원고 P12(MLIC-CAFD-KG)의 부속 데이터 패키지(v18.37)에서 release gate를 통과한 32건의 source-linked triple을 그대로 복사해왔습니다.
 
-- 제3자 저작권 문제 없음(저자 본인 단독 원고 자료). 2026-10-03 단독 저자가 이 CSV를 **CC BY 4.0**으로 공개하기로 결정했으며, 이에 따라 `permission_scope`의 모든 항목이 `true`, `rights_gate: "pass"`입니다. 라이선스 고지는 [`data/kg_sources/LICENSE.md`](./data/kg_sources/LICENSE.md) 참고.
+- 제3자 저작권 문제 없음(저자 본인 단독 원고 자료). 2026-10-03 단독 저자가 이 CSV를 **CC BY 4.0**으로 공개하기로 결정했으며, 이에 따라 `permission_scope`의 모든 항목이 `true`, `rights_gate: "pass"`입니다. 라이선스 고지는 [`data/kg_sources/LICENSE.md`](./src/data/kg_sources/LICENSE.md) 참고.
 - `evidence_manifest.json`의 `SRC-XBEMB-KG-P12-TRIPLES32` 항목은 이 플랫폼에서 **처음으로 `source_file_present: true`이고 실제로 재계산해 검증한 sha256을 가진 evidence**입니다.
 - 32건 중 26건은 원본 논문 기준 `release_ready`(→ `source_verified`)이고, 6건은 `review_flagged`(→ `expert_review_required`)로 구분되어 그대로 반영됩니다.
 - 夏布刺绣(夏布绣)와 夏布织造를 별개의 공식 非遗 항목으로 명확히 구분하고 있어, 기존 `JXICH-XB-001` pilot 데이터셋이 둘을 뭉뚱그려 표현하던 부분을 보완합니다.
@@ -88,7 +88,7 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
 4. **传承人(전승인) 동의는 `pending` 상태입니다.** `JXICH-XB-001`은 실제 증거 파일이 없어 Rights Gate가 연구 목적 이용까지 차단(`blocked`)하고 있으나, 논문·발표 자료에 해당 데이터를 포함하면 안 됩니다.
 5. **2D/2.5D/3D 프리뷰는 실제 3D 재구성(photogrammetry/NeRF/mesh)이 아니라 CSS 목업입니다.** "3D 데이터화 구현됨"이라고 서술하지 말고 "schematic visualization preview"로 표기하세요.
 6. **Generation Lab 결과물은 AI 생성 이미지이며 실물 유산 표본이 아닙니다.** UI에 "AI-GENERATED — NOT AN AUTHENTIC ARTIFACT" 배지를 항상 표시하고, 내보낸 manifest에도 `content_class: "ai_generated_not_authentic"` 필드가 포함됩니다.
-7. **`server.mjs` 없이 열면 상태는 브라우저 `localStorage`에만 저장됩니다.** 캐시를 지우면 사라지므로 `Export package`(导出研究包)로 백업하세요. 선택 사항인 `node server.mjs`(http://127.0.0.1:8787)는 상태를 디스크에 저장하지만, 인증 없는 단일 사용자용 로컬 도구입니다(`docs/persistence-design.md` 참고).
+7. **`server.mjs` 없이 열면 상태는 브라우저 `localStorage`에만 저장됩니다.** 캐시를 지우면 사라지므로 `Export package`(导出研究包)로 백업하세요. 선택 사항인 `npm run serve`(`src/server.mjs`)(http://127.0.0.1:8787)는 상태를 디스크에 저장하지만, 인증 없는 단일 사용자용 로컬 도구입니다(`docs/persistence-design.md` 참고).
 
 ## 다음 단계로 고려할 것 (실물 데이터/외부 계정이 필요한 항목)
 
@@ -100,12 +100,12 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
 
 **코드와 데이터의 라이선스는 서로 다릅니다 — 저장소 전체에 단일 라이선스를 적용하지 않습니다.**
 
-- **코드** (`index.html`, `app.js`, `styles.css`, `scripts/`, `test/` 등): **MIT License**. 자세한 내용은 저장소 루트의 [`LICENSE`](./LICENSE) 파일을 참고하세요(저작권자: Yun Kyung Lee).
-- **데이터** (`data/` 디렉터리 전체): MIT 라이선스가 **적용되지 않습니다.** 레코드별로 권리 상태가 다르므로 재사용/재배포 전 반드시 아래를 확인하세요.
-  - 레코드 단위 권리 상태의 단일 원천은 [`data/rights_manifest.json`](./data/rights_manifest.json)(`permission_scope`, `rights_gate` 등)과 [`data/evidence_manifest.json`](./data/evidence_manifest.json)(증거 파일별 `source_file_present`, `verification_status`)입니다.
+- **코드** (`src/` 안의 `index.html`, `app.js`, `i18n.js`, `styles.css`, `server.mjs`와 `scripts/`, `test/`): **MIT License**. 자세한 내용은 저장소 루트의 [`LICENSE.txt`](./LICENSE.txt) 파일을 참고하세요(저작권자: Yun Kyung Lee).
+- **데이터** (`src/data/` 디렉터리 전체): MIT 라이선스가 **적용되지 않습니다.** 레코드별로 권리 상태가 다르므로 재사용/재배포 전 반드시 아래를 확인하세요.
+  - 레코드 단위 권리 상태의 단일 원천은 [`data/rights_manifest.json`](./src/data/rights_manifest.json)(`permission_scope`, `rights_gate` 등)과 [`data/evidence_manifest.json`](./src/data/evidence_manifest.json)(증거 파일별 `source_file_present`, `verification_status`)입니다.
   - 이 저장소에서 **재배포가 실제로 허용된 데이터**는 두 가지입니다. 둘 다 `rights_manifest.json`에서 `rights_gate: "pass"`이고 `permission_scope`의 모든 항목이 `true`입니다.
     - `PUB-CHNDM-HEMP-JP-009`(Cooper Hewitt 麻織物/型紙 이미지, `data/public_dataset_sources/chndm_hemp_textile_jp/*.jpg`): **CC0**. 위 "✅ 새로 추가된 실데이터 2" 섹션 참고.
-    - `JXICH-XBEMB-KG-P12`(夏布绣 지식그래프 32건, `data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv`): 저자 본인 단독 원고 P12의 부속 데이터, **CC BY 4.0**. [`data/kg_sources/LICENSE.md`](./data/kg_sources/LICENSE.md)와 위 "✅ 새로 추가된 실데이터" 섹션 참고.
+    - `JXICH-XBEMB-KG-P12`(夏布绣 지식그래프 32건, `data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv`): 저자 본인 단독 원고 P12의 부속 데이터, **CC BY 4.0**. [`data/kg_sources/LICENSE.md`](./src/data/kg_sources/LICENSE.md)와 위 "✅ 새로 추가된 실데이터" 섹션 참고.
   - `JXICH-XB-001`(江西夏布 pilot 데이터셋)을 포함한 나머지 대부분의 `data/`는 **placeholder/pilot 데이터**이며 실제 유산 표본을 대표하지 않습니다. 위 "⚠️ 데이터 진위성에 대한 알림 (Known Limitations)" 섹션, 특히 1번(placeholder checksum)과 2번(`evidence_manifest.json` 14건 중 5건이 `source_file_present: false`) 항목을 반드시 먼저 읽으세요.
   - **요약**: 실제 증거 문서가 첨부되고 `source_file_present: true`로 갱신되기 전까지, `data/`의 대부분은 "공개/재배포 가능한 오픈 데이터"가 아닙니다. Zenodo 아카이빙 등 공개 배포 전 체크리스트는 [`ARCHIVING.md`](./ARCHIVING.md)를 참고하세요.
 

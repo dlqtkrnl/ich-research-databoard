@@ -1,6 +1,6 @@
 {
   "name": "ich-research-databoard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Browser-only governance toolkit for intangible cultural heritage (ICH) AI datasets: rights gate, split-leakage validator, evidence-authenticity registry, and a client-side SHA-256 audit hash-chain.",
   "license": "MIT",
@@ -17,6 +17,6 @@
     "check:bundle": "node scripts/build_manifest_bundle.mjs --check",
     "validate:ontology": "node scripts/validate_ontology.mjs",
     "rehash": "node scripts/hash_files.mjs && node scripts/build_manifest_bundle.mjs",
-    "serve": "node server.mjs"
+    "serve": "node src/server.mjs"
   }
 }

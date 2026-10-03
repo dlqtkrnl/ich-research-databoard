@@ -53,6 +53,8 @@ pre-flight checklist in section (d) below.
 
 ## d) Pre-flight checklist — do this before making the repo public
 
+All `data/...` paths below are relative to `src/`.
+
 Stop and re-read the "Known limitations" and "Bundled data and rights
 status" sections of README.md before any of the steps above. A Zenodo archive is
 effectively permanent and gets its own DOI/citation trail — mistakes here
@@ -75,7 +77,7 @@ are much harder to walk back than a normal git push. Specifically confirm:
 - [ ] Entries in `evidence_manifest.json` where `source_file_present: false`
       are illustrative placeholders, not real evidence documents — do not
       describe them as verified in any public-facing text.
-- [x] `LICENSE` (MIT) copyright holder and `CITATION.cff` author fields
+- [x] `LICENSE.txt` (MIT) copyright holder and `CITATION.cff` author fields
       (name, ORCID, affiliation) are filled in (2026-10-03).
 - [x] `CITATION.cff`'s `version` and `date-released` match the Release tag
       (v1.0.0 archived 2026-10-03: concept DOI 10.5281/zenodo.23121468,

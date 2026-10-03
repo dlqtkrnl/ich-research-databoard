@@ -1,5 +1,5 @@
-# Pin line endings so the SHA-256 values in data/checksum_manifest.json and
-# data/evidence_manifest.json stay valid on every checkout (Windows, macOS, Linux CI).
+# Pin line endings so the SHA-256 values in src/data/checksum_manifest.json and
+# src/data/evidence_manifest.json stay valid on every checkout (Windows, macOS, Linux CI).
 # Without this, core.autocrlf rewrites text files on checkout and their bytes no longer
 # match the registered hashes.
 
@@ -8,8 +8,8 @@
 
 # Evidence-source files are hashed byte-for-byte against their original source.
 # Never let git touch their bytes (the P12 CSV keeps its original CRLF line endings).
-data/kg_sources/** -text
-data/public_dataset_sources/** binary
+src/data/kg_sources/** -text
+src/data/public_dataset_sources/** binary
 
 *.jpg binary
 *.jpeg binary

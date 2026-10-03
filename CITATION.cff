@@ -13,7 +13,7 @@ abstract: >-
   enforcement, train/eval/holdout split governance with leakage checks, a
   knowledge-graph / ontology layer, an AI Generation Lab, and an append-only
   SHA-256 audit hash-chain. No build tools or server required — open
-  index.html directly.
+  src/index.html directly.
 authors:
   - family-names: "Lee"
     given-names: "Yun Kyung"
@@ -33,7 +33,7 @@ repository-code: "https://github.com/dlqtkrnl/ich-research-databoard"
 # date-released and version should be set to match the tag/Release that
 # Zenodo archives (see ARCHIVING.md). Update at release time.
 date-released: "2026-10-03"
-version: "1.0.0"
+version: "1.0.1"
 keywords:
   - intangible-cultural-heritage
   - data-governance
@@ -42,8 +42,8 @@ keywords:
   - audit-hash-chain
   - digital-humanities
   - jiangxi
-# NOTE: `license: MIT` above describes the SOURCE CODE only (index.html,
-# app.js, styles.css, scripts/, test/). The contents of data/ are NOT
+# NOTE: `license: MIT` above describes the SOURCE CODE only (src/*.html,
+# src/*.js, src/*.css, scripts/, test/). The contents of src/data/ are NOT
 # covered by this license — they have mixed, per-record rights status
 # (CC0 / rights-restricted / unpublished placeholder). See README.md
 # "License" section and data/rights_manifest.json before reusing or

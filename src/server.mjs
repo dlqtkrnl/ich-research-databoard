@@ -12,8 +12,8 @@
 // scripts/*.mjs).
 //
 // Usage:
-//   node server.mjs               # listens on http://127.0.0.1:8787
-//   PORT=4000 node server.mjs     # or: node server.mjs 4000
+//   node src/server.mjs               # listens on http://127.0.0.1:8787
+//   PORT=4000 node src/server.mjs     # or: node src/server.mjs 4000
 //
 // See docs/persistence-design.md for the full design and known limitations (no auth,
 // no multi-writer conflict resolution — this is a single-user local dev convenience,
@@ -27,7 +27,8 @@ import { join, dirname, extname, normalize, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = dirname(fileURLToPath(import.meta.url));
-const stateDir = join(root, "state");
+// Kept outside src/ so runtime state is never served as a static file.
+const stateDir = join(root, "..", "state");
 if (!existsSync(stateDir)) mkdirSync(stateDir, { recursive: true });
 
 const PORT = Number(process.argv[2] || process.env.PORT || 8787);

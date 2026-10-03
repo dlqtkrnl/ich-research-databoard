@@ -5,9 +5,9 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const app = require("./env-shim");
-const i18n = require("../i18n.js");
+const i18n = require("../src/i18n.js");
 
-const root = path.join(__dirname, "..");
+const root = path.join(__dirname, "..", "src");
 const appSource = fs.readFileSync(path.join(root, "app.js"), "utf8");
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 

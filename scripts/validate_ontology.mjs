@@ -12,7 +12,7 @@ import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const root = join(dirname(fileURLToPath(import.meta.url)), "..", "src");
 const readJson = (p) => JSON.parse(readFileSync(join(root, p), "utf8"));
 
 const vocab = readJson("data/ontology/predicate_vocabulary.json");

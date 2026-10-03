@@ -20,4 +20,4 @@ global.window = {
   location: { hash: "" },
 };
 
-module.exports = require("../app.js");
+module.exports = require("../src/app.js");
