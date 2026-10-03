@@ -1,0 +1,10 @@
+# Runtime data written by the optional persistence server (server.mjs). Not source —
+# see docs/persistence-design.md. Safe to delete at any time; server.mjs recreates it.
+/state/
+
+# Editor backups.
+*.bak
+
+# Common OS/editor cruft.
+.DS_Store
+Thumbs.db

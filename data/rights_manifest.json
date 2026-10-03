@@ -1,0 +1,125 @@
+{
+  "manifest_version": "2026.10-v1.0",
+  "rights": [
+    {
+      "rights_id": "RGT-JXICH-XB-001",
+      "dataset_id": "JXICH-XB-001",
+      "license": "institutional_permission_pending",
+      "license_document_id": "DOC-PENDING-XB-001",
+      "consent_form_id": "CONSENT-PENDING-XB-001",
+      "permission_scope": {
+        "research": true,
+        "publication": false,
+        "public_demo": false,
+        "derivative": false,
+        "commercial": false
+      },
+      "portrait_status": "not_applicable_or_pending",
+      "personal_data_status": "low_risk",
+      "sensitive_culture_status": "review_required",
+      "cross_border_transfer_status": "not_allowed_until_review",
+      "expiry_date": "2027-07-01",
+      "rights_gate": "conditional"
+    },
+    {
+      "rights_id": "RGT-PUB-DTD-001",
+      "dataset_id": "PUB-DTD-001",
+      "license": "research_reference_with_original_source_review",
+      "license_document_id": "OFFICIAL-WEBPAGE-DTD",
+      "consent_form_id": "not_applicable",
+      "permission_scope": {
+        "research": true,
+        "publication": false,
+        "public_demo": false,
+        "derivative": false,
+        "commercial": false
+      },
+      "portrait_status": "not_applicable",
+      "personal_data_status": "not_applicable",
+      "sensitive_culture_status": "not_applicable",
+      "cross_border_transfer_status": "metadata_only",
+      "expiry_date": "source_terms_dependent",
+      "rights_gate": "conditional"
+    },
+    {
+      "rights_id": "RGT-PUB-FASHIONPEDIA-002",
+      "dataset_id": "PUB-FASHIONPEDIA-002",
+      "license": "annotations_cc_by_4_original_images_separate_review",
+      "license_document_id": "OFFICIAL-WEBPAGE-FASHIONPEDIA-TERMS",
+      "consent_form_id": "not_applicable",
+      "permission_scope": {
+        "research": true,
+        "publication": false,
+        "public_demo": false,
+        "derivative": false,
+        "commercial": false
+      },
+      "portrait_status": "source_review_required",
+      "personal_data_status": "source_review_required",
+      "sensitive_culture_status": "not_applicable",
+      "cross_border_transfer_status": "metadata_only",
+      "expiry_date": "source_terms_dependent",
+      "rights_gate": "conditional"
+    },
+    {
+      "rights_id": "RGT-PUB-DEEPFASHION2-004",
+      "dataset_id": "PUB-DEEPFASHION2-004",
+      "license": "controlled_access_application_required",
+      "license_document_id": "APPLICATION-PENDING-DEEPFASHION2",
+      "consent_form_id": "not_applicable",
+      "permission_scope": {
+        "research": false,
+        "publication": false,
+        "public_demo": false,
+        "derivative": false,
+        "commercial": false
+      },
+      "portrait_status": "source_review_required",
+      "personal_data_status": "source_review_required",
+      "sensitive_culture_status": "not_applicable",
+      "cross_border_transfer_status": "not_allowed_until_access_approved",
+      "expiry_date": "not_approved",
+      "rights_gate": "blocked"
+    },
+    {
+      "rights_id": "RGT-JXICH-XBEMB-KG-P12",
+      "dataset_id": "JXICH-XBEMB-KG-P12",
+      "license": "cc_by_4.0_released_by_sole_author",
+      "license_document_id": "P12-TRIPLES32-CC-BY-4.0-RELEASE-20261003",
+      "consent_form_id": "not_applicable",
+      "permission_scope": {
+        "research": true,
+        "publication": true,
+        "public_demo": true,
+        "derivative": true,
+        "commercial": true
+      },
+      "portrait_status": "not_applicable",
+      "personal_data_status": "not_applicable",
+      "sensitive_culture_status": "review_required",
+      "cross_border_transfer_status": "unrestricted_public_release",
+      "expiry_date": "not_applicable_cc_by_no_expiry",
+      "rights_gate": "pass"
+    },
+    {
+      "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "license": "cc0_public_domain_smithsonian_open_access",
+      "license_document_id": "SI-OPENACCESS-MEDIA_USAGE-CC0-VERIFIED-20260704",
+      "consent_form_id": "not_applicable",
+      "permission_scope": {
+        "research": true,
+        "publication": true,
+        "public_demo": true,
+        "derivative": true,
+        "commercial": true
+      },
+      "portrait_status": "not_applicable",
+      "personal_data_status": "not_applicable",
+      "sensitive_culture_status": "not_applicable_foreign_public_museum_collection",
+      "cross_border_transfer_status": "unrestricted_public_domain",
+      "expiry_date": "not_applicable_cc0_no_expiry",
+      "rights_gate": "pass"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jxich.local/schemas/generation_manifest.schema.json",
+  "title": "JXICH Generation Manifest",
+  "type": "object",
+  "required": ["manifest_version", "runs"],
+  "properties": {
+    "manifest_version": { "type": "string" },
+    "settings": { "type": "object" },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "run_id",
+          "created_at",
+          "dataset_id",
+          "mode",
+          "image_backend",
+          "model_id",
+          "workflow_hash",
+          "prompt_hash",
+          "negative_prompt_hash",
+          "seed",
+          "input_image_hash",
+          "output_image_hash",
+          "rights_gate_status",
+          "reuse_layers",
+          "kg_claim_ids",
+          "status",
+          "manifest_hash",
+          "audit_entry_hash"
+        ],
+        "properties": {
+          "run_id": { "type": "string" },
+          "created_at": { "type": "string", "format": "date-time" },
+          "dataset_id": { "type": "string" },
+          "dataset_version": { "type": "string" },
+          "mode": { "enum": ["text-to-image", "image-to-image", "inpainting", "controlnet"] },
+          "image_backend": { "enum": ["comfyui", "diffusers", "webgpu"] },
+          "image_endpoint": { "type": "string" },
+          "llm_endpoint": { "type": "string" },
+          "model_id": { "type": "string" },
+          "workflow_hash": { "type": "string" },
+          "prompt": { "type": "string" },
+          "prompt_hash": { "type": "string" },
+          "negative_prompt_hash": { "type": "string" },
+          "seed": { "type": "string" },
+          "input_image_hash": { "type": "string" },
+          "output_image_url": { "type": "string" },
+          "output_image_hash": { "type": "string" },
+          "rights_gate_status": { "type": "string" },
+          "rights_gate_reason": { "type": "string" },
+          "reuse_layers": { "type": "array" },
+          "kg_claim_ids": { "type": "array", "items": { "type": "string" } },
+          "status": { "enum": ["manifest_only", "completed", "backend_error", "connector_failed"] },
+          "message": { "type": "string" },
+          "audit_previous_hash": { "type": "string" },
+          "audit_entry_hash": { "type": "string" },
+          "manifest_hash": { "type": "string" }
+        }
+      }
+    }
+  }
+}

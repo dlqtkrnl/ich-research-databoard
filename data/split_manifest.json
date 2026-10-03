@@ -1,0 +1,49 @@
+{
+  "manifest_version": "2026.10-v1.0",
+  "split_policy": {
+    "unit_of_separation": [
+      "object_id",
+      "event_id",
+      "capture_session_id"
+    ],
+    "train_eval_leakage_rule": "同一对象、同一采集场次或近重复图像不得同时进入训练集与评测集。",
+    "eval_lock_required": true
+  },
+  "assignments": [
+    {
+      "dataset_id": "JXICH-XB-001",
+      "split": "train",
+      "locked": false,
+      "leakage_risk": "medium",
+      "note": "需要补齐机构授权后进入正式训练集。"
+    },
+    {
+      "dataset_id": "PUB-DTD-001",
+      "split": "train",
+      "locked": false,
+      "leakage_risk": "low",
+      "note": "仅metadata connector与内部研究预热。"
+    },
+    {
+      "dataset_id": "PUB-FASHIONPEDIA-002",
+      "split": "holdout",
+      "locked": false,
+      "leakage_risk": "medium",
+      "note": "用于字段映射和ontology对齐测试。"
+    },
+    {
+      "dataset_id": "PUB-DEEPFASHION2-004",
+      "split": "holdout",
+      "locked": true,
+      "leakage_risk": "high",
+      "note": "访问审批前不得进入训练或评测。"
+    },
+    {
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "split": "train",
+      "locked": false,
+      "leakage_risk": "low",
+      "note": "CC0公有领域实物图像，已通过Rights Gate（pass）与sample leakage检查，作为真实evidence-verified训练集示例。"
+    }
+  ]
+}

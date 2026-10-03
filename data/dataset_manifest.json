@@ -1,0 +1,201 @@
+{
+  "manifest_version": "2026.10-v1.0",
+  "created_at": "2026-07-03",
+  "schema": "dataset_manifest.schema.json",
+  "datasets": [
+    {
+      "dataset_id": "JXICH-XB-001",
+      "name": "江西夏布织造与夏布绣样本集",
+      "category": "非遗织物",
+      "source_url": "local://jxich/xiabu/202607-pilot",
+      "owner": "江西省非遗采集计划 / 机构授权待补全",
+      "volume": "320 images + 42 records",
+      "collection_date": "2026-07-01",
+      "version": "v0.2-pilot",
+      "checksum": "sha256:pilot-placeholder-jxich-xb-001",
+      "annotation_schema": "image_id, object_id, event_id, capture_session_id, material, texture, motif, process, rights_id",
+      "risk_level": "medium",
+      "readiness": 78,
+      "status": "expert_review_required",
+      "archived": false,
+      "tags": [
+        "织物",
+        "纹样",
+        "工艺",
+        "江西"
+      ],
+      "supports": [
+        "2D",
+        "2.5D",
+        "3D-preview"
+      ],
+      "reuse_layers": [
+        "semantic",
+        "history",
+        "appearance",
+        "rights"
+      ],
+      "analysis": "图像中纹理、纱线密度、绣线走向较清晰，适合作为江西非遗织物外观与工艺语义的核心pilot。需补齐传承人授权和公开展示边界。"
+    },
+    {
+      "dataset_id": "PUB-DTD-001",
+      "name": "DTD 纹理属性公开数据集",
+      "category": "公开纹理",
+      "source_url": "https://www.robots.ox.ac.uk/~vgg/data/dtd/",
+      "owner": "Oxford VGG；底层图像权属需按原始来源核验",
+      "volume": "5,640 images / 47 texture classes",
+      "collection_date": "external-public",
+      "version": "official-public-reference",
+      "checksum": "sha256:not-downloaded-metadata-connector",
+      "annotation_schema": "image_id, texture_class, official_split, source_note, license_note",
+      "risk_level": "medium",
+      "readiness": 72,
+      "status": "research_metadata_connector",
+      "archived": false,
+      "tags": [
+        "texture",
+        "pilot",
+        "公开",
+        "research"
+      ],
+      "supports": [
+        "2D",
+        "2.5D"
+      ],
+      "reuse_layers": [
+        "appearance",
+        "rights"
+      ],
+      "analysis": "适合作为面料纹理识别、质感属性分类和模型流程预热数据。原图来自Google/Flickr，对外发布或商业演示前需要逐项核验来源版权。"
+    },
+    {
+      "dataset_id": "PUB-FASHIONPEDIA-002",
+      "name": "Fashionpedia 服饰属性与分割数据集",
+      "category": "服饰属性",
+      "source_url": "https://fashionpedia.github.io/home/index.html",
+      "owner": "Fashionpedia annotations and ontology; original images require source review",
+      "volume": "48,825 images / 294 attributes",
+      "collection_date": "external-public",
+      "version": "official-public-reference",
+      "checksum": "sha256:not-downloaded-metadata-connector",
+      "annotation_schema": "image_id, category, parts, attributes, mask, source_note, license_note",
+      "risk_level": "medium",
+      "readiness": 80,
+      "status": "research_metadata_connector",
+      "archived": false,
+      "tags": [
+        "ontology",
+        "segmentation",
+        "attribute",
+        "apparel"
+      ],
+      "supports": [
+        "2D",
+        "2.5D",
+        "3D-preview"
+      ],
+      "reuse_layers": [
+        "semantic",
+        "appearance",
+        "rights"
+      ],
+      "analysis": "服饰部件、属性、实例分割和ontology较完整，适合测试图像标注到知识图谱字段的映射。原始图像版权需遵守来源网站条款。"
+    },
+    {
+      "dataset_id": "PUB-DEEPFASHION2-004",
+      "name": "DeepFashion2 检测与关键点数据集",
+      "category": "服饰属性",
+      "source_url": "https://github.com/switchablenorms/DeepFashion2",
+      "owner": "DeepFashion2 project；下载需申请表与访问密码",
+      "volume": "491K images / 801K clothing items",
+      "collection_date": "external-controlled",
+      "version": "controlled-access-reference",
+      "checksum": "sha256:not-downloaded-controlled-access",
+      "annotation_schema": "image_id, bbox, landmark, mask, pair_id, access_record, license_note",
+      "risk_level": "high",
+      "readiness": 64,
+      "status": "controlled_access_candidate",
+      "archived": false,
+      "tags": [
+        "detection",
+        "landmark",
+        "mask",
+        "controlled"
+      ],
+      "supports": [
+        "2D",
+        "2.5D",
+        "3D-preview"
+      ],
+      "reuse_layers": [
+        "appearance",
+        "rights"
+      ],
+      "analysis": "检测、关键点、mask和消费者-商店匹配任务较完整，适合验证服饰局部定位流程。下载需申请和密码，不能作为公开演示包内置资产。"
+    },
+    {
+      "dataset_id": "JXICH-XBEMB-KG-P12",
+      "name": "夏布绣 Source-linked 知识图谱示范集（作者本人 P12 论文附录）",
+      "category": "非遗知识图谱",
+      "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv",
+      "owner": "作者本人（唯一作者）未发表原稿 P12（MLIC-CAFD-KG）附录数据 — 无第三方版权问题；作者于 2026-10-03 以 CC BY 4.0 公开发布",
+      "volume": "32 released source-linked triples（从37条候选中筛选，26条release-ready + 6条review-flagged）；引用29篇文献语料库，但语料库PDF本身未随附",
+      "collection_date": "2026-06-28",
+      "version": "v18.37（P12 附录数据包版本）",
+      "checksum": "sha256:b433e9d07a193c94377b47dcd62c7b213f9b6da4c486fc05fb7816e21fac9495",
+      "annotation_schema": "triple_id, subject, predicate, object, evidence_summary, claim_category, evidence_role, source_priority, score, risk_status, release_status, official_source_id, provenance_status",
+      "risk_level": "medium",
+      "readiness": 85,
+      "status": "source_verified_cc_by",
+      "archived": false,
+      "tags": [
+        "夏布绣",
+        "知识图谱",
+        "非遗",
+        "江西",
+        "KG"
+      ],
+      "supports": [],
+      "reuse_layers": [
+        "semantic",
+        "history",
+        "rights"
+      ],
+      "analysis": "作者本人另一篇投稿论文（P12, MLIC-CAFD-KG）中已通过release gate验证的32条source-linked triple，直接复用真实数据（非占位符）。明确区分夏布刺绣（夏布绣）与夏布织造为两个不同的官方非遗项目，可补充现有JXICH-XB-001 pilot数据集中两者被笼统合并表述的问题。6条review_flagged记录保留但单独标注低置信度，不作为高强度证据使用。"
+    },
+    {
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "name": "Cooper Hewitt 麻(hemp)型纸与实物织物样本集（日本，CC0公有领域）",
+      "category": "公开纹理",
+      "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
+      "owner": "Smithsonian's Cooper Hewitt, National Design Museum；经 Smithsonian Open Access API 确认 media_usage=CC0",
+      "volume": "3 objects / 8 images",
+      "collection_date": "2026-07-04",
+      "version": "v1.0-real-cc0-verified",
+      "checksum": "sha256:20fcb2e427ff5138640a67c140bdef23ccc81752dcbb0c84b5c222b0f51cbf9e",
+      "annotation_schema": "image_id, object_id(accession_no), event_id, capture_session_id, material, technique, rights_id",
+      "risk_level": "low",
+      "readiness": 92,
+      "status": "source_verified_real_cc0",
+      "archived": false,
+      "tags": [
+        "texture",
+        "麻",
+        "hemp",
+        "日本",
+        "CC0",
+        "real-file"
+      ],
+      "supports": [
+        "2D",
+        "2.5D"
+      ],
+      "reuse_layers": [
+        "appearance",
+        "history",
+        "rights"
+      ],
+      "analysis": "来自 Smithsonian Cooper Hewitt National Design Museum 的3件18-19世纪日本麻(hemp/bast fiber)相关藏品，共8张官方CC0高分辨率图像，本会话中实际下载并重新计算SHA-256（非占位符，非pilot）。包含2件型纸(katagami，防染用镂空纸模：楮纸+柿涩染+丝线)与1件马被麻织物(umakake，478.8×64.8cm)实物共6张照片。重要限制：均为日本藏品，与江西夏布(中国苎麻)、韩国모시同属bast fiber材料系但地域工艺传统不同——应作为\"工艺相邻的独立真实对照数据集\"使用，不可替代或等同于JXICH-XB-001 江西夏布 pilot数据集。"
+    }
+  ]
+}

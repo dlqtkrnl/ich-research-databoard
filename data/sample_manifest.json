@@ -1,0 +1,193 @@
+{
+  "manifest_version": "2026.10-v1.0",
+  "sample_policy": {
+    "split_unit": [
+      "object_id",
+      "event_id",
+      "capture_session_id"
+    ],
+    "near_duplicate_keys": [
+      "phash",
+      "duplicate_group_id"
+    ],
+    "validated_at": "2026-07-03T00:00:00+08:00"
+  },
+  "samples": [
+    {
+      "sample_id": "XB-IMG-0001",
+      "dataset_id": "JXICH-XB-001",
+      "object_id": "XB-OBJ-01",
+      "event_id": "XB-EVT-A",
+      "capture_session_id": "XB-CAP-202607-A",
+      "split": "train",
+      "phash": "p:aa11",
+      "duplicate_group_id": "dup-xb-01",
+      "rights_id": "RGT-JXICH-XB-001"
+    },
+    {
+      "sample_id": "XB-IMG-0002",
+      "dataset_id": "JXICH-XB-001",
+      "object_id": "XB-OBJ-02",
+      "event_id": "XB-EVT-A",
+      "capture_session_id": "XB-CAP-202607-A",
+      "split": "train",
+      "phash": "p:aa12",
+      "duplicate_group_id": "dup-xb-02",
+      "rights_id": "RGT-JXICH-XB-001"
+    },
+    {
+      "sample_id": "XB-IMG-0101",
+      "dataset_id": "JXICH-XB-001",
+      "object_id": "XB-OBJ-10",
+      "event_id": "XB-EVT-B",
+      "capture_session_id": "XB-CAP-202607-B",
+      "split": "eval",
+      "phash": "p:bb10",
+      "duplicate_group_id": "dup-xb-10",
+      "rights_id": "RGT-JXICH-XB-001"
+    },
+    {
+      "sample_id": "XB-IMG-0102",
+      "dataset_id": "JXICH-XB-001",
+      "object_id": "XB-OBJ-11",
+      "event_id": "XB-EVT-B",
+      "capture_session_id": "XB-CAP-202607-B",
+      "split": "eval",
+      "phash": "p:bb11",
+      "duplicate_group_id": "dup-xb-11",
+      "rights_id": "RGT-JXICH-XB-001"
+    },
+    {
+      "sample_id": "DTD-TRAIN-0001",
+      "dataset_id": "PUB-DTD-001",
+      "object_id": "DTD-WOVEN-001",
+      "event_id": "DTD-OFFICIAL-TRAIN",
+      "capture_session_id": "DTD-SPLIT-TRAIN",
+      "split": "train",
+      "phash": "p:dtd01",
+      "duplicate_group_id": "dup-dtd-01",
+      "rights_id": "RGT-PUB-DTD-001"
+    },
+    {
+      "sample_id": "DTD-EVAL-0001",
+      "dataset_id": "PUB-DTD-001",
+      "object_id": "DTD-WOVEN-901",
+      "event_id": "DTD-OFFICIAL-EVAL",
+      "capture_session_id": "DTD-SPLIT-EVAL",
+      "split": "eval",
+      "phash": "p:dtd91",
+      "duplicate_group_id": "dup-dtd-91",
+      "rights_id": "RGT-PUB-DTD-001"
+    },
+    {
+      "sample_id": "FP-HOLD-0001",
+      "dataset_id": "PUB-FASHIONPEDIA-002",
+      "object_id": "FP-GARMENT-001",
+      "event_id": "FP-OFFICIAL",
+      "capture_session_id": "FP-HOLDOUT",
+      "split": "holdout",
+      "phash": "p:fp01",
+      "duplicate_group_id": "dup-fp-01",
+      "rights_id": "RGT-PUB-FASHIONPEDIA-002"
+    },
+    {
+      "sample_id": "DF2-HOLD-0001",
+      "dataset_id": "PUB-DEEPFASHION2-004",
+      "object_id": "DF2-GARMENT-001",
+      "event_id": "DF2-CONTROLLED",
+      "capture_session_id": "DF2-PENDING",
+      "split": "holdout",
+      "phash": "p:df201",
+      "duplicate_group_id": "dup-df2-01",
+      "rights_id": "RGT-PUB-DEEPFASHION2-004"
+    },
+    {
+      "sample_id": "CHNDM-IMG-0001",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "object_id": "CHNDM-1959-150-2",
+      "event_id": "CHNDM-SI-OPENACCESS-DIGITIZATION",
+      "capture_session_id": "CHNDM-SI-OPENACCESS-2026",
+      "split": "train",
+      "phash": "p:chndm-1959-150-2",
+      "duplicate_group_id": "dup-chndm-1959-150-2",
+      "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009"
+    },
+    {
+      "sample_id": "CHNDM-IMG-0002",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "object_id": "CHNDM-1976-103-105",
+      "event_id": "CHNDM-SI-OPENACCESS-DIGITIZATION",
+      "capture_session_id": "CHNDM-SI-OPENACCESS-2026",
+      "split": "train",
+      "phash": "p:chndm-1976-103-105",
+      "duplicate_group_id": "dup-chndm-1976-103-105",
+      "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009"
+    },
+    {
+      "sample_id": "CHNDM-IMG-0003",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "object_id": "CHNDM-2001-2-1",
+      "event_id": "CHNDM-SI-OPENACCESS-DIGITIZATION",
+      "capture_session_id": "CHNDM-SI-OPENACCESS-2026",
+      "split": "train",
+      "phash": "p:chndm-2001-2-1-01",
+      "duplicate_group_id": "dup-chndm-2001-2-1",
+      "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009"
+    },
+    {
+      "sample_id": "CHNDM-IMG-0004",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "object_id": "CHNDM-2001-2-1",
+      "event_id": "CHNDM-SI-OPENACCESS-DIGITIZATION",
+      "capture_session_id": "CHNDM-SI-OPENACCESS-2026",
+      "split": "train",
+      "phash": "p:chndm-2001-2-1-02",
+      "duplicate_group_id": "dup-chndm-2001-2-1",
+      "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009"
+    },
+    {
+      "sample_id": "CHNDM-IMG-0005",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "object_id": "CHNDM-2001-2-1",
+      "event_id": "CHNDM-SI-OPENACCESS-DIGITIZATION",
+      "capture_session_id": "CHNDM-SI-OPENACCESS-2026",
+      "split": "train",
+      "phash": "p:chndm-2001-2-1-03",
+      "duplicate_group_id": "dup-chndm-2001-2-1",
+      "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009"
+    },
+    {
+      "sample_id": "CHNDM-IMG-0006",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "object_id": "CHNDM-2001-2-1",
+      "event_id": "CHNDM-SI-OPENACCESS-DIGITIZATION",
+      "capture_session_id": "CHNDM-SI-OPENACCESS-2026",
+      "split": "train",
+      "phash": "p:chndm-2001-2-1-04",
+      "duplicate_group_id": "dup-chndm-2001-2-1",
+      "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009"
+    },
+    {
+      "sample_id": "CHNDM-IMG-0007",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "object_id": "CHNDM-2001-2-1",
+      "event_id": "CHNDM-SI-OPENACCESS-DIGITIZATION",
+      "capture_session_id": "CHNDM-SI-OPENACCESS-2026",
+      "split": "train",
+      "phash": "p:chndm-2001-2-1-05",
+      "duplicate_group_id": "dup-chndm-2001-2-1",
+      "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009"
+    },
+    {
+      "sample_id": "CHNDM-IMG-0008",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "object_id": "CHNDM-2001-2-1",
+      "event_id": "CHNDM-SI-OPENACCESS-DIGITIZATION",
+      "capture_session_id": "CHNDM-SI-OPENACCESS-2026",
+      "split": "train",
+      "phash": "p:chndm-2001-2-1-06",
+      "duplicate_group_id": "dup-chndm-2001-2-1",
+      "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009"
+    }
+  ]
+}

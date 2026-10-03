@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jiangxi ICH AI Data Governance Research Platform</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block" aria-label="Platform name" data-i18n-aria="brand.aria">
+          <span class="brand-mark">JX</span>
+          <div>
+            <strong>ICH Research DataBoard</strong>
+            <span data-i18n="brand.sub">Governance and KG validation for Jiangxi ICH visual data</span>
+          </div>
+        </div>
+        <nav class="top-tabs" aria-label="Main workflow" data-i18n-aria="nav.aria">
+          <a href="#overviewWindow" class="top-tab active" data-view="overview" data-i18n="tab.overview">Overview</a>
+          <a href="#datasetWindow" class="top-tab" data-view="dataset" data-i18n="tab.dataset">Datasets</a>
+          <a href="#boardWindow" class="top-tab" data-view="board" data-i18n="tab.board">Board</a>
+          <a href="#generationWindow" class="top-tab" data-view="generation" data-i18n="tab.generation">Generation Lab</a>
+          <a href="#governanceWindow" class="top-tab" data-view="governance" data-i18n="tab.governance">Governance</a>
+        </nav>
+        <div class="top-actions">
+          <span class="platform-state" id="platformState">validated</span>
+          <button class="ghost-btn" id="langBtn" type="button" aria-label="Switch interface language to Chinese" data-i18n="lang.toggle" data-i18n-aria="lang.toggleAria">中文</button>
+          <button class="ghost-btn" id="importBtn" type="button" data-i18n="btn.import">Import</button>
+          <input id="importFile" type="file" accept="application/json" hidden />
+          <button class="ghost-btn" id="resetBtn" type="button" data-i18n="btn.reset">Reset</button>
+          <button class="primary-btn" id="exportBtn" type="button" data-i18n="btn.export">Export package</button>
+        </div>
+      </header>
+
+      <main class="workspace-grid" id="workspaceGrid" data-active-view="overview">
+
+        <section class="logic-ribbon" aria-label="Research platform validation workflow" data-i18n-aria="ribbon.aria">
+          <div class="logic-step active"><span>01</span><strong>Manifest Intake</strong><em>source · version · checksum</em></div>
+          <div class="logic-step"><span>02</span><strong>Research Board</strong><em>selection · reuse · view</em></div>
+          <div class="logic-step"><span>03</span><strong>Rights / Split</strong><em>evidence · train/eval</em></div>
+          <div class="logic-step"><span>04</span><strong>KG Provenance</strong><em>claim · source · review</em></div>
+          <div class="logic-step"><span>05</span><strong>AI Generation</strong><em>prompt · model · output</em></div>
+          <div class="logic-step final"><span>06</span><strong>Validation Export</strong><em>audit · report · package</em></div>
+        </section>
+
+        <section id="overviewWindow" class="overview-pane pane workspace-view" data-view-panel="overview">
+          <div class="pane-head">
+            <div>
+              <p class="eyebrow">Platform Overview</p>
+              <h1 data-i18n="app.title">Jiangxi ICH AI Data Governance Research Platform</h1>
+              <p data-i18n="overview.desc">One research workbench from manifest intake through the Rights Gate, split governance, KG provenance and AI generation to an exportable audit report. Click a card below to open its module.</p>
+            </div>
+            <span class="status-chip" id="overviewPlatformState">-</span>
+          </div>
+
+          <div class="kpi-grid" id="kpiGrid"></div>
+
+          <div class="overview-columns">
+            <section class="overview-card">
+              <h3 data-i18n="overview.governance">Governance at a glance</h3>
+              <ul class="governance-summary" id="governanceSummary"></ul>
+            </section>
+            <section class="overview-card">
+              <h3 data-i18n="overview.audit">Recent audit entries</h3>
+              <div class="audit-log" id="overviewAuditPreview"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="datasetWindow" class="dataset-pane pane workspace-view" data-view-panel="dataset">
+          <div class="pane-head">
+            <div>
+              <p class="eyebrow">Dataset Intelligence</p>
+              <h1 data-i18n="dataset.title">Dataset intake</h1>
+              <p data-i18n="dataset.desc">Manifests are the entry point: source, version, checksum, rights status and train/eval governance are read from one place.</p>
+            </div>
+            <span class="status-chip" id="libraryCount">0 sets</span>
+          </div>
+
+          <div class="analysis-strip" id="libraryStats"></div>
+
+          <div class="manifest-note">
+            <strong>Manifest Mode</strong>
+            <span data-i18n="dataset.manifestNote">dataset / rights / split / KG claims are kept as separate research files; under file:// they are loaded from the bundle.</span>
+          </div>
+
+          <form class="add-dataset" id="addDatasetForm">
+            <label>
+              <span data-i18n="form.name">Dataset name</span>
+              <input id="datasetName" name="datasetName" autocomplete="off" placeholder="e.g. Jiangxi ramie-cloth texture supplement" data-i18n-placeholder="form.namePh" required />
+            </label>
+            <div class="form-row">
+              <label>
+                <span data-i18n="form.type">Type</span>
+                <select id="datasetType" name="datasetType">
+                  <option value="非遗织物" data-i18n="form.type.textile">ICH textile</option>
+                  <option value="公开纹理" data-i18n="form.type.texture">Public texture</option>
+                  <option value="服饰属性" data-i18n="form.type.apparel">Apparel attributes</option>
+                  <option value="馆藏记录" data-i18n="form.type.collection">Collection record</option>
+                  <option value="传承人授权样本" data-i18n="form.type.inheritor">Inheritor-authorized sample</option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="form.volume">Volume</span>
+                <input id="datasetVolume" name="datasetVolume" autocomplete="off" placeholder="120 images" />
+              </label>
+            </div>
+            <label>
+              <span data-i18n="form.source">Source / URL</span>
+              <input id="datasetSource" name="datasetSource" autocomplete="off" placeholder="Institution, public dataset or collection batch" data-i18n-placeholder="form.sourcePh" />
+            </label>
+            <button class="primary-btn full" type="submit" data-i18n="form.submit">Add and record in audit log</button>
+          </form>
+
+          <div class="list-toolbar">
+            <strong data-i18n="dataset.list">Datasets</strong>
+            <label class="inline-toggle"><input id="showArchived" type="checkbox" /> <span data-i18n="dataset.showArchived">Show archived</span></label>
+          </div>
+          <div class="dataset-list" id="datasetList" aria-label="Draggable dataset list" data-i18n-aria="dataset.listAria"></div>
+        </section>
+
+        <section id="boardWindow" class="board-pane pane workspace-view" data-view-panel="board">
+          <div class="board-toolbar">
+            <div>
+              <p class="eyebrow">Personal Research Board</p>
+              <h2 data-i18n="board.title">My research board</h2>
+              <p data-i18n="board.desc">Datasets placed on the board go through split, rights, KG and validation checks.</p>
+            </div>
+            <div class="view-switch" role="group" aria-label="Dimension mode" data-i18n-aria="board.modeAria">
+              <button class="view-btn active" data-mode="2d" type="button">2D</button>
+              <button class="view-btn" data-mode="25d" type="button">2.5D</button>
+              <button class="view-btn" data-mode="3d" type="button">3D Preview</button>
+            </div>
+          </div>
+
+          <div class="board-drop" id="boardDrop" tabindex="0">
+            <div class="drop-copy">
+              <strong data-i18n="board.drop">Drop a dataset</strong>
+              <span data-i18n="board.dropSub">Drop dataset here · add it to the current board</span>
+            </div>
+            <div class="board-items" id="boardItems"></div>
+          </div>
+
+          <section class="split-governance">
+            <div class="module-head">
+              <div>
+                <h3 data-i18n="split.title">Train / eval / holdout governance</h3>
+                <span data-i18n="split.desc">Leakage is checked by object_id, event_id and capture_session_id; the eval set can be locked.</span>
+              </div>
+              <button class="ghost-btn compact" id="lockEvalBtn" type="button" data-i18n="split.lock">Lock eval set</button>
+            </div>
+            <div class="split-lanes" id="splitLanes"></div>
+          </section>
+
+          <div class="visual-lab">
+            <div class="artifact-viewer mode-2d" id="artifactViewer" aria-label="Data preview" data-i18n-aria="viewer.aria">
+              <div class="specimen-shadow"></div>
+              <div class="specimen"><div class="fabric-lines"></div><div class="motif motif-a"></div><div class="motif motif-b"></div></div>
+              <div class="specimen-depth"></div>
+              <div class="axis-ring"></div>
+            </div>
+            <div class="dataset-summary" id="selectedSummary"></div>
+          </div>
+
+          <section class="evidence-gallery-section">
+            <div class="module-head">
+              <div>
+                <h3 data-i18n="gallery.title">Authentic source evidence images</h3>
+                <span data-i18n="gallery.desc">Shows only real image files with source_file_present: true (no CSS mockups, no placeholders).</span>
+              </div>
+              <span class="tag" id="evidenceGalleryNote">0 images</span>
+            </div>
+            <div class="evidence-gallery" id="evidenceGallery"></div>
+          </section>
+
+          <div class="reuse-module">
+            <div class="module-head">
+              <h3 data-i18n="reuse.title">Data reuse layers</h3>
+              <span data-i18n="reuse.desc">Reuse layers are linked to the Rights Gate and evidence status.</span>
+            </div>
+            <div class="reuse-actions" id="reuseActions"></div>
+            <div class="reuse-map" id="reuseMap"></div>
+          </div>
+        </section>
+
+        <section id="generationWindow" class="generation-pane pane workspace-view" data-view-panel="generation">
+          <div class="pane-head">
+            <div>
+              <p class="eyebrow">Generation Lab</p>
+              <h2 data-i18n="gen.title">ICH Generation Lab</h2>
+              <p data-i18n="gen.desc">Turns the board, reuse layers, ontology / KG and the Rights Gate into auditable text-to-image / image-to-image experiment records.</p>
+            </div>
+            <span class="status-chip info" id="generationStatus">connector ready</span>
+          </div>
+
+          <section class="generation-context">
+            <div class="module-head compact-head">
+              <h3 data-i18n="gen.context">Current research context</h3>
+              <span class="status-chip" id="generationRights">-</span>
+            </div>
+            <div class="generation-context-grid" id="generationContext"></div>
+          </section>
+
+          <form class="generation-form" id="generationForm">
+            <div class="form-row three">
+              <label>
+                <span data-i18n="gen.mode">Generation mode</span>
+                <select id="generationMode" name="generationMode">
+                  <option value="text-to-image">Text-to-Image</option>
+                  <option value="image-to-image">Image-to-Image</option>
+                  <option value="inpainting">Inpainting</option>
+                  <option value="controlnet">ControlNet / Pose</option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="gen.backend">Image backend</span>
+                <select id="imageBackend" name="imageBackend">
+                  <option value="comfyui">ComfyUI API</option>
+                  <option value="diffusers">Diffusers Service</option>
+                  <option value="webgpu">Browser WebGPU Prototype</option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="gen.model">Model / workflow</span>
+                <input id="generationModel" name="generationModel" autocomplete="off" placeholder="SDXL / FLUX / custom workflow hash" />
+              </label>
+            </div>
+
+            <div class="form-row two-wide">
+              <label>
+                <span data-i18n="gen.endpoint">Image generation endpoint</span>
+                <input id="imageEndpoint" name="imageEndpoint" autocomplete="off" placeholder="http://127.0.0.1:8188 or your own Diffusers API" data-i18n-placeholder="gen.endpointPh" />
+              </label>
+              <label>
+                <span data-i18n="gen.llm">vLLM / VLM prompt-enhancement endpoint</span>
+                <input id="llmEndpoint" name="llmEndpoint" autocomplete="off" placeholder="http://127.0.0.1:8000/v1/chat/completions" />
+              </label>
+            </div>
+
+            <label>
+              Prompt
+              <textarea id="generationPrompt" name="generationPrompt" rows="7" placeholder="Build a reproducible experiment prompt from the current dataset, reuse layers and KG" data-i18n-placeholder="gen.promptPh"></textarea>
+            </label>
+
+            <div class="form-row two-wide">
+              <label>
+                Negative prompt
+                <textarea id="negativePrompt" name="negativePrompt" rows="4" placeholder="watermark, distorted texture, inaccurate heritage symbol"></textarea>
+              </label>
+              <div class="generation-params">
+                <label>
+                  Seed
+                  <input id="generationSeed" name="generationSeed" inputmode="numeric" autocomplete="off" placeholder="Fixed random seed" data-i18n-placeholder="gen.seedPh" />
+                </label>
+                <label>
+                  <span data-i18n="gen.inputHash">Input image hash</span>
+                  <input id="inputImageHash" name="inputImageHash" autocomplete="off" placeholder="sha256:... required for image-to-image" data-i18n-placeholder="gen.inputHashPh" />
+                </label>
+              </div>
+            </div>
+
+            <div class="generation-actions">
+              <button class="ghost-btn" id="buildPromptBtn" type="button" data-i18n="gen.buildPrompt">Build prompt from KG</button>
+              <button class="primary-btn" id="runGenerationBtn" type="submit" data-i18n="gen.run">Generate / write manifest</button>
+            </div>
+          </form>
+
+          <section class="generation-preview">
+            <div class="module-head compact-head">
+              <h3 data-i18n="gen.preview">Output preview</h3>
+              <span class="tag" id="generationRunCount">0 runs</span>
+            </div>
+            <div class="generation-canvas" id="generationPreview"></div>
+            <div class="prompt-preview" id="generationPromptPreview"></div>
+          </section>
+
+          <section class="generation-history">
+            <div class="module-head compact-head">
+              <h3 data-i18n="gen.history">Generation manifest records</h3>
+              <span class="tag" data-i18n="gen.historyTag">Reproducible · auditable · exportable</span>
+            </div>
+            <div class="generation-runs" id="generationRuns"></div>
+          </section>
+        </section>
+        <aside id="governanceWindow" class="governance-pane pane workspace-view" data-view-panel="governance">
+          <div class="pane-head compact">
+            <div>
+              <p class="eyebrow">Governance / Provenance</p>
+              <h2 id="kgTitle">Waiting for a dataset</h2>
+            </div>
+            <span class="status-chip" id="kgReadiness">-</span>
+          </div>
+
+          <section class="governance-card" id="rightsCard">
+            <div class="module-head compact-head">
+              <h3>Rights Gate</h3>
+              <span class="status-chip" id="rightsGateStatus">-</span>
+            </div>
+            <div id="rightsFields" class="rights-fields"></div>
+            <div id="rightsToggles" class="rights-toggles"></div>
+          </section>
+
+          <section class="validation-card governance-card" id="validationCard">
+            <div class="module-head compact-head">
+              <h3>Validation Evidence</h3>
+              <span class="status-chip" id="validationStatus">-</span>
+            </div>
+            <div class="validation-grid" id="validationGrid"></div>
+            <div class="validation-list" id="validationList"></div>
+          </section>
+
+
+          <section class="graph-card">
+            <svg class="graph-lines" id="graphLines" viewBox="0 0 360 300" aria-hidden="true"></svg>
+            <div class="graph-nodes" id="graphNodes"></div>
+          </section>
+
+          <section class="ontology-card">
+            <h3 data-i18n="gov.ontology">Ontology fields</h3>
+            <div id="ontologyFields" class="ontology-fields"></div>
+          </section>
+
+          <section class="kg-evidence">
+            <h3>KG Claim Provenance</h3>
+            <table>
+              <thead><tr><th>Claim</th><th>Predicate</th><th>Evidence</th><th>Status</th></tr></thead>
+              <tbody id="kgTable"></tbody>
+            </table>
+          </section>
+
+          <section class="audit-card">
+            <div class="module-head compact-head">
+              <h3>Audit Log</h3>
+              <span class="status-chip info" id="auditSealStatus">hash-chain</span>
+            </div>
+            <div id="auditLog" class="audit-log"></div>
+          </section>
+        </aside>
+      </main>
+    </div>
+    <script src="./data/manifest_bundle.js"></script>
+    <script src="./i18n.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

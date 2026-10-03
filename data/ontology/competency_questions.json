@@ -1,0 +1,14 @@
+{
+  "manifest_version": "2026.10-v1.0",
+  "note": "Competency questions (Grüninger & Fox style): natural-language questions the KG claims should be able to answer via the listed predicates. scripts/validate_ontology.mjs reports, per question, whether any qualifying claim exists and whether at least one is source_verified (vs. only expert/inheritor-review-required or access_pending).",
+  "questions": [
+    { "id": "CQ1", "question": "What materials or substrates does this heritage item use?", "predicates": ["hasMaterialTexture", "usesSubstrate"] },
+    { "id": "CQ2", "question": "What techniques and processing steps does this heritage item require?", "predicates": ["usesTechnique", "requiresProcess", "processedThrough"] },
+    { "id": "CQ3", "question": "Who is the recognized inheritor, and how is transmission of the craft supported?", "predicates": ["hasInheritor", "supportsTransmissionThrough", "transmittedThrough"] },
+    { "id": "CQ4", "question": "Where and under what official registration/protection status is this heritage item recognized?", "predicates": ["officialName", "listedAs", "hasProjectNo", "locatedIn", "protectedBy", "hasProtectionContext"] },
+    { "id": "CQ5", "question": "Is this heritage item the same craft as a related but distinct craft, and how do they relate materially?", "predicates": ["isNotIdenticalTo", "supportsMaterialContextOf"] },
+    { "id": "CQ6", "question": "What aesthetic qualities result from this heritage item's technique and material choices?", "predicates": ["emphasizes", "hasAesthetic", "generatesAesthetic", "affords"] },
+    { "id": "CQ7", "question": "What access conditions or reuse constraints govern a given public dataset?", "predicates": ["requires", "mapsTo", "supportsPretrainingTask"] },
+    { "id": "CQ8", "question": "What historical origin is claimed for this heritage item, and what cultural context surrounds it?", "predicates": ["hasHistoricalClaim", "hasCulturalContext", "associatedWith", "framesUseAs"] }
+  ]
+}

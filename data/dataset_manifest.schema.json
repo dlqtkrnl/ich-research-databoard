@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JX ICH Dataset Manifest",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "datasets"
+  ],
+  "properties": {
+    "manifest_version": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "dataset_id",
+          "name",
+          "source_url",
+          "owner",
+          "version",
+          "checksum",
+          "annotation_schema",
+          "risk_level",
+          "readiness"
+        ],
+        "properties": {
+          "dataset_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "volume": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "checksum": {
+            "type": "string"
+          },
+          "annotation_schema": {
+            "type": "string"
+          },
+          "risk_level": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "readiness": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "archived": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

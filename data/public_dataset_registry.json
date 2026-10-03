@@ -1,0 +1,97 @@
+﻿[
+  {
+    "id": "PUB-DTD-001",
+    "name": "Describable Textures Dataset (DTD)",
+    "source_url": "https://www.robots.ox.ac.uk/~vgg/data/dtd/",
+    "data_type": "texture images with human-centric attributes",
+    "scale": "5,640 images; 47 texture categories; train/val/test splits",
+    "best_for": ["fabric texture pilot", "texture attribute classification", "visual-formal readiness test"],
+    "license_note": "The official page states the data is made available to the computer vision community for research purposes. Images were collected from Google and Flickr; redistribution/commercial use should be treated cautiously.",
+    "platform_use": "metadata connector and small internal research pilot only; do not redistribute images inside the platform package"
+  },
+  {
+    "id": "PUB-FASHIONPEDIA-002",
+    "name": "Fashionpedia",
+    "source_url": "https://fashionpedia.github.io/home/index.html",
+    "terms_url": "https://fashionpedia.github.io/home/data_license.html",
+    "data_type": "fashion ontology, segmentation masks, localized attributes",
+    "scale": "48,825 images; 27 main apparel categories; 19 apparel parts; 294 attributes",
+    "best_for": ["garment attribute ontology", "segmentation workflow", "CDDR machine-actionability test"],
+    "license_note": "Annotations and ontology are licensed under CC BY 4.0, but Fashionpedia states that it does not own the image copyrights; image use must follow the original image-source terms.",
+    "platform_use": "safe to model as ontology/annotation source; image ingestion requires source-level rights review"
+  },
+  {
+    "id": "PUB-DEEPFASHION-003",
+    "name": "DeepFashion",
+    "source_url": "https://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html",
+    "data_type": "large-scale fashion images with categories, attributes, landmarks and retrieval pairs",
+    "scale": "over 800,000 images; 50 categories; 1,000 attributes",
+    "best_for": ["fashion classification", "attribute prediction", "retrieval baseline"],
+    "license_note": "The official agreement states non-commercial research purposes only and prohibits copying, publishing, distributing, selling or exploiting images/derived data for commercial purposes.",
+    "platform_use": "research-only baseline; do not include raw images in redistributable demo"
+  },
+  {
+    "id": "PUB-DEEPFASHION2-004",
+    "name": "DeepFashion2",
+    "source_url": "https://github.com/switchablenorms/DeepFashion2",
+    "data_type": "clothing detection, landmark, segmentation and consumer-to-shop retrieval annotations",
+    "scale": "491K images; 801K clothing items; 13 categories; masks, landmarks, boxes",
+    "best_for": ["object detection", "segmentation", "landmark/readiness testing", "train/eval split logic"],
+    "license_note": "Access requires a form/password according to the repository. Treat as controlled research data until the signed/accepted conditions are documented.",
+    "platform_use": "metadata adapter first; image ingestion only after access approval and local rights log"
+  },
+  {
+    "id": "PUB-KHS-UICHINWANG-005",
+    "name": "의친왕가 복식 (Royal Attire of Prince Ui-chin's Household)",
+    "source_url": "https://digital.khs.go.kr/heri/heriDetail.do?ctptUid=13983497888446055548&ctptNo=1482503050001",
+    "terms_url": "https://www.data.go.kr/data/15028215/openapi.do",
+    "data_type": "Korean National Intangible Cultural Heritage costume set — designation record and descriptive text only; no images ingested",
+    "scale": "6 items / 7 pieces (원삼, 당의, 스란치마, 노리개, 화관, 궁녀 대대 x2); designated 2025-02-26; held by 경운박물관 (Gyeongwun Museum); issuing authority 국가유산청 (Korea Heritage Service)",
+    "best_for": ["cross-cultural ICH textile/costume comparison case", "royal court costume vs. folk textile (江西夏布) contrast", "worked example for this platform's rights-gate / evidence-authenticity workflow"],
+    "license_note": "Item detail page (digital.khs.go.kr) shows no explicit license or download terms. The related 국립무형유산원_국가무형문화재 현황 open API (data.go.kr dataset 15028215) is dual-licensed under 공공누리 제1유형 (source attribution required) and CCL, with a third-party-rights caveat — text metadata (name, designation year, field, region, holder) is reusable with attribution, but item photographs may carry separate rights held by the owning museum and must not be assumed freely reusable.",
+    "platform_use": "citation-only comparison case entered manually from the public detail page; no images or files ingested, no API key obtained yet; if a data.go.kr API key is issued later, structured text metadata may be pulled via the open API and marked source_file_present: true, while any images stay source_file_present: false pending direct rights clearance from 경운박물관/국가유산청"
+  },
+  {
+    "id": "PUB-KHS-HANSANMOSI-006",
+    "name": "한산모시짜기 (Hansan Ramie Weaving)",
+    "source_url": "http://www.heritage.go.kr/heri/cul/culSelectDetail.do?pageNo=1_1_2_0&ccbaCpno=1273400140000",
+    "terms_url": "https://www.data.go.kr/data/15028215/openapi.do",
+    "data_type": "Korean National Intangible Cultural Heritage bast-fiber (ramie, 모시) hand-weaving technique — designation record and descriptive text only; no images ingested",
+    "scale": "designated 1967-01-16; region 충청남도 서천군 (Seocheon, Chungcheongnam-do); documented process covers ramie stalk harvest, fiber splitting, and hand-loom weaving of summer cloth",
+    "best_for": ["closest direct comparison case to 江西夏布 — both are traditional bast-fiber (ramie/hemp) hand-weaving crafts", "cross-national process comparison: raw fiber harvest → fiber preparation → hand-weaving", "reference for how another country documents a living ramie-weaving ICH craft"],
+    "license_note": "Item detail page (heritage.go.kr) shows no explicit license or download terms, same as the other digital.khs.go.kr/heritage.go.kr items in this registry. Text metadata is expected to fall under the same 국립무형유산원_국가무형문화재 현황 API license (공공누리 제1유형 + CCL, third-party rights on photographs) documented for PUB-KHS-UICHINWANG-005; not independently re-confirmed per item.",
+    "platform_use": "citation-only comparison case entered manually from the public detail page; no images or files ingested, no API key obtained yet — same integration path as PUB-KHS-UICHINWANG-005 if an API key is later issued"
+  },
+  {
+    "id": "PUB-KHS-NAJUSAETGOL-007",
+    "name": "나주의 샛골나이 (Naju Saetgol-nai, Cotton Weaving)",
+    "source_url": "https://heritage.go.kr/heri/cul/culSelectDetail.do?ccbaCpno=1273600280000&pageNo=1_1_2_0",
+    "terms_url": "https://www.data.go.kr/data/15028215/openapi.do",
+    "data_type": "Korean National Intangible Cultural Heritage cotton (무명) hand-weaving technique — designation record and descriptive text only; no images ingested",
+    "scale": "designated 1969-07-04; region 전남 나주시 (Naju, Jeollanam-do); note: search sources disagreed on the numeric heritage designation number (17 vs. 28 cited in different secondary sources) — the number is intentionally omitted here pending direct confirmation, consistent with this platform's evidence-authenticity policy of not asserting unverified precision",
+    "best_for": ["contrast case: cotton hand-weaving vs. bast-fiber (夏布/모시) hand-weaving within the same East Asian textile-ICH family", "comparative fiber-preparation workflow reference"],
+    "license_note": "Same unresolved-license caveat as PUB-KHS-HANSANMOSI-006 — text-only reuse expected under the same API license family, not independently re-confirmed per item.",
+    "platform_use": "citation-only comparison case; no images or files ingested, no API key obtained yet"
+  },
+  {
+    "id": "PUB-KHS-MYEONGJU-008",
+    "name": "명주짜기 (Myeongju-jjagi, Silk Weaving)",
+    "source_url": "https://m.cha.go.kr/public/commentary/culSelectDetail.do?VdkVgwKey=17,00870000,37&pageNo=77010000",
+    "terms_url": "https://www.data.go.kr/data/15028215/openapi.do",
+    "data_type": "Korean National Intangible Cultural Heritage silk (명주) hand-weaving technique — designation record and descriptive text only; no images ingested",
+    "scale": "underlying craft reported as designated 1988; a holder-group designation (자율전승형 보유단체) reported as updated 2017-04-13 — two different dates found across secondary sources during compilation (2026-07), not reconciled against a single authoritative detail page (a direct fetch of the mobile detail URL failed with a TLS error)",
+    "best_for": ["contrast case: silk hand-weaving vs. bast-fiber (夏布) hand-weaving within the same textile-ICH comparison set", "example of Korea's holder-group vs. individual-holder designation model, relevant to this platform's rights_manifest / holder-consent modeling"],
+    "license_note": "Lowest-confidence entry in this batch: source page content was not independently re-verified via direct fetch during compilation (search-snippet derived only). Treat designation dates as provisional until confirmed against heritage.go.kr directly. Same unresolved text-metadata license caveat as the other 국가유산청/국립무형유산원 entries.",
+    "platform_use": "citation-only comparison case with provisional (unverified) dates; do not cite designation dates in the paper without re-confirming against the primary heritage.go.kr page first"
+  },
+  {
+    "id": "PUB-CHNDM-HEMP-JP-009",
+    "name": "Cooper Hewitt, Smithsonian Design Museum — Japanese hemp/bast-fiber katagami stencils and umakake textile (CC0)",
+    "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
+    "data_type": "real CC0 collection images ingested into the platform (not citation-only) — 2 dye-resist paper stencils (katagami, hemp-leaf motif) + 1 woven bast-fiber horse-cover cloth (umakake), 8 images total",
+    "scale": "3 objects (chndm_1959-150-2, chndm_1976-103-105, chndm_2001-2-1) / 8 images; verified via api.si.edu with media_usage=CC0 on each record; downloaded and byte-for-byte SHA-256 recomputed (2026-07-10)",
+    "best_for": ["process-adjacent bast-fiber textile comparison for 江西夏布", "first fully-passing (Rights Gate = pass) real evidence-verified dataset in this platform besides the author's own P12 KG data", "demonstrating the CC0 image-ingestion path end-to-end"],
+    "license_note": "Confirmed CC0 (public domain dedication) via Smithsonian Open Access API media_usage field for these 3 specific records, verified by direct API fetch (2026-07-10) — not assumed from institution-level marketing language.",
+    "platform_use": "images physically copied into data/public_dataset_sources/chndm_hemp_textile_jp/ and registered with real sha256 in dataset_manifest.json/evidence_manifest.json/sample_manifest.json/checksum_manifest.json; important limitation: these are Japanese collection items, not Chinese 苎麻 or Korean 모시 — position as an independent process-adjacent comparison set, not a substitute for JXICH-XB-001"
+  }
+]
