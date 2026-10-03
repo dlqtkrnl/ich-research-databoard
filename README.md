@@ -211,7 +211,8 @@ See [`ARCHIVING.md`](./ARCHIVING.md) for the release and Zenodo archiving checkl
 
 If you use this software, please cite it using [`CITATION.cff`](./CITATION.cff).
 Archived on Zenodo: concept DOI (all versions)
-[10.5281/zenodo.23121468](https://doi.org/10.5281/zenodo.23121468); v1.0.0
+[10.5281/zenodo.23121468](https://doi.org/10.5281/zenodo.23121468); v1.0.1
+[10.5281/zenodo.23121906](https://doi.org/10.5281/zenodo.23121906); v1.0.0
 [10.5281/zenodo.23121469](https://doi.org/10.5281/zenodo.23121469).
 
 ## Author
