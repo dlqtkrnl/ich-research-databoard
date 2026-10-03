@@ -20,6 +20,15 @@ authors:
     orcid: "https://orcid.org/0009-0009-4634-825X"
     affiliation: "Department of Fashion Design, Jiangxi Institute of Fashion Technology, Nanchang 330201, China"
 license: MIT
+# Concept DOI: resolves to the latest archived version on Zenodo.
+doi: "10.5281/zenodo.23121468"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23121468"
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: "10.5281/zenodo.23121469"
+    description: "Version DOI for v1.0.0"
 repository-code: "https://github.com/dlqtkrnl/ich-research-databoard"
 # date-released and version should be set to match the tag/Release that
 # Zenodo archives (see ARCHIVING.md). Update at release time.

@@ -1,5 +1,7 @@
 # ICH Research DataBoard (한국어)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23121468.svg)](https://doi.org/10.5281/zenodo.23121468)
+
 > 영문 [`README.md`](./README.md)가 기준 문서입니다. 이 한국어판은 내용이 늦게 반영될 수 있습니다.
 
 브라우저 단독 실행(MVP) 연구 데이터 거버넌스 인터랙티브 프로토타입입니다. 빌드 도구나 서버 없이 `index.html`을 열면 바로 동작합니다. 江西省 非遗(무형문화유산) 시각 데이터의 수집·권리·훈련/평가 분할·지식그래프(KG)·AI 생성 실험을 하나의 워크플로로 연결하는 것이 목표입니다.
@@ -92,7 +94,7 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
 
 - 실제 기관 승인서·전승인 동의서를 받아 `evidence_manifest.json`/`manifest_bundle.js`에 `source_file_present: true`로 갱신하고 실제 파일을 별도 비공개 저장소에 연결
 - 320장 전체 표본의 `sample_manifest.json` 완성 (현재는 4건 예시)
-- GitHub/Zenodo에 코드·데이터를 아카이브해 DOI 확보 (`ARCHIVING.md` 참고)
+- ~~GitHub/Zenodo에 코드·데이터를 아카이브해 DOI 확보~~ 완료: v1.0.0 DOI [10.5281/zenodo.23121469](https://doi.org/10.5281/zenodo.23121469)
 
 ## 라이선스 (License)
 

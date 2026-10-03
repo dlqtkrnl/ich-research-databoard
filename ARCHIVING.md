@@ -77,7 +77,9 @@ are much harder to walk back than a normal git push. Specifically confirm:
       describe them as verified in any public-facing text.
 - [x] `LICENSE` (MIT) copyright holder and `CITATION.cff` author fields
       (name, ORCID, affiliation) are filled in (2026-10-03).
-- [ ] `CITATION.cff`'s `version` and `date-released` match the Release tag.
+- [x] `CITATION.cff`'s `version` and `date-released` match the Release tag
+      (v1.0.0 archived 2026-10-03: concept DOI 10.5281/zenodo.23121468,
+      version DOI 10.5281/zenodo.23121469).
 - [ ] The repo is genuinely ready to be public — Zenodo archiving requires
       a public GitHub repo, and once a DOI is minted for a version, that
       version's snapshot is expected to remain permanently resolvable.
