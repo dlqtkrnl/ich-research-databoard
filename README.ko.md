@@ -94,7 +94,7 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
 
 - 실제 기관 승인서·전승인 동의서를 받아 `evidence_manifest.json`/`manifest_bundle.js`에 `source_file_present: true`로 갱신하고 실제 파일을 별도 비공개 저장소에 연결
 - 320장 전체 표본의 `sample_manifest.json` 완성 (현재는 4건 예시)
-- ~~GitHub/Zenodo에 코드·데이터를 아카이브해 DOI 확보~~ 완료: v1.0.1 DOI [10.5281/zenodo.23121906](https://doi.org/10.5281/zenodo.23121906) (v1.0.0: [10.5281/zenodo.23121469](https://doi.org/10.5281/zenodo.23121469))
+- ~~GitHub/Zenodo에 코드·데이터를 아카이브해 DOI 확보~~ 완료: v1.0.2 DOI [10.5281/zenodo.23131690](https://doi.org/10.5281/zenodo.23131690) (v1.0.1: [10.5281/zenodo.23121906](https://doi.org/10.5281/zenodo.23121906), v1.0.0: [10.5281/zenodo.23121469](https://doi.org/10.5281/zenodo.23121469))
 
 ## 라이선스 (License)
 

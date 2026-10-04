@@ -81,7 +81,8 @@ are much harder to walk back than a normal git push. Specifically confirm:
       (name, ORCID, affiliation) are filled in (2026-10-03).
 - [x] `CITATION.cff`'s `version` and `date-released` match the Release tag
       (v1.0.0 archived 2026-10-03: concept DOI 10.5281/zenodo.23121468,
-      version DOI 10.5281/zenodo.23121469; v1.0.1: 10.5281/zenodo.23121906).
+      version DOI 10.5281/zenodo.23121469; v1.0.1: 10.5281/zenodo.23121906;
+      v1.0.2: 10.5281/zenodo.23131690).
 - [ ] The repo is genuinely ready to be public — Zenodo archiving requires
       a public GitHub repo, and once a DOI is minted for a version, that
       version's snapshot is expected to remain permanently resolvable.
