@@ -249,7 +249,8 @@ Code and data are licensed separately.
   [`data/rights_manifest.json`](./src/data/rights_manifest.json) and
   [`data/evidence_manifest.json`](./src/data/evidence_manifest.json). Only the two datasets
   marked redistributable above may be reused: the Cooper Hewitt images (CC0) and the KG
-  triples (CC BY 4.0). Everything else under `data/` is placeholder or pilot material.
+  triples (CC BY 4.0). The Cooper Hewitt sensitivity review is the author's own record; placeholder
+  and pilot records are marked as such in the manifests.
 
 See [`ARCHIVING.md`](./ARCHIVING.md) for the release and Zenodo archiving checklist.
 
@@ -257,7 +258,8 @@ See [`ARCHIVING.md`](./ARCHIVING.md) for the release and Zenodo archiving checkl
 
 If you use this software, please cite it using [`CITATION.cff`](./CITATION.cff).
 Archived on Zenodo: concept DOI (all versions)
-[10.5281/zenodo.23121468](https://doi.org/10.5281/zenodo.23121468); v1.0.6
+[10.5281/zenodo.23121468](https://doi.org/10.5281/zenodo.23121468); v1.0.7
+[10.5281/zenodo.23135299](https://doi.org/10.5281/zenodo.23135299); v1.0.6
 [10.5281/zenodo.23134086](https://doi.org/10.5281/zenodo.23134086); v1.0.5
 [10.5281/zenodo.23133327](https://doi.org/10.5281/zenodo.23133327); v1.0.4
 [10.5281/zenodo.23132657](https://doi.org/10.5281/zenodo.23132657); v1.0.3
