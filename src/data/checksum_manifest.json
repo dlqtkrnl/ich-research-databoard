@@ -1,6 +1,6 @@
 {
   "manifest_version": "2026.10-v1.0",
-  "generated_at": "2026-10-04T05:09:17.351Z",
+  "generated_at": "2026-10-04T05:51:40.266Z",
   "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
   "files": [
     {
@@ -17,14 +17,14 @@
     },
     {
       "path": "data/rights_manifest.json",
-      "sha256": "sha256:fa874eb4ac1c47998345c15898f5dd4567da1f705c6e250c9c610932d419bc86",
-      "bytes": 4526,
+      "sha256": "sha256:1adbd9e0bada94143cc53c670ed43fe1e6a7e3e0bac12e008c5cc3cded69daac",
+      "bytes": 4540,
       "role": "core_manifest"
     },
     {
       "path": "data/evidence_manifest.json",
-      "sha256": "sha256:7990281908b258343928a8f30f2e0b7329c822f350aa2300ff14e47f10cc7cec",
-      "bytes": 12614,
+      "sha256": "sha256:4b9da578a1c802f91b55429305b3332f9046e881dc3b2f8c15bd7b90762e0b23",
+      "bytes": 14409,
       "role": "core_manifest"
     },
     {
@@ -61,6 +61,18 @@
       "path": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv",
       "sha256": "sha256:b433e9d07a193c94377b47dcd62c7b213f9b6da4c486fc05fb7816e21fac9495",
       "bytes": 16317,
+      "role": "evidence_source"
+    },
+    {
+      "path": "data/kg_sources/LICENSE.md",
+      "sha256": "sha256:03b6da366c403f85a8835e8fccfd3e911b1b7d72bc73a9e4f78449acd0072b51",
+      "bytes": 1310,
+      "role": "evidence_source"
+    },
+    {
+      "path": "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json",
+      "sha256": "sha256:d317408d5f46a0e3ff41dc5bfe6a2441345e07dc121be921255da115c827a026",
+      "bytes": 31109,
       "role": "evidence_source"
     },
     {

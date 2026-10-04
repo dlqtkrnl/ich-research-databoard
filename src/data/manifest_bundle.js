@@ -1,7 +1,7 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 // Source of truth: data/*.json (see MANIFEST_KEYS in scripts/build_manifest_bundle.mjs)
 // Regenerate with: node scripts/hash_files.mjs && node scripts/build_manifest_bundle.mjs
-// Generated at: 2026-10-04T05:09:17.393Z
+// Generated at: 2026-10-04T05:51:40.315Z
 window.JXICH_MANIFESTS = {
   "dataset_manifest": {
     "manifest_version": "2026.10-v1.0",
@@ -212,7 +212,7 @@ window.JXICH_MANIFESTS = {
         "dataset_id": "JXICH-XB-001",
         "license": "institutional_permission_pending",
         "license_document_id": "DOC-PENDING-XB-001",
-        "consent_form_id": "CONSENT-PENDING-XB-001",
+        "consent_form_id": "CONSENT-XB-INHERITOR-PENDING",
         "permission_scope": {
           "research": true,
           "publication": false,
@@ -225,7 +225,7 @@ window.JXICH_MANIFESTS = {
         "sensitive_culture_status": "review_required",
         "cross_border_transfer_status": "not_allowed_until_review",
         "expiry_date": "2027-07-01",
-        "rights_gate": "conditional"
+        "rights_gate": "pending_review"
       },
       {
         "rights_id": "RGT-PUB-DTD-001",
@@ -245,7 +245,7 @@ window.JXICH_MANIFESTS = {
         "sensitive_culture_status": "not_applicable",
         "cross_border_transfer_status": "metadata_only",
         "expiry_date": "source_terms_dependent",
-        "rights_gate": "conditional"
+        "rights_gate": "pending_review"
       },
       {
         "rights_id": "RGT-PUB-FASHIONPEDIA-002",
@@ -265,7 +265,7 @@ window.JXICH_MANIFESTS = {
         "sensitive_culture_status": "not_applicable",
         "cross_border_transfer_status": "metadata_only",
         "expiry_date": "source_terms_dependent",
-        "rights_gate": "conditional"
+        "rights_gate": "pending_review"
       },
       {
         "rights_id": "RGT-PUB-DEEPFASHION2-004",
@@ -305,13 +305,13 @@ window.JXICH_MANIFESTS = {
         "sensitive_culture_status": "review_required",
         "cross_border_transfer_status": "unrestricted_public_release",
         "expiry_date": "not_applicable_cc_by_no_expiry",
-        "rights_gate": "pass"
+        "rights_gate": "pending_review"
       },
       {
         "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009",
         "dataset_id": "PUB-CHNDM-HEMP-JP-009",
         "license": "cc0_public_domain_smithsonian_open_access",
-        "license_document_id": "SI-OPENACCESS-MEDIA_USAGE-CC0-VERIFIED-20260704",
+        "license_document_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
         "consent_form_id": "not_applicable",
         "permission_scope": {
           "research": true,
@@ -904,14 +904,15 @@ window.JXICH_MANIFESTS = {
         "source_file_note": "placeholder_demo_record — controlled-access application not yet submitted"
       },
       {
-        "evidence_file_id": "SRC-XBEMB-KG-P12-TRIPLES32",
+        "evidence_file_id": "P12-TRIPLES32-CC-BY-4.0-RELEASE-20261003",
         "dataset_id": "JXICH-XBEMB-KG-P12",
-        "evidence_type": "author_own_prior_research_supplementary_data",
-        "file_name": "xiabu_embroidery_p12_source_linked_triples_32.csv",
-        "sha256": "sha256:b433e9d07a193c94377b47dcd62c7b213f9b6da4c486fc05fb7816e21fac9495",
+        "evidence_type": "license_declaration_by_rights_holder",
+        "evidence_role": "rights",
+        "file_name": "LICENSE.md",
+        "sha256": "sha256:03b6da366c403f85a8835e8fccfd3e911b1b7d72bc73a9e4f78449acd0072b51",
         "verification_status": "verified",
         "verified_by": "direct_sha256_recomputation",
-        "verified_at": "2026-07-03T00:00:00+08:00",
+        "verified_at": "2026-10-04T00:00:00+08:00",
         "permission_scope": [
           "research",
           "publication",
@@ -921,8 +922,46 @@ window.JXICH_MANIFESTS = {
         ],
         "expiry_date": "not_applicable_cc_by",
         "source_file_present": true,
+        "source_file_path": "data/kg_sources/LICENSE.md",
+        "source_file_note": "real_file — CC BY 4.0 release statement for the 32 triples, written by the sole author of P12, who holds the rights; it grants reuse, not a claim that each triple is verified (1,310 bytes)"
+      },
+      {
+        "evidence_file_id": "SRC-XBEMB-KG-P12-TRIPLES32",
+        "dataset_id": "JXICH-XBEMB-KG-P12",
+        "evidence_type": "author_own_prior_research_supplementary_data",
+        "file_name": "xiabu_embroidery_p12_source_linked_triples_32.csv",
+        "sha256": "sha256:b433e9d07a193c94377b47dcd62c7b213f9b6da4c486fc05fb7816e21fac9495",
+        "verification_status": "verified",
+        "verified_by": "direct_sha256_recomputation",
+        "verified_at": "2026-07-03T00:00:00+08:00",
+        "permission_scope": [],
+        "expiry_date": "not_applicable_cc_by",
+        "source_file_present": true,
         "source_file_path": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv",
-        "source_file_note": "real_file — copied verbatim from the supplementary package (v18.37) of the author's own unpublished manuscript P12 (MLIC-CAFD-KG) into data/kg_sources/; released by the sole author under CC BY 4.0 on 2026-10-03; sha256 independently recomputed from the copied file and matches the original file byte-for-byte (16,317 bytes)"
+        "source_file_note": "real_file — copied verbatim from the supplementary package (v18.37) of the author's own unpublished manuscript P12 (MLIC-CAFD-KG) into data/kg_sources/; released by the sole author under CC BY 4.0 on 2026-10-03; sha256 independently recomputed from the copied file and matches the original file byte-for-byte (16,317 bytes)",
+        "evidence_role": "content"
+      },
+      {
+        "evidence_file_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
+        "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+        "evidence_type": "smithsonian_open_access_api_records_cc0",
+        "evidence_role": "rights",
+        "file_name": "smithsonian_open_access_records_20261004.json",
+        "sha256": "sha256:d317408d5f46a0e3ff41dc5bfe6a2441345e07dc121be921255da115c827a026",
+        "verification_status": "verified",
+        "verified_by": "direct_sha256_recomputation",
+        "verified_at": "2026-10-04T00:00:00+08:00",
+        "permission_scope": [
+          "research",
+          "publication",
+          "public_demo",
+          "derivative",
+          "commercial"
+        ],
+        "expiry_date": "not_applicable_cc0",
+        "source_file_present": true,
+        "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json",
+        "source_file_note": "real_file — the three Smithsonian Open Access API records (edanmdm:chndm_1959-150-2, chndm_1976-103-105, chndm_2001-2-1) retrieved 2026-10-04; each states metadata and media usage access = CC0 (31,109 bytes)"
       },
       {
         "evidence_file_id": "SRC-CHNDM-1959-150-2-KATAGAMI",
@@ -933,17 +972,12 @@ window.JXICH_MANIFESTS = {
         "verification_status": "verified",
         "verified_by": "direct_sha256_recomputation",
         "verified_at": "2026-07-10T00:00:00+00:00",
-        "permission_scope": [
-          "research",
-          "publication",
-          "public_demo",
-          "derivative",
-          "commercial"
-        ],
+        "permission_scope": [],
         "expiry_date": "not_applicable_cc0",
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_1959-150-2_katagami.jpg",
-        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_1959-150-2, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (443,738 bytes)"
+        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_1959-150-2, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (443,738 bytes)",
+        "evidence_role": "content"
       },
       {
         "evidence_file_id": "SRC-CHNDM-1976-103-105-KATAGAMI",
@@ -954,17 +988,12 @@ window.JXICH_MANIFESTS = {
         "verification_status": "verified",
         "verified_by": "direct_sha256_recomputation",
         "verified_at": "2026-07-10T00:00:00+00:00",
-        "permission_scope": [
-          "research",
-          "publication",
-          "public_demo",
-          "derivative",
-          "commercial"
-        ],
+        "permission_scope": [],
         "expiry_date": "not_applicable_cc0",
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_1976-103-105_katagami.jpg",
-        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_1976-103-105, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (385,250 bytes)"
+        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_1976-103-105, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (385,250 bytes)",
+        "evidence_role": "content"
       },
       {
         "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-01",
@@ -975,17 +1004,12 @@ window.JXICH_MANIFESTS = {
         "verification_status": "verified",
         "verified_by": "direct_sha256_recomputation",
         "verified_at": "2026-07-10T00:00:00+00:00",
-        "permission_scope": [
-          "research",
-          "publication",
-          "public_demo",
-          "derivative",
-          "commercial"
-        ],
+        "permission_scope": [],
         "expiry_date": "not_applicable_cc0",
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_01.jpg",
-        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (194,715 bytes)"
+        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (194,715 bytes)",
+        "evidence_role": "content"
       },
       {
         "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-02",
@@ -996,17 +1020,12 @@ window.JXICH_MANIFESTS = {
         "verification_status": "verified",
         "verified_by": "direct_sha256_recomputation",
         "verified_at": "2026-07-10T00:00:00+00:00",
-        "permission_scope": [
-          "research",
-          "publication",
-          "public_demo",
-          "derivative",
-          "commercial"
-        ],
+        "permission_scope": [],
         "expiry_date": "not_applicable_cc0",
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_02.jpg",
-        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (189,635 bytes)"
+        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (189,635 bytes)",
+        "evidence_role": "content"
       },
       {
         "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-03",
@@ -1017,17 +1036,12 @@ window.JXICH_MANIFESTS = {
         "verification_status": "verified",
         "verified_by": "direct_sha256_recomputation",
         "verified_at": "2026-07-10T00:00:00+00:00",
-        "permission_scope": [
-          "research",
-          "publication",
-          "public_demo",
-          "derivative",
-          "commercial"
-        ],
+        "permission_scope": [],
         "expiry_date": "not_applicable_cc0",
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_03.jpg",
-        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (554,637 bytes)"
+        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (554,637 bytes)",
+        "evidence_role": "content"
       },
       {
         "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-04",
@@ -1038,17 +1052,12 @@ window.JXICH_MANIFESTS = {
         "verification_status": "verified",
         "verified_by": "direct_sha256_recomputation",
         "verified_at": "2026-07-10T00:00:00+00:00",
-        "permission_scope": [
-          "research",
-          "publication",
-          "public_demo",
-          "derivative",
-          "commercial"
-        ],
+        "permission_scope": [],
         "expiry_date": "not_applicable_cc0",
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_04.jpg",
-        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (257,886 bytes)"
+        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (257,886 bytes)",
+        "evidence_role": "content"
       },
       {
         "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-05",
@@ -1059,17 +1068,12 @@ window.JXICH_MANIFESTS = {
         "verification_status": "verified",
         "verified_by": "direct_sha256_recomputation",
         "verified_at": "2026-07-10T00:00:00+00:00",
-        "permission_scope": [
-          "research",
-          "publication",
-          "public_demo",
-          "derivative",
-          "commercial"
-        ],
+        "permission_scope": [],
         "expiry_date": "not_applicable_cc0",
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_05.jpg",
-        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (244,114 bytes)"
+        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (244,114 bytes)",
+        "evidence_role": "content"
       },
       {
         "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-06",
@@ -1080,17 +1084,12 @@ window.JXICH_MANIFESTS = {
         "verification_status": "verified",
         "verified_by": "direct_sha256_recomputation",
         "verified_at": "2026-07-10T00:00:00+00:00",
-        "permission_scope": [
-          "research",
-          "publication",
-          "public_demo",
-          "derivative",
-          "commercial"
-        ],
+        "permission_scope": [],
         "expiry_date": "not_applicable_cc0",
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_06.jpg",
-        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (187,708 bytes)"
+        "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (187,708 bytes)",
+        "evidence_role": "content"
       }
     ]
   },
@@ -1289,7 +1288,7 @@ window.JXICH_MANIFESTS = {
   },
   "checksum_manifest": {
     "manifest_version": "2026.10-v1.0",
-    "generated_at": "2026-10-04T05:09:17.351Z",
+    "generated_at": "2026-10-04T05:51:40.266Z",
     "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
     "files": [
       {
@@ -1306,14 +1305,14 @@ window.JXICH_MANIFESTS = {
       },
       {
         "path": "data/rights_manifest.json",
-        "sha256": "sha256:fa874eb4ac1c47998345c15898f5dd4567da1f705c6e250c9c610932d419bc86",
-        "bytes": 4526,
+        "sha256": "sha256:1adbd9e0bada94143cc53c670ed43fe1e6a7e3e0bac12e008c5cc3cded69daac",
+        "bytes": 4540,
         "role": "core_manifest"
       },
       {
         "path": "data/evidence_manifest.json",
-        "sha256": "sha256:7990281908b258343928a8f30f2e0b7329c822f350aa2300ff14e47f10cc7cec",
-        "bytes": 12614,
+        "sha256": "sha256:4b9da578a1c802f91b55429305b3332f9046e881dc3b2f8c15bd7b90762e0b23",
+        "bytes": 14409,
         "role": "core_manifest"
       },
       {
@@ -1350,6 +1349,18 @@ window.JXICH_MANIFESTS = {
         "path": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv",
         "sha256": "sha256:b433e9d07a193c94377b47dcd62c7b213f9b6da4c486fc05fb7816e21fac9495",
         "bytes": 16317,
+        "role": "evidence_source"
+      },
+      {
+        "path": "data/kg_sources/LICENSE.md",
+        "sha256": "sha256:03b6da366c403f85a8835e8fccfd3e911b1b7d72bc73a9e4f78449acd0072b51",
+        "bytes": 1310,
+        "role": "evidence_source"
+      },
+      {
+        "path": "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json",
+        "sha256": "sha256:d317408d5f46a0e3ff41dc5bfe6a2441345e07dc121be921255da115c827a026",
+        "bytes": 31109,
         "role": "evidence_source"
       },
       {

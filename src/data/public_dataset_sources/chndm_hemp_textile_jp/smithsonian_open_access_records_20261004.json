@@ -1,0 +1,684 @@
+{
+  "description": "Smithsonian Open Access API records for the three Cooper Hewitt objects bundled in PUB-CHNDM-HEMP-JP-009, stored as the rights evidence for that dataset. Each record states metadata_usage.access and online_media.media[].usage.access = CC0.",
+  "source_endpoint": "https://api.si.edu/openaccess/api/v1.0/content/edanmdm:<id> (API key omitted)",
+  "retrieved": "2026-10-04",
+  "license_of_this_file": "The Smithsonian Open Access metadata is released under CC0.",
+  "records": [
+    {
+      "id": "ld1-1643399887910-1643399930184-1",
+      "title": "Hemp-leaf pattern and Lattice weave Motif",
+      "unitCode": "CHNDM",
+      "type": "edanmdm",
+      "url": "edanmdm:chndm_1959-150-2",
+      "content": {
+        "freetext": {
+          "date": [
+            {
+              "label": "Date",
+              "content": "late 18th - early 19th century"
+            }
+          ],
+          "notes": [
+            {
+              "label": "Catalogue Status",
+              "content": "Research in Progress"
+            },
+            {
+              "label": "Description",
+              "content": "The hemp-leaf pattern and triple lattice weave pattern are woven together in a diagonal grid. The top right corner is torn, and the stencil sits on top of a red sheet of paper. Silk threads have been added to support the structure of the stencil."
+            }
+          ],
+          "place": [
+            {
+              "label": "made in",
+              "content": "Japan"
+            }
+          ],
+          "setName": [
+            {
+              "label": "See more items in",
+              "content": "Cooper Hewitt, Smithsonian Design Museum Collection"
+            },
+            {
+              "label": "See more items in",
+              "content": "Drawings, Prints, and Graphic Design Department"
+            }
+          ],
+          "creditLine": [
+            {
+              "label": "Credit Line",
+              "content": "Purchase in memory of Mrs. Edward F. Caldwell"
+            }
+          ],
+          "dataSource": [
+            {
+              "label": "Data Source",
+              "content": "Cooper Hewitt, Smithsonian Design Museum"
+            }
+          ],
+          "identifier": [
+            {
+              "label": "Accession Number",
+              "content": "1959-150-2"
+            }
+          ],
+          "objectType": [
+            {
+              "label": "Type",
+              "content": "textile designs"
+            },
+            {
+              "label": "Object Name",
+              "content": "Katagami"
+            },
+            {
+              "label": "Type",
+              "content": "Katagami"
+            }
+          ],
+          "objectRights": [
+            {
+              "label": "Restrictions & Rights",
+              "content": "CC0"
+            }
+          ],
+          "physicalDescription": [
+            {
+              "label": "Medium",
+              "content": "Mulberry paper (kozo washi) treated with fermented persimmon tannin (kakishibu), and silk threads (itoire)"
+            },
+            {
+              "label": "Dimensions",
+              "content": "H: OM262 L: OM410 (sheet) H: OM182 L: OM332 (design)"
+            }
+          ]
+        },
+        "indexedStructured": {
+          "date": [
+            "1820s",
+            "1770s"
+          ],
+          "place": [
+            "Japan"
+          ],
+          "geoLocation": [
+            {
+              "L2": {
+                "type": "Country",
+                "content": "Japan"
+              }
+            }
+          ],
+          "object_type": [
+            "Katagami",
+            "Design drawings",
+            "Textiles"
+          ],
+          "online_media_type": [
+            "Images"
+          ]
+        },
+        "descriptiveNonRepeating": {
+          "guid": "http://n2t.net/ark:/65665/kq4d1e22c01-9588-4e04-bd23-ccbb9005fac0",
+          "title": {
+            "label": "Title",
+            "content": "Hemp-leaf pattern and Lattice weave Motif"
+          },
+          "record_ID": "chndm_1959-150-2",
+          "unit_code": "CHNDM",
+          "title_sort": "HEMP-LEAF PATTERN AND LATTICE WEAVE MOTIF",
+          "data_source": "Cooper Hewitt, Smithsonian Design Museum",
+          "record_link": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
+          "online_media": {
+            "media": [
+              {
+                "id": "media:CHSDM-B25D003002642-000001",
+                "guid": "http://n2t.net/ark:/65665/vc9129950b1-9efe-451d-8672-1f6129f184a2",
+                "type": "Images",
+                "idsId": "CHSDM-B25D003002642-000001",
+                "usage": {
+                  "access": "CC0"
+                },
+                "content": "https://ids.si.edu/ids/deliveryService?id=CHSDM-B25D003002642-000001",
+                "thumbnail": "https://ids.si.edu/ids/deliveryService?id=CHSDM-B25D003002642-000001",
+                "altTextAccessibility": "HEMP-LEAF PATTERN AND LATTICE WEAVE MOTIF",
+                "extDescrAccessibility": "The hemp-leaf pattern and triple lattice weave pattern are woven together in a diagonal grid. The top right corner is torn, and the stencil sits on top of a red sheet of paper. Silk threads have been added to support the structure of the stencil.",
+                "resources": [
+                  {
+                    "label": "High-resolution JPEG",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-B25D003002642-000001.jpg",
+                    "width": 5000,
+                    "height": 3297,
+                    "dimensions": "5000x3297"
+                  },
+                  {
+                    "label": "Screen Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-B25D003002642-000001_screen"
+                  },
+                  {
+                    "label": "Thumbnail Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-B25D003002642-000001_thumb"
+                  }
+                ]
+              }
+            ],
+            "mediaCount": 1
+          },
+          "metadata_usage": {
+            "access": "CC0"
+          }
+        }
+      },
+      "hash": "0c4b59daa852f0efb13feb7232b3c485e886081b",
+      "docSignature": "4db31cf4d7d5492d39cf899a3b248242",
+      "timestamp": "1663784057",
+      "lastTimeUpdated": "1776336432",
+      "version": ""
+    },
+    {
+      "id": "ld1-1643399887910-1643399945745-0",
+      "title": "Hemp Leaf and Well-cover Motifs",
+      "unitCode": "CHNDM",
+      "type": "edanmdm",
+      "url": "edanmdm:chndm_1976-103-105",
+      "content": {
+        "freetext": {
+          "date": [
+            {
+              "label": "Date",
+              "content": "mid 18th - early 19th century"
+            }
+          ],
+          "notes": [
+            {
+              "label": "Catalogue Status",
+              "content": "Research in Progress"
+            },
+            {
+              "label": "Description",
+              "content": "Hemp leaf (asanoha) is a popular motif for babies because it is believed to bestow a healthy and long life. Triangles ward off evil and signify strength and beauty. This design is used in holy rituals and other various ways. Alternating blocks contain a well-covering motif. Silk threads have been added to support the stencil structure. Alternating blocks contain a well-covering motif. Silk threads have been added to support the stencil structure."
+            }
+          ],
+          "place": [
+            {
+              "label": "made in",
+              "content": "Japan"
+            }
+          ],
+          "setName": [
+            {
+              "label": "See more items in",
+              "content": "Cooper Hewitt, Smithsonian Design Museum Collection"
+            },
+            {
+              "label": "See more items in",
+              "content": "Drawings, Prints, and Graphic Design Department"
+            }
+          ],
+          "creditLine": [
+            {
+              "label": "Credit Line",
+              "content": "Gift of Helen Snyder"
+            }
+          ],
+          "dataSource": [
+            {
+              "label": "Data Source",
+              "content": "Cooper Hewitt, Smithsonian Design Museum"
+            }
+          ],
+          "identifier": [
+            {
+              "label": "Accession Number",
+              "content": "1976-103-105"
+            }
+          ],
+          "objectType": [
+            {
+              "label": "Type",
+              "content": "textile designs"
+            },
+            {
+              "label": "Object Name",
+              "content": "Katagami"
+            },
+            {
+              "label": "Type",
+              "content": "Katagami"
+            }
+          ],
+          "objectRights": [
+            {
+              "label": "Restrictions & Rights",
+              "content": "CC0"
+            }
+          ],
+          "physicalDescription": [
+            {
+              "label": "Medium",
+              "content": "Mulberry paper (kozo washi) treated with fermented persimmon tannin (kakishibu), and silk threads (itoire)"
+            },
+            {
+              "label": "Dimensions",
+              "content": "14 x 34.7 cm (5 1/2 x 13 11/16 in.)"
+            }
+          ]
+        },
+        "indexedStructured": {
+          "date": [
+            "1820s",
+            "1720s"
+          ],
+          "place": [
+            "Japan"
+          ],
+          "geoLocation": [
+            {
+              "L2": {
+                "type": "Country",
+                "content": "Japan"
+              }
+            }
+          ],
+          "object_type": [
+            "Katagami",
+            "Design drawings",
+            "Textiles"
+          ],
+          "online_media_type": [
+            "Images"
+          ]
+        },
+        "descriptiveNonRepeating": {
+          "guid": "http://n2t.net/ark:/65665/kq41ff1ce1c-ef85-41d9-b435-32e6bc87d302",
+          "title": {
+            "label": "Title",
+            "content": "Hemp Leaf and Well-cover Motifs"
+          },
+          "record_ID": "chndm_1976-103-105",
+          "unit_code": "CHNDM",
+          "title_sort": "HEMP LEAF AND WELL-COVER MOTIFS",
+          "data_source": "Cooper Hewitt, Smithsonian Design Museum",
+          "record_link": "https://collection.cooperhewitt.org/view/objects/asitem/id/155699",
+          "online_media": {
+            "media": [
+              {
+                "id": "media:CHSDM-74008B44BCC22-000001",
+                "guid": "http://n2t.net/ark:/65665/vc9447aecb9-3672-4ea9-82f2-b4b5368138e8",
+                "type": "Images",
+                "idsId": "CHSDM-74008B44BCC22-000001",
+                "usage": {
+                  "access": "CC0"
+                },
+                "content": "https://ids.si.edu/ids/deliveryService?id=CHSDM-74008B44BCC22-000001",
+                "thumbnail": "https://ids.si.edu/ids/deliveryService?id=CHSDM-74008B44BCC22-000001",
+                "altTextAccessibility": "HEMP LEAF AND WELL-COVER MOTIFS",
+                "extDescrAccessibility": "Hemp leaf (asanoha) is a popular motif for babies because it is believed to bestow a healthy and long life. Triangles ward off evil and signify strength and beauty. This design is used in holy rituals and other various ways. Alternating blocks contain a well-covering motif. Silk threads have been added to support the stencil structure. Alternating blocks contain a well-covering motif. Silk threads have been added to support the stencil structure.",
+                "resources": [
+                  {
+                    "label": "High-resolution JPEG",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-74008B44BCC22-000001.jpg",
+                    "width": 4968,
+                    "height": 3053,
+                    "dimensions": "4968x3053"
+                  },
+                  {
+                    "label": "Screen Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-74008B44BCC22-000001_screen"
+                  },
+                  {
+                    "label": "Thumbnail Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-74008B44BCC22-000001_thumb"
+                  }
+                ]
+              }
+            ],
+            "mediaCount": 1
+          },
+          "metadata_usage": {
+            "access": "CC0"
+          }
+        }
+      },
+      "hash": "a59240ab701112404aac8f58861b91dc16406530",
+      "docSignature": "bd63710afea363f9baf9ef8a9f601318",
+      "timestamp": "1663784559",
+      "lastTimeUpdated": "1769540882",
+      "version": ""
+    },
+    {
+      "id": "ld1-1643399887910-1643399974748-0",
+      "title": "Horse wrapping cloth (umakake)",
+      "unitCode": "CHNDM",
+      "type": "edanmdm",
+      "url": "edanmdm:chndm_2001-2-1",
+      "content": {
+        "freetext": {
+          "date": [
+            {
+              "label": "Date",
+              "content": "late 18th century"
+            }
+          ],
+          "notes": [
+            {
+              "label": "Catalogue Status",
+              "content": "Research in Progress"
+            },
+            {
+              "label": "Description",
+              "content": "Two long and narrow selvage -to-selvage widths sewn together at center (for approximately 36 inches) to form a long and narrow panel with four free-flying ends that measures more than 15 feet. The panel was to decorate a horse used in a ceremonial parade. The decoration on the panel is the same on both sides with the design reversing at the center."
+            },
+            {
+              "label": "Description",
+              "content": "In the center, the part that wrapped around the horse's belly, there is a Japanese family crest, a bud surrounded by five leaves within a circle and more leaves. The next part, the area that crossed over the back of the horse and was anchored by the saddle, are polychrome frontal flowers on a blue and white linear background. The four flying streamers have a repetition of the same family crest decorated with floral flourishes. Each streamer ends with a blue and white diagonal checkerboard pattern."
+            }
+          ],
+          "place": [
+            {
+              "label": "made in",
+              "content": "Japan"
+            }
+          ],
+          "setName": [
+            {
+              "label": "See more items in",
+              "content": "Cooper Hewitt, Smithsonian Design Museum Collection"
+            },
+            {
+              "label": "See more items in",
+              "content": "Textiles Department"
+            }
+          ],
+          "creditLine": [
+            {
+              "label": "Credit Line",
+              "content": "Museum purchase from The Grodzins Fund for Textile Acquisition"
+            }
+          ],
+          "dataSource": [
+            {
+              "label": "Data Source",
+              "content": "Cooper Hewitt, Smithsonian Design Museum"
+            }
+          ],
+          "identifier": [
+            {
+              "label": "Accession Number",
+              "content": "2001-2-1"
+            }
+          ],
+          "objectType": [
+            {
+              "label": "Type",
+              "content": "printed, dyed & painted textiles"
+            },
+            {
+              "label": "Type",
+              "content": "Horse wrapping cloth (umakake)"
+            }
+          ],
+          "objectRights": [
+            {
+              "label": "Restrictions & Rights",
+              "content": "CC0"
+            }
+          ],
+          "physicalDescription": [
+            {
+              "label": "Medium",
+              "content": "Medium: bast fiber, probably hemp Technique: resist printed/painted; colored dyes added by stencil and by hand techniques."
+            },
+            {
+              "label": "Dimensions",
+              "content": "H x W: 478.8 x 64.8 cm (15 ft. 8 1/2 in. x 25 1/2 in.)"
+            }
+          ]
+        },
+        "indexedStructured": {
+          "date": [
+            "1770s",
+            "1790s"
+          ],
+          "place": [
+            "Japan"
+          ],
+          "geoLocation": [
+            {
+              "L2": {
+                "type": "Country",
+                "content": "Japan"
+              }
+            }
+          ],
+          "object_type": [
+            "Horse wrapping cloth (umakake)",
+            "Textiles"
+          ],
+          "online_media_type": [
+            "Images"
+          ]
+        },
+        "descriptiveNonRepeating": {
+          "guid": "http://n2t.net/ark:/65665/kq49b9012e9-733b-4a9a-8ec9-2ae15658e5e4",
+          "title": {
+            "label": "Title",
+            "content": "Horse wrapping cloth (umakake)"
+          },
+          "record_ID": "chndm_2001-2-1",
+          "unit_code": "CHNDM",
+          "title_sort": "HORSE WRAPPING CLOTH (UMAKAKE)",
+          "data_source": "Cooper Hewitt, Smithsonian Design Museum",
+          "record_link": "https://collection.cooperhewitt.org/view/objects/asitem/id/221591",
+          "online_media": {
+            "media": [
+              {
+                "id": "media:CHSDM-A40727C51D012_01-000002",
+                "guid": "http://n2t.net/ark:/65665/vc973283887-73ea-4e60-97d2-e335b3eeb286",
+                "type": "Images",
+                "idsId": "CHSDM-A40727C51D012_01-000002",
+                "usage": {
+                  "access": "CC0"
+                },
+                "content": "https://ids.si.edu/ids/deliveryService?id=CHSDM-A40727C51D012_01-000002",
+                "thumbnail": "https://ids.si.edu/ids/deliveryService?id=CHSDM-A40727C51D012_01-000002",
+                "altTextAccessibility": "",
+                "extDescrAccessibility": "Two long and narrow selvage -to-selvage widths sewn together at center (for approximately 36 inches) to form a long and narrow panel with four free-flying ends that measures more than 15 feet. The panel was to decorate a horse used in a ceremonial parade. The decoration on the panel is the same on both sides with the design reversing at the center. \n\nIn the center, the part that wrapped around the horse's belly, there is a Japanese family crest, a bud surrounded by five leaves within a circle and more leaves. The next part, the area that crossed over the back of the horse and was anchored by the saddle, are polychrome frontal flowers on a blue and white linear background. The four flying streamers have a repetition of the same family crest decorated with floral flourishes. Each streamer ends with a blue and white diagonal checkerboard pattern.",
+                "resources": [
+                  {
+                    "label": "High-resolution TIFF",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-A40727C51D012_01-000002.tif",
+                    "width": 3804,
+                    "height": 12370,
+                    "dimensions": "3804x12370"
+                  },
+                  {
+                    "label": "High-resolution JPEG",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-A40727C51D012_01-000002.jpg",
+                    "width": 3804,
+                    "height": 12370,
+                    "dimensions": "3804x12370"
+                  },
+                  {
+                    "label": "Screen Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-A40727C51D012_01-000002_screen"
+                  },
+                  {
+                    "label": "Thumbnail Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-A40727C51D012_01-000002_thumb"
+                  }
+                ]
+              },
+              {
+                "id": "media:CHSDM-A40727C51D012_02-000002",
+                "guid": "http://n2t.net/ark:/65665/vc995cd37b2-0ae7-465f-a50d-99f5557c7f8c",
+                "type": "Images",
+                "idsId": "CHSDM-A40727C51D012_02-000002",
+                "usage": {
+                  "access": "CC0"
+                },
+                "content": "https://ids.si.edu/ids/deliveryService?id=CHSDM-A40727C51D012_02-000002",
+                "thumbnail": "https://ids.si.edu/ids/deliveryService?id=CHSDM-A40727C51D012_02-000002",
+                "altTextAccessibility": "",
+                "extDescrAccessibility": "Two long and narrow selvage -to-selvage widths sewn together at center (for approximately 36 inches) to form a long and narrow panel with four free-flying ends that measures more than 15 feet. The panel was to decorate a horse used in a ceremonial parade. The decoration on the panel is the same on both sides with the design reversing at the center. \n\nIn the center, the part that wrapped around the horse's belly, there is a Japanese family crest, a bud surrounded by five leaves within a circle and more leaves. The next part, the area that crossed over the back of the horse and was anchored by the saddle, are polychrome frontal flowers on a blue and white linear background. The four flying streamers have a repetition of the same family crest decorated with floral flourishes. Each streamer ends with a blue and white diagonal checkerboard pattern.",
+                "resources": [
+                  {
+                    "label": "High-resolution TIFF",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-A40727C51D012_02-000002.tif",
+                    "width": 3758,
+                    "height": 12267,
+                    "dimensions": "3758x12267"
+                  },
+                  {
+                    "label": "High-resolution JPEG",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-A40727C51D012_02-000002.jpg",
+                    "width": 3758,
+                    "height": 12267,
+                    "dimensions": "3758x12267"
+                  },
+                  {
+                    "label": "Screen Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-A40727C51D012_02-000002_screen"
+                  },
+                  {
+                    "label": "Thumbnail Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-A40727C51D012_02-000002_thumb"
+                  }
+                ]
+              },
+              {
+                "id": "media:CHSDM-Cht1237",
+                "guid": "http://n2t.net/ark:/65665/vc9dae6ff65-c759-4c40-8c0a-9554de9fa7b3",
+                "type": "Images",
+                "idsId": "CHSDM-Cht1237",
+                "usage": {
+                  "access": "CC0"
+                },
+                "content": "https://ids.si.edu/ids/deliveryService?id=CHSDM-Cht1237",
+                "thumbnail": "https://ids.si.edu/ids/deliveryService?id=CHSDM-Cht1237",
+                "altTextAccessibility": "",
+                "extDescrAccessibility": "Two long and narrow selvage -to-selvage widths sewn together at center (for approximately 36 inches) to form a long and narrow panel with four free-flying ends that measures more than 15 feet. The panel was to decorate a horse used in a ceremonial parade. The decoration on the panel is the same on both sides with the design reversing at the center. \n\nIn the center, the part that wrapped around the horse's belly, there is a Japanese family crest, a bud surrounded by five leaves within a circle and more leaves. The next part, the area that crossed over the back of the horse and was anchored by the saddle, are polychrome frontal flowers on a blue and white linear background. The four flying streamers have a repetition of the same family crest decorated with floral flourishes. Each streamer ends with a blue and white diagonal checkerboard pattern.",
+                "resources": [
+                  {
+                    "label": "High-resolution JPEG",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht1237.jpg",
+                    "width": 1266,
+                    "height": 1358,
+                    "dimensions": "1266x1358"
+                  },
+                  {
+                    "label": "Screen Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht1237_screen"
+                  },
+                  {
+                    "label": "Thumbnail Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht1237_thumb"
+                  }
+                ]
+              },
+              {
+                "id": "media:CHSDM-Cht5219",
+                "guid": "http://n2t.net/ark:/65665/vc9e4421478-3f1f-4aaf-b019-2d9b166cc4f7",
+                "type": "Images",
+                "idsId": "CHSDM-Cht5219",
+                "usage": {
+                  "access": "CC0"
+                },
+                "content": "https://ids.si.edu/ids/deliveryService?id=CHSDM-Cht5219",
+                "thumbnail": "https://ids.si.edu/ids/deliveryService?id=CHSDM-Cht5219",
+                "altTextAccessibility": "",
+                "extDescrAccessibility": "Two long and narrow selvage -to-selvage widths sewn together at center (for approximately 36 inches) to form a long and narrow panel with four free-flying ends that measures more than 15 feet. The panel was to decorate a horse used in a ceremonial parade. The decoration on the panel is the same on both sides with the design reversing at the center. \n\nIn the center, the part that wrapped around the horse's belly, there is a Japanese family crest, a bud surrounded by five leaves within a circle and more leaves. The next part, the area that crossed over the back of the horse and was anchored by the saddle, are polychrome frontal flowers on a blue and white linear background. The four flying streamers have a repetition of the same family crest decorated with floral flourishes. Each streamer ends with a blue and white diagonal checkerboard pattern.",
+                "resources": [
+                  {
+                    "label": "High-resolution JPEG",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht5219.jpg",
+                    "width": 2000,
+                    "height": 1331,
+                    "dimensions": "2000x1331"
+                  },
+                  {
+                    "label": "Screen Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht5219_screen"
+                  },
+                  {
+                    "label": "Thumbnail Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht5219_thumb"
+                  }
+                ]
+              },
+              {
+                "id": "media:CHSDM-Cht5220",
+                "guid": "http://n2t.net/ark:/65665/vc99b32de7b-85a9-45b3-a643-c1b3f8d6b004",
+                "type": "Images",
+                "idsId": "CHSDM-Cht5220",
+                "usage": {
+                  "access": "CC0"
+                },
+                "content": "https://ids.si.edu/ids/deliveryService?id=CHSDM-Cht5220",
+                "thumbnail": "https://ids.si.edu/ids/deliveryService?id=CHSDM-Cht5220",
+                "altTextAccessibility": "",
+                "extDescrAccessibility": "Two long and narrow selvage -to-selvage widths sewn together at center (for approximately 36 inches) to form a long and narrow panel with four free-flying ends that measures more than 15 feet. The panel was to decorate a horse used in a ceremonial parade. The decoration on the panel is the same on both sides with the design reversing at the center. \n\nIn the center, the part that wrapped around the horse's belly, there is a Japanese family crest, a bud surrounded by five leaves within a circle and more leaves. The next part, the area that crossed over the back of the horse and was anchored by the saddle, are polychrome frontal flowers on a blue and white linear background. The four flying streamers have a repetition of the same family crest decorated with floral flourishes. Each streamer ends with a blue and white diagonal checkerboard pattern.",
+                "resources": [
+                  {
+                    "label": "High-resolution JPEG",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht5220.jpg",
+                    "width": 2000,
+                    "height": 1458,
+                    "dimensions": "2000x1458"
+                  },
+                  {
+                    "label": "Screen Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht5220_screen"
+                  },
+                  {
+                    "label": "Thumbnail Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht5220_thumb"
+                  }
+                ]
+              },
+              {
+                "id": "media:CHSDM-Cht5221",
+                "guid": "http://n2t.net/ark:/65665/vc9e37f9048-9693-45d4-8109-f16fd6904e7d",
+                "type": "Images",
+                "idsId": "CHSDM-Cht5221",
+                "usage": {
+                  "access": "CC0"
+                },
+                "content": "https://ids.si.edu/ids/deliveryService?id=CHSDM-Cht5221",
+                "thumbnail": "https://ids.si.edu/ids/deliveryService?id=CHSDM-Cht5221",
+                "altTextAccessibility": "",
+                "extDescrAccessibility": "Two long and narrow selvage -to-selvage widths sewn together at center (for approximately 36 inches) to form a long and narrow panel with four free-flying ends that measures more than 15 feet. The panel was to decorate a horse used in a ceremonial parade. The decoration on the panel is the same on both sides with the design reversing at the center. \n\nIn the center, the part that wrapped around the horse's belly, there is a Japanese family crest, a bud surrounded by five leaves within a circle and more leaves. The next part, the area that crossed over the back of the horse and was anchored by the saddle, are polychrome frontal flowers on a blue and white linear background. The four flying streamers have a repetition of the same family crest decorated with floral flourishes. Each streamer ends with a blue and white diagonal checkerboard pattern.",
+                "resources": [
+                  {
+                    "label": "High-resolution JPEG",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht5221.jpg",
+                    "width": 1148,
+                    "height": 2000,
+                    "dimensions": "1148x2000"
+                  },
+                  {
+                    "label": "Screen Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht5221_screen"
+                  },
+                  {
+                    "label": "Thumbnail Image",
+                    "url": "https://ids.si.edu/ids/download?id=CHSDM-Cht5221_thumb"
+                  }
+                ]
+              }
+            ],
+            "mediaCount": 6
+          },
+          "metadata_usage": {
+            "access": "CC0"
+          }
+        }
+      },
+      "hash": "e3b31fd638f495d9bcd83c6b03061ec8b785a8b4",
+      "docSignature": "989473ca6caa0b41f7629031af14a4a6",
+      "timestamp": "1663784559",
+      "lastTimeUpdated": "1769540882",
+      "version": ""
+    }
+  ]
+}

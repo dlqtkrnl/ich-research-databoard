@@ -6,7 +6,7 @@
       "dataset_id": "JXICH-XB-001",
       "license": "institutional_permission_pending",
       "license_document_id": "DOC-PENDING-XB-001",
-      "consent_form_id": "CONSENT-PENDING-XB-001",
+      "consent_form_id": "CONSENT-XB-INHERITOR-PENDING",
       "permission_scope": {
         "research": true,
         "publication": false,
@@ -19,7 +19,7 @@
       "sensitive_culture_status": "review_required",
       "cross_border_transfer_status": "not_allowed_until_review",
       "expiry_date": "2027-07-01",
-      "rights_gate": "conditional"
+      "rights_gate": "pending_review"
     },
     {
       "rights_id": "RGT-PUB-DTD-001",
@@ -39,7 +39,7 @@
       "sensitive_culture_status": "not_applicable",
       "cross_border_transfer_status": "metadata_only",
       "expiry_date": "source_terms_dependent",
-      "rights_gate": "conditional"
+      "rights_gate": "pending_review"
     },
     {
       "rights_id": "RGT-PUB-FASHIONPEDIA-002",
@@ -59,7 +59,7 @@
       "sensitive_culture_status": "not_applicable",
       "cross_border_transfer_status": "metadata_only",
       "expiry_date": "source_terms_dependent",
-      "rights_gate": "conditional"
+      "rights_gate": "pending_review"
     },
     {
       "rights_id": "RGT-PUB-DEEPFASHION2-004",
@@ -99,13 +99,13 @@
       "sensitive_culture_status": "review_required",
       "cross_border_transfer_status": "unrestricted_public_release",
       "expiry_date": "not_applicable_cc_by_no_expiry",
-      "rights_gate": "pass"
+      "rights_gate": "pending_review"
     },
     {
       "rights_id": "RGT-PUB-CHNDM-HEMP-JP-009",
       "dataset_id": "PUB-CHNDM-HEMP-JP-009",
       "license": "cc0_public_domain_smithsonian_open_access",
-      "license_document_id": "SI-OPENACCESS-MEDIA_USAGE-CC0-VERIFIED-20260704",
+      "license_document_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
       "consent_form_id": "not_applicable",
       "permission_scope": {
         "research": true,

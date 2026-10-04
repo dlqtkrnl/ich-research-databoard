@@ -132,7 +132,7 @@ function createRightsRecord(datasetId) {
     rights_id: `RGT-${datasetId}`, dataset_id: datasetId, license: "pending_review", license_document_id: "DOC-PENDING", consent_form_id: "CONSENT-PENDING",
     permission_scope: { research: false, publication: false, public_demo: false, derivative: false, commercial: false },
     portrait_status: "review_required", personal_data_status: "review_required", sensitive_culture_status: "review_required", cross_border_transfer_status: "not_allowed_until_review",
-    expiry_date: "pending", rights_gate: "blocked",
+    expiry_date: "pending", rights_gate: "pending_review",
   };
 }
 function rightsFor(id = state.selectedId) {
@@ -503,33 +503,67 @@ function authenticEvidenceFor(datasetId = state.selectedId) {
 function imageEvidenceFor(datasetId = state.selectedId) {
   return authenticEvidenceFor(datasetId).filter((file) => file.source_file_path && /\.(jpe?g|png|webp|gif)$/i.test(file.file_name || ""));
 }
-// Conditions recorded with the rights record that the gate enforces (in addition to scope and evidence):
-// an expiry date in the past blocks; a consent form that is not "not_applicable" must be backed by an
-// authentic evidence file (matched by id, or by an evidence_type naming consent); sensitive-culture review caps at conditional.
+// Conditions recorded with the rights record that the gate enforces (in addition to scope and evidence).
+// The default is refusal: a value the gate does not recognise counts against the dataset.
+// - expiry: a valid YYYY-MM-DD date (expires at the end of that day, UTC) or a value beginning "not_applicable";
+//   anything else (missing, "pending", a malformed date) blocks.
+// - consent: "not_applicable…" means none is needed; otherwise an authentic evidence file whose
+//   evidence_file_id equals consent_form_id must exist; a missing consent_form_id blocks.
+// - cultural sensitivity: "not_applicable…" or "reviewed_no_restriction" clears it; "review_required" or any
+//   other value caps the dataset at conditional and stops generation.
+function expiryStatus(expiry, today = new Date()) {
+  const value = String(expiry || "");
+  if (value.startsWith("not_applicable")) return "none";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return "unresolved";
+  const end = new Date(`${value}T23:59:59Z`);
+  if (Number.isNaN(end.getTime()) || end.toISOString().slice(0, 10) !== value) return "unresolved";
+  return end < today ? "expired" : "valid";
+}
 function isExpired(expiry, today = new Date()) {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(expiry || ""))) return false;
-  return new Date(`${expiry}T23:59:59Z`) < today;
+  return expiryStatus(expiry, today) === "expired";
 }
 function consentRequired(record) {
-  const id = String(record?.consent_form_id || "");
-  return Boolean(id) && !id.startsWith("not_applicable");
+  return !String(record?.consent_form_id || "").startsWith("not_applicable");
 }
 function authenticConsentFor(record, authenticEvidence) {
-  return authenticEvidence.some((file) => file.evidence_file_id === record.consent_form_id || /consent/i.test(file.evidence_type || ""));
+  const id = String(record?.consent_form_id || "");
+  return Boolean(id) && authenticEvidence.some((file) => file.evidence_file_id === id);
+}
+function sensitivityCleared(record) {
+  const status = String(record?.sensitive_culture_status || "");
+  return status.startsWith("not_applicable") || status === "reviewed_no_restriction";
 }
 function rightsGate(record = rightsFor()) {
-  if (!record) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.noRecord") };
+  const blocked = (key) => ({ gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t(key) });
+  const conditional = (key) => ({ gate: "conditional", label: t("gate.conditional"), cls: "warn", reason: t(key) });
+  if (!record) return blocked("gate.reason.noRecord");
   const authenticEvidence = authenticEvidenceFor(record.dataset_id);
-  if (!authenticEvidence.length) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.noAuthentic") };
-  if (record.rights_gate === "blocked") return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.markedBlocked") };
-  if (!record.permission_scope?.research) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.noResearch") };
-  if (isExpired(record.expiry_date)) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.expired") };
-  if (consentRequired(record) && !authenticConsentFor(record, authenticEvidence)) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.noConsent") };
+  if (!authenticEvidence.length) return blocked("gate.reason.noAuthentic");
+  if (record.rights_gate === "blocked") return blocked("gate.reason.markedBlocked");
+  if (!record.permission_scope?.research) return blocked("gate.reason.noResearch");
+  const expiry = expiryStatus(record.expiry_date);
+  if (expiry === "expired") return blocked("gate.reason.expired");
+  if (expiry === "unresolved") return blocked("gate.reason.expiryUnresolved");
+  if (consentRequired(record) && !authenticConsentFor(record, authenticEvidence)) return blocked("gate.reason.noConsent");
   const evidenceScopes = new Set(authenticEvidence.flatMap((file) => file.permission_scope || []));
   const hasPublicationEvidence = evidenceScopes.has("publication") || evidenceScopes.has("public_demo");
-  if (!record.permission_scope?.publication || !record.permission_scope?.public_demo || !hasPublicationEvidence) return { gate: "conditional", label: t("gate.conditional"), cls: "warn", reason: t("gate.reason.conditional") };
-  if (record.sensitive_culture_status === "review_required") return { gate: "conditional", label: t("gate.conditional"), cls: "warn", reason: t("gate.reason.sensitiveReview") };
+  if (!record.permission_scope?.publication || !record.permission_scope?.public_demo || !hasPublicationEvidence) return conditional("gate.reason.conditional");
+  if (record.sensitive_culture_status === "review_required") return conditional("gate.reason.sensitiveReview");
+  if (!sensitivityCleared(record)) return conditional("gate.reason.sensitiveUnknown");
   return { gate: "pass", label: t("gate.pass"), cls: "good", reason: t("gate.reason.pass") };
+}
+// Import must not widen what the current registry supports: an imported evidence record may claim a source
+// file only if the same id with the same digest is already registered, and an imported rights record cannot
+// lift a curator's blocked status.
+function reconcileImportedEvidence(current, imported) {
+  const known = new Map((current || []).map((file) => [file.evidence_file_id, file.sha256]));
+  return (imported || []).map((file) => (file.source_file_present === true && known.get(file.evidence_file_id) !== file.sha256
+    ? { ...file, source_file_present: false, import_note: "source_file_present cleared on import: id and digest not in the current evidence registry" }
+    : file));
+}
+function reconcileImportedRights(current, imported) {
+  const blockedIds = new Set((current || []).filter((record) => record.rights_gate === "blocked").map((record) => record.dataset_id));
+  return (imported || []).map((record) => (blockedIds.has(record.dataset_id) && record.rights_gate !== "blocked" ? { ...record, rights_gate: "blocked" } : record));
 }
 function verifyAuditChain() {
   const rows = [...(state.auditLog || [])].sort((a, b) => (a.sequence || 0) - (b.sequence || 0));
@@ -791,7 +825,7 @@ function mergeById(freshArr, storedArr, key) {
 }
 // Bump whenever the bundled manifests change in a way stored browser state must not mask
 // (stored records otherwise take precedence over bundled ones in mergeById).
-const VALIDATION_REVISION = "validated-20261003-release-v1";
+const VALIDATION_REVISION = "validated-20261004-release-v1.0.3";
 function normalizeStoredState(stored) {
   const fresh = createInitialState();
   const needsValidationRefresh = stored.validationRevision !== VALIDATION_REVISION;
@@ -845,8 +879,9 @@ function generationGate(dataset = findDataset()) {
   const derivativeMode = ["image-to-image", "inpainting", "controlnet"].includes(settings.mode);
   const needsDerivative = derivativeMode || activeReuseLayers(dataset).some((layer) => ["appearance", "history", "semantic"].includes(layer.id));
   if (needsDerivative && !rights.permission_scope?.derivative) {
-    return { state: "conditional", label: t("gen.state.sketch"), cls: "warn", reason: t("gen.state.sketchReason") };
+    return { state: "blocked", label: t("gen.state.blocked"), cls: "block", reason: t("gen.state.noDerivativeReason") };
   }
+  if (!sensitivityCleared(rights)) return { state: "blocked", label: t("gen.state.blocked"), cls: "block", reason: t("gen.state.sensitiveReason") };
   if (gate.gate === "conditional") return { state: "conditional", label: t("gen.state.conditional"), cls: "warn", reason: gate.reason };
   return { state: "pass", label: t("gen.state.pass"), cls: "good", reason: t("gen.state.passReason") };
 }
@@ -1174,10 +1209,10 @@ function importResearchPackage(file) {
       if (!importCheck.pass) throw new Error(importCheck.failures.join("; "));
       if (payload.dataset_manifest?.datasets) state.datasets = payload.dataset_manifest.datasets.map((item) => ({ ...item, id: item.id || item.dataset_id }));
       else if (payload.datasets) state.datasets = payload.datasets.map((item) => ({ ...item, id: item.id || item.dataset_id }));
-      if (payload.rights_manifest?.rights) state.rights = payload.rights_manifest.rights;
+      if (payload.rights_manifest?.rights) state.rights = reconcileImportedRights(state.rights, payload.rights_manifest.rights);
       if (payload.split_manifest?.assignments) { state.splits = payload.split_manifest.assignments; state.splitPolicy = payload.split_manifest.split_policy || state.splitPolicy; }
       if (payload.kg_claims?.claims) state.kgClaims = payload.kg_claims.claims;
-      if (payload.evidence_manifest?.evidence_files) state.evidenceFiles = payload.evidence_manifest.evidence_files;
+      if (payload.evidence_manifest?.evidence_files) state.evidenceFiles = reconcileImportedEvidence(state.evidenceFiles, payload.evidence_manifest.evidence_files);
       if (payload.sample_manifest?.samples) { state.samples = payload.sample_manifest.samples; state.samplePolicy = payload.sample_manifest.sample_policy || state.samplePolicy; }
       if (payload.checksum_manifest?.files) state.checksumFiles = payload.checksum_manifest.files;
       if (payload.generation_manifest) state.generation = { settings: payload.generation_manifest.settings || generationDefaultSettings, runs: payload.generation_manifest.runs || [] };
@@ -1410,7 +1445,8 @@ if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     chainHash, stableStringify, sha256Hex, createAuditEntry, verifyAuditChain,
     validateSchema, validateChecksumRegistry, validateSampleLeakage, validateEvidence,
-    validatedPlatformReport, validateGenerationTrace, rightsGate, rightsFor, splitFor, applyPermissionToggle, isExpired,
+    validatedPlatformReport, validateGenerationTrace, rightsGate, rightsFor, splitFor, applyPermissionToggle, isExpired, expiryStatus, sensitivityCleared,
+    generationGate, reconcileImportedEvidence, reconcileImportedRights,
     findDataset, createRightsRecord, createInitialState, replaceState, getState,
     evidenceFor, verifiedEvidenceFor, authenticEvidenceFor, imageEvidenceFor,
     normalizeStoredState, mergeById, Storage, loadState, loadInitialState,

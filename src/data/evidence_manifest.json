@@ -79,6 +79,28 @@
       "source_file_note": "placeholder_demo_record — controlled-access application not yet submitted"
     },
     {
+      "evidence_file_id": "P12-TRIPLES32-CC-BY-4.0-RELEASE-20261003",
+      "dataset_id": "JXICH-XBEMB-KG-P12",
+      "evidence_type": "license_declaration_by_rights_holder",
+      "evidence_role": "rights",
+      "file_name": "LICENSE.md",
+      "sha256": "sha256:03b6da366c403f85a8835e8fccfd3e911b1b7d72bc73a9e4f78449acd0072b51",
+      "verification_status": "verified",
+      "verified_by": "direct_sha256_recomputation",
+      "verified_at": "2026-10-04T00:00:00+08:00",
+      "permission_scope": [
+        "research",
+        "publication",
+        "public_demo",
+        "derivative",
+        "commercial"
+      ],
+      "expiry_date": "not_applicable_cc_by",
+      "source_file_present": true,
+      "source_file_path": "data/kg_sources/LICENSE.md",
+      "source_file_note": "real_file — CC BY 4.0 release statement for the 32 triples, written by the sole author of P12, who holds the rights; it grants reuse, not a claim that each triple is verified (1,310 bytes)"
+    },
+    {
       "evidence_file_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "dataset_id": "JXICH-XBEMB-KG-P12",
       "evidence_type": "author_own_prior_research_supplementary_data",
@@ -87,11 +109,34 @@
       "verification_status": "verified",
       "verified_by": "direct_sha256_recomputation",
       "verified_at": "2026-07-03T00:00:00+08:00",
-      "permission_scope": ["research", "publication", "public_demo", "derivative", "commercial"],
+      "permission_scope": [],
       "expiry_date": "not_applicable_cc_by",
       "source_file_present": true,
       "source_file_path": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv",
-      "source_file_note": "real_file — copied verbatim from the supplementary package (v18.37) of the author's own unpublished manuscript P12 (MLIC-CAFD-KG) into data/kg_sources/; released by the sole author under CC BY 4.0 on 2026-10-03; sha256 independently recomputed from the copied file and matches the original file byte-for-byte (16,317 bytes)"
+      "source_file_note": "real_file — copied verbatim from the supplementary package (v18.37) of the author's own unpublished manuscript P12 (MLIC-CAFD-KG) into data/kg_sources/; released by the sole author under CC BY 4.0 on 2026-10-03; sha256 independently recomputed from the copied file and matches the original file byte-for-byte (16,317 bytes)",
+      "evidence_role": "content"
+    },
+    {
+      "evidence_file_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "evidence_type": "smithsonian_open_access_api_records_cc0",
+      "evidence_role": "rights",
+      "file_name": "smithsonian_open_access_records_20261004.json",
+      "sha256": "sha256:d317408d5f46a0e3ff41dc5bfe6a2441345e07dc121be921255da115c827a026",
+      "verification_status": "verified",
+      "verified_by": "direct_sha256_recomputation",
+      "verified_at": "2026-10-04T00:00:00+08:00",
+      "permission_scope": [
+        "research",
+        "publication",
+        "public_demo",
+        "derivative",
+        "commercial"
+      ],
+      "expiry_date": "not_applicable_cc0",
+      "source_file_present": true,
+      "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json",
+      "source_file_note": "real_file — the three Smithsonian Open Access API records (edanmdm:chndm_1959-150-2, chndm_1976-103-105, chndm_2001-2-1) retrieved 2026-10-04; each states metadata and media usage access = CC0 (31,109 bytes)"
     },
     {
       "evidence_file_id": "SRC-CHNDM-1959-150-2-KATAGAMI",
@@ -102,11 +147,12 @@
       "verification_status": "verified",
       "verified_by": "direct_sha256_recomputation",
       "verified_at": "2026-07-10T00:00:00+00:00",
-      "permission_scope": ["research", "publication", "public_demo", "derivative", "commercial"],
+      "permission_scope": [],
       "expiry_date": "not_applicable_cc0",
       "source_file_present": true,
       "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_1959-150-2_katagami.jpg",
-      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_1959-150-2, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (443,738 bytes)"
+      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_1959-150-2, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (443,738 bytes)",
+      "evidence_role": "content"
     },
     {
       "evidence_file_id": "SRC-CHNDM-1976-103-105-KATAGAMI",
@@ -117,11 +163,12 @@
       "verification_status": "verified",
       "verified_by": "direct_sha256_recomputation",
       "verified_at": "2026-07-10T00:00:00+00:00",
-      "permission_scope": ["research", "publication", "public_demo", "derivative", "commercial"],
+      "permission_scope": [],
       "expiry_date": "not_applicable_cc0",
       "source_file_present": true,
       "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_1976-103-105_katagami.jpg",
-      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_1976-103-105, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (385,250 bytes)"
+      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_1976-103-105, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (385,250 bytes)",
+      "evidence_role": "content"
     },
     {
       "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-01",
@@ -132,11 +179,12 @@
       "verification_status": "verified",
       "verified_by": "direct_sha256_recomputation",
       "verified_at": "2026-07-10T00:00:00+00:00",
-      "permission_scope": ["research", "publication", "public_demo", "derivative", "commercial"],
+      "permission_scope": [],
       "expiry_date": "not_applicable_cc0",
       "source_file_present": true,
       "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_01.jpg",
-      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (194,715 bytes)"
+      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (194,715 bytes)",
+      "evidence_role": "content"
     },
     {
       "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-02",
@@ -147,11 +195,12 @@
       "verification_status": "verified",
       "verified_by": "direct_sha256_recomputation",
       "verified_at": "2026-07-10T00:00:00+00:00",
-      "permission_scope": ["research", "publication", "public_demo", "derivative", "commercial"],
+      "permission_scope": [],
       "expiry_date": "not_applicable_cc0",
       "source_file_present": true,
       "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_02.jpg",
-      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (189,635 bytes)"
+      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (189,635 bytes)",
+      "evidence_role": "content"
     },
     {
       "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-03",
@@ -162,11 +211,12 @@
       "verification_status": "verified",
       "verified_by": "direct_sha256_recomputation",
       "verified_at": "2026-07-10T00:00:00+00:00",
-      "permission_scope": ["research", "publication", "public_demo", "derivative", "commercial"],
+      "permission_scope": [],
       "expiry_date": "not_applicable_cc0",
       "source_file_present": true,
       "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_03.jpg",
-      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (554,637 bytes)"
+      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (554,637 bytes)",
+      "evidence_role": "content"
     },
     {
       "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-04",
@@ -177,11 +227,12 @@
       "verification_status": "verified",
       "verified_by": "direct_sha256_recomputation",
       "verified_at": "2026-07-10T00:00:00+00:00",
-      "permission_scope": ["research", "publication", "public_demo", "derivative", "commercial"],
+      "permission_scope": [],
       "expiry_date": "not_applicable_cc0",
       "source_file_present": true,
       "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_04.jpg",
-      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (257,886 bytes)"
+      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (257,886 bytes)",
+      "evidence_role": "content"
     },
     {
       "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-05",
@@ -192,11 +243,12 @@
       "verification_status": "verified",
       "verified_by": "direct_sha256_recomputation",
       "verified_at": "2026-07-10T00:00:00+00:00",
-      "permission_scope": ["research", "publication", "public_demo", "derivative", "commercial"],
+      "permission_scope": [],
       "expiry_date": "not_applicable_cc0",
       "source_file_present": true,
       "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_05.jpg",
-      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (244,114 bytes)"
+      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (244,114 bytes)",
+      "evidence_role": "content"
     },
     {
       "evidence_file_id": "SRC-CHNDM-2001-2-1-UMAKAKE-06",
@@ -207,11 +259,12 @@
       "verification_status": "verified",
       "verified_by": "direct_sha256_recomputation",
       "verified_at": "2026-07-10T00:00:00+00:00",
-      "permission_scope": ["research", "publication", "public_demo", "derivative", "commercial"],
+      "permission_scope": [],
       "expiry_date": "not_applicable_cc0",
       "source_file_present": true,
       "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_06.jpg",
-      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (187,708 bytes)"
+      "source_file_note": "real_file — downloaded from Smithsonian Open Access API (Cooper Hewitt, edanmdm:chndm_2001-2-1, media_usage=CC0) into data/public_dataset_sources/chndm_hemp_textile_jp/; sha256 recomputed from the file on disk (187,708 bytes)",
+      "evidence_role": "content"
     }
   ]
 }

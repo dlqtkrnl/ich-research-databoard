@@ -1,4 +1,4 @@
-# License: data/kg_sources/
+# License: src/data/kg_sources/
 
 `xiabu_embroidery_p12_source_linked_triples_32.csv` is licensed under the
 **Creative Commons Attribution 4.0 International License (CC BY 4.0)**:
@@ -11,7 +11,7 @@ https://creativecommons.org/licenses/by/4.0/
 - **Released by:** the manuscript's sole author, on 2026-10-03.
 - **Integrity:** the file is stored byte-for-byte as in the original package
   (including its CRLF line endings, pinned via `.gitattributes`). Its SHA-256 is
-  registered in `data/checksum_manifest.json` and `data/evidence_manifest.json`
+  registered in `src/data/checksum_manifest.json` and `src/data/evidence_manifest.json`
   (`sha256:b433e9d07a193c94377b47dcd62c7b213f9b6da4c486fc05fb7816e21fac9495`).
 - **Attribution:** cite this repository (see `CITATION.cff`) and, once
   published, the P12 article.

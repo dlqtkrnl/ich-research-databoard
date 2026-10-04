@@ -45,7 +45,7 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
 - `rights_manifest.json` — Rights Gate 상태(permission_scope, portrait/consent 상태 등)
 - `evidence_manifest.json` — 권리 증거 파일 메타데이터
 - `split_manifest.json`, `sample_manifest.json` — train/eval/holdout 분할 및 표본 단위 누출(leakage) 검사
-- `checksum_manifest.json` — 핵심 manifest/schema/evidence-source 파일 18건의 SHA-256 레지스트리(`scripts/hash_files.mjs`가 실제 파일 바이트에서 재계산해 생성)
+- `checksum_manifest.json` — 핵심 manifest/schema/evidence-source 파일 20건의 SHA-256 레지스트리(`scripts/hash_files.mjs`가 실제 파일 바이트에서 재계산해 생성)
 - `kg_claims.json` — 지식그래프 claim (40건: pilot 2건 + 공개 데이터셋 3건 + **JXICH-XBEMB-KG-P12 32건** + **PUB-CHNDM-HEMP-JP-009 3건**)
 - `public_dataset_registry.json` — 공개 데이터셋(DTD, Fashionpedia, DeepFashion, DeepFashion2) 메타데이터 커넥터 + 한국 복식·직물 비교 사례 4건(의친왕가 복식, 한산모시짜기, 나주의 샛골나이, 명주짜기 — 국가유산청, 인용 전용·이미지 미포함) + **Cooper Hewitt CC0 麻织物/型纸 1건(이미지 실제 반입, 아래 참고)** — 이 파일은 문서/연구 참조용이며 `app.js`에서 실제로 로드하지 않음
 - `data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv` — **실제로 검증된 증거 파일** (아래 참고)
@@ -54,7 +54,7 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
 ## 검증·감사 메커니즘
 
 - **Audit hash-chain**: 모든 상태 변경이 `sequence`/`previous_hash`/`entry_hash`를 가진 append-only 로그로 기록됩니다. 해시는 표준 **SHA-256**(순수 JS 구현, `app.js`의 `sha256Hex`)이며, `test/validation.test.js`에서 Node 내장 `crypto` 모듈과 대조 검증합니다.
-- **Rights Gate**: research 범위와 authentic evidence file(검증됨 + 실제 파일 존재)이 있어야 하고, publication·public_demo 범위와 공개용 증거까지 있어야 통과(pass). 만료일이 지났거나, 필요한 동의서가 authentic 증거로 뒷받침되지 않으면 차단(blocked). 문화적 민감성 검토가 필요하면(`review_required`) 최대 conditional. `commercial`·초상·국외 이전 조건은 기록·표시만 하고 판정에 쓰지 않음. 화면의 권한 체크박스는 범위만 바꾸며 큐레이터가 기록한 blocked를 해제하지 않음.
+- **Rights Gate**: research 범위와 authentic evidence file(검증됨 + 실제 파일 존재)이 있어야 하고, publication·public_demo 범위와 공개용 증거까지 있어야 통과(pass). 만료일이 지났거나 읽을 수 없는 값이면(누락·`pending`·잘못된 날짜) 차단(blocked). 동의서는 `consent_form_id`와 같은 ID의 authentic 증거 파일이 있어야 하며, ID가 비어 있으면 차단. 문화적 민감성이 `not_applicable…`이나 `reviewed_no_restriction`이 아니면(`review_required` 포함) 최대 conditional이고 생성도 차단. `derivative` 허가가 없으면 image-to-image 생성을 거부. `commercial`·초상·국외 이전 조건은 기록·표시만 하고 판정에 쓰지 않음. 화면의 권한 체크박스와 패키지 가져오기는 큐레이터가 기록한 blocked를 해제하지 못하며, 가져온 증거 기록은 같은 ID·다이제스트가 이미 등록된 경우에만 파일 존재로 인정.
 - **Split Governance**: `object_id`/`event_id`/`capture_session_id`로 train/eval 누출을 검사하고, 평가셋은 잠글 수 있습니다.
 - **자동화 테스트**: `test/validation.test.js` — `rightsGate`, `verifyAuditChain`(변조 탐지 포함), `validateSampleLeakage`, `validateSchema`, `validateChecksumRegistry`, `authenticEvidenceFor` 등 핵심 검증 로직을 실제 `app.js` 코드에 대해 실행합니다. `test/integrity.test.js`는 해시 레지스트리·번들 동기화·온톨로지 어휘 검사 스크립트를 실행해 실패 시 테스트를 실패시킵니다. 실행: `npm test` (Node 22 이상). GitHub Actions(`.github/workflows/ci.yml`)가 Ubuntu·Windows × Node 22·24에서 같은 테스트를 실행합니다.
 - **온톨로지 레이어 (`data/ontology/`)**: `predicate_vocabulary.json`(30개 predicate의 class/domain/range 통제 어휘)와 `competency_questions.json`(8개 competency question)로 `kg_claims.json`을 검증합니다. `node scripts/validate_ontology.mjs`로 실행하며, predicate/역할/신뢰도 범위 위반을 탐지하고 각 claim의 `evidence_id`가 실제 `evidence_manifest.json` 항목으로 연결되는지(현재 40건 중 35건 연결, 5건은 비공식 label) 정직하게 보고합니다. **이것은 OWL/SHACL 추론기가 아니라 경량 어휘·제약 검사기입니다** — 파일 자체의 `note` 필드에도 이 범위 제한이 명시되어 있습니다.
@@ -83,7 +83,7 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
 학술 자료로 인용하기 전에 반드시 확인하세요:
 
 1. **`data/dataset_manifest.json`의 江西夏布 데이터셋(JXICH-XB-001)은 pilot/placeholder 데이터입니다.** checksum이 `sha256:pilot-placeholder-...` 형태로 명시되어 있으며 실제 이미지 해시가 아닙니다.
-2. **`evidence_manifest.json`의 14건 중 5건은 `source_file_present: false`입니다.** 기관 승인서·전승인 동의서 PDF 등 실제 증거 파일은 이 저장소에 존재하지 않으며, sha256 값은 예시일 뿐 재계산으로 검증할 수 없습니다. Rights Gate 로직 자체(권한 없으면 차단)는 정상 동작하지만, 이 5건에 대해서는 "검증된 증거"라는 표현을 실제 문서가 첨부되기 전까지 사용하면 안 됩니다. 나머지 9건(`SRC-XBEMB-KG-P12-TRIPLES32` 1건 + `SRC-CHNDM-*` 8건)만 `source_file_present: true`이고 실제 파일에서 재계산한 sha256을 갖습니다.
+2. **`evidence_manifest.json`의 16건 중 5건은 `source_file_present: false`입니다.** 기관 승인서·전승인 동의서 PDF 등 실제 증거 파일은 이 저장소에 존재하지 않으며, sha256 값은 예시일 뿐 재계산으로 검증할 수 없습니다. Rights Gate 로직 자체(권한 없으면 차단)는 정상 동작하지만, 이 5건에 대해서는 "검증된 증거"라는 표현을 실제 문서가 첨부되기 전까지 사용하면 안 됩니다. 나머지 11건(P12 `LICENSE.md`와 트리플 CSV 2건, Smithsonian Open Access API 기록과 `SRC-CHNDM-*` 이미지 9건)만 `source_file_present: true`이고 실제 파일에서 재계산한 sha256을 갖습니다.
 3. **`sample_manifest.json`에는 이 데이터셋의 예시 표본 4건만 있습니다(파일 전체 16건 중 8건은 Cooper Hewitt 이미지).** `dataset_manifest.json`이 주장하는 "320 images + 42 records" 전체를 대표하지 않으며, leakage 검증은 이 예시 표본 범위에서만 의미가 있습니다.
 4. **传承人(전승인) 동의는 `pending` 상태입니다.** `JXICH-XB-001`은 실제 증거 파일이 없어 Rights Gate가 연구 목적 이용까지 차단(`blocked`)하고 있으나, 논문·발표 자료에 해당 데이터를 포함하면 안 됩니다.
 5. **2D/2.5D/3D 프리뷰는 실제 3D 재구성(photogrammetry/NeRF/mesh)이 아니라 CSS 목업입니다.** "3D 데이터화 구현됨"이라고 서술하지 말고 "schematic visualization preview"로 표기하세요.
@@ -106,7 +106,7 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
   - 이 저장소에서 **재배포가 실제로 허용된 데이터**는 두 가지입니다. 둘 다 `rights_manifest.json`에서 `rights_gate: "pass"`이고 `permission_scope`의 모든 항목이 `true`입니다.
     - `PUB-CHNDM-HEMP-JP-009`(Cooper Hewitt 麻織物/型紙 이미지, `data/public_dataset_sources/chndm_hemp_textile_jp/*.jpg`): **CC0**. 위 "✅ 새로 추가된 실데이터 2" 섹션 참고.
     - `JXICH-XBEMB-KG-P12`(夏布绣 지식그래프 32건, `data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv`): 저자 본인 단독 원고 P12의 부속 데이터, **CC BY 4.0**. [`data/kg_sources/LICENSE.md`](./src/data/kg_sources/LICENSE.md)와 위 "✅ 새로 추가된 실데이터" 섹션 참고.
-  - `JXICH-XB-001`(江西夏布 pilot 데이터셋)을 포함한 나머지 대부분의 `data/`는 **placeholder/pilot 데이터**이며 실제 유산 표본을 대표하지 않습니다. 위 "⚠️ 데이터 진위성에 대한 알림 (Known Limitations)" 섹션, 특히 1번(placeholder checksum)과 2번(`evidence_manifest.json` 14건 중 5건이 `source_file_present: false`) 항목을 반드시 먼저 읽으세요.
+  - `JXICH-XB-001`(江西夏布 pilot 데이터셋)을 포함한 나머지 대부분의 `data/`는 **placeholder/pilot 데이터**이며 실제 유산 표본을 대표하지 않습니다. 위 "⚠️ 데이터 진위성에 대한 알림 (Known Limitations)" 섹션, 특히 1번(placeholder checksum)과 2번(`evidence_manifest.json` 16건 중 5건이 `source_file_present: false`) 항목을 반드시 먼저 읽으세요.
   - **요약**: 실제 증거 문서가 첨부되고 `source_file_present: true`로 갱신되기 전까지, `data/`의 대부분은 "공개/재배포 가능한 오픈 데이터"가 아닙니다. Zenodo 아카이빙 등 공개 배포 전 체크리스트는 [`ARCHIVING.md`](./ARCHIVING.md)를 참고하세요.
 
 ## 히스토리

@@ -59,17 +59,25 @@ one authentic evidence file (`verification_status: "verified"` **and**
 `source_file_present: true`) and the `research` scope is granted. It passes fully only
 when `publication` and `public_demo` are also granted and backed by evidence whose own
 scope covers publication; otherwise it is *conditional* (research use only).
-Three recorded conditions are also enforced: a rights record whose `expiry_date` has
-passed is blocked; a `consent_form_id` other than `not_applicable` must be backed by an
-authentic evidence file (otherwise blocked); and `sensitive_culture_status:
-"review_required"` caps the result at *conditional*. The `derivative` scope is checked by
-the Generation Lab; `commercial`, `portrait_status` and `cross_border_transfer_status` are
-recorded and displayed but not enforced. A permission toggle in the interface changes the
-scope only and never lifts a `rights_gate: "blocked"` status recorded by the curator.
-The `rights_gate` field stored in `rights_manifest.json` is the status declared from the
-permission scope alone; the gate shown in the app is computed on every render and also
-requires authentic evidence, so the two can differ (for example, `JXICH-XB-001` is
-declared `conditional` but computed `blocked`).
+Three recorded conditions are also enforced, and a value the gate does not recognise
+counts against the dataset. `expiry_date` must be a valid `YYYY-MM-DD` date that has not
+passed (it expires at the end of that day, UTC) or a value beginning `not_applicable`;
+anything else, including a missing or malformed date, blocks. A `consent_form_id` other
+than `not_applicable…` must name an authentic evidence file with that exact
+`evidence_file_id` (a missing id blocks). `sensitive_culture_status` must be
+`not_applicable…` or `reviewed_no_restriction`; `review_required` or any other value caps
+the result at *conditional* and stops generation. The Generation Lab refuses
+image-to-image modes and source-copying reuse layers when `derivative` is not granted;
+`commercial`, `portrait_status` and `cross_border_transfer_status` are recorded and
+displayed but not enforced. A permission toggle in the interface changes the scope only
+and never lifts a `rights_gate: "blocked"` status recorded by the curator, and an
+imported research package can neither lift such a block nor mark an evidence record as
+file-backed unless the same id and digest are already registered.
+The `rights_gate` field stored in `rights_manifest.json` is the curator's status, of
+which only `blocked` binds the gate; the result shown in the app is computed on every
+render. Each dataset that passes or is conditional has a *rights* evidence file (the P12
+`LICENSE.md`, the Smithsonian Open Access API records for the Cooper Hewitt objects)
+alongside its content files, and only the rights files carry a publication scope.
 
 **Evidence authenticity** (`authenticEvidenceFor` vs. `verifiedEvidenceFor`). A
 `verified` record can still be a placeholder. Only records whose file is in the
@@ -95,7 +103,7 @@ a lightweight vocabulary and constraint checker, not an OWL / SHACL reasoner.
 
 **Checksums, two layers.** In the browser, `validateChecksumRegistry` only checks that
 registry entries are well-formed `sha256:<64 hex>` values. Byte-level integrity is
-checked by `scripts/hash_files.mjs --verify`, which re-reads the 18 registered files and
+checked by `scripts/hash_files.mjs --verify`, which re-reads the 20 registered files and
 recomputes their digests.
 
 ## Data model
@@ -109,7 +117,7 @@ recomputes their digests.
 | `evidence_manifest.json` | Evidence files: hash, verification status, `source_file_present` |
 | `split_manifest.json`, `sample_manifest.json` | Split assignments and sample-level split units |
 | `kg_claims.json` | 40 knowledge-graph claims with provenance |
-| `checksum_manifest.json` | SHA-256 registry for 18 manifests, schemas and evidence sources |
+| `checksum_manifest.json` | SHA-256 registry for 20 manifests, schemas and evidence sources |
 | `public_dataset_registry.json` | Reference metadata only (not loaded by the app) |
 
 `data/manifest_bundle.js` is generated from the JSON files so the app can run from
@@ -168,7 +176,7 @@ Notes on the real data:
 
 ## Testing
 
-`npm test` runs 33 tests with Node's built-in test runner:
+`npm test` runs 38 tests with Node's built-in test runner:
 
 - `test/validation.test.js`: Rights Gate, audit hash-chain (including tamper detection),
   split leakage, schema, checksum registry and evidence authenticity, run against the
