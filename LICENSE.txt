@@ -24,8 +24,8 @@ SOFTWARE.
 
 NOTE ON SCOPE: This MIT License applies to the SOURCE CODE of this
 repository only (e.g. `index.html`, `app.js`, `styles.css`, `scripts/`,
-`test/`). It does NOT apply to the contents of the `data/` directory, which
+`test/`). It does NOT apply to the contents of the `src/data/` directory, which
 has mixed and per-record rights status (some CC0, some rights-restricted,
 much of it unpublished placeholder/pilot data). See the "License" section of
-README.md and `data/rights_manifest.json` / `data/evidence_manifest.json`
+README.md and `src/data/rights_manifest.json` / `src/data/evidence_manifest.json`
 for the governing terms of each dataset record.

@@ -225,6 +225,14 @@ function setSplit(id, split) {
     window.alert(t("alert.gateBlocked"));
     return;
   }
+  const move = splitMove(state.samples || [], id, split);
+  if (move.added.length) {
+    const detail = move.added.slice(0, 4).join(", ");
+    audit("split_change_rejected", id, `Moving the dataset to ${split} would create train/eval leakage: ${detail}`);
+    window.alert(t("alert.splitLeakage", { detail }));
+    return;
+  }
+  state.samples = move.samples;
   assignment.split = split;
   assignment.note = `Manually assigned to ${split} on ${new Date().toISOString()}.`;
   if (split !== "eval") assignment.locked = false;
@@ -399,7 +407,8 @@ function createAuditEntry(action, target, detail, previousHash, sequence) {
   return entry;
 }
 function createInitialState() {
-  const bundle = window.JXICH_MANIFESTS || {};
+  // A deep copy, so that edits made in the browser never reach the bundled objects that a reset reloads.
+  const bundle = JSON.parse(JSON.stringify(window.JXICH_MANIFESTS || {}));
   const datasetManifest = bundle.dataset_manifest || { manifest_version: "local-empty", datasets: [] };
   const rightsManifest = bundle.rights_manifest || { rights: [] };
   const splitManifest = bundle.split_manifest || { assignments: [], split_policy: {} };
@@ -507,12 +516,13 @@ function imageEvidenceFor(datasetId = state.selectedId) {
 // The default is refusal: a value the gate does not recognise counts against the dataset.
 // - expiry: a valid YYYY-MM-DD date (expires at the end of that day, UTC) or one of NO_EXPIRY_VALUES;
 //   anything else (missing, "pending", a malformed date) blocks.
-// - consent: "not_applicable" means none is needed; otherwise an authentic evidence file whose
-//   evidence_file_id equals consent_form_id must exist; a missing consent_form_id blocks.
+// - consent: "not_applicable" means none is needed; otherwise an authentic evidence file with evidence_role
+//   "consent" whose evidence_file_id equals consent_form_id must exist; a missing consent_form_id blocks.
 // - cultural sensitivity: "not_applicable" or "reviewed_no_restriction" clears it; "review_required" or any
 //   other value caps the dataset at conditional and stops generation.
-// - publication evidence: only authentic files with evidence_role "rights" can supply a publication scope,
-//   so a content file (an image, a CSV) cannot vouch for its own release.
+// - rights evidence: the gate needs an authentic file with evidence_role "rights", and every scope it relies on
+//   (research here, publication or public_demo below, derivative in the Generation Lab) must be granted in the
+//   record AND listed in such a file, so a content file (an image, a CSV) cannot vouch for its own use.
 // Exact values that mean "no expiry", "no consent needed" and "sensitivity cleared"; anything else is checked or refused.
 const NO_EXPIRY_VALUES = new Set(["not_applicable", "not_applicable_cc0_no_expiry", "not_applicable_cc_by_no_expiry"]);
 const NO_CONSENT_VALUES = new Set(["not_applicable"]);
@@ -533,7 +543,10 @@ function consentRequired(record) {
 }
 function authenticConsentFor(record, authenticEvidence) {
   const id = String(record?.consent_form_id || "");
-  return Boolean(id) && authenticEvidence.some((file) => file.evidence_file_id === id);
+  return Boolean(id) && authenticEvidence.some((file) => file.evidence_file_id === id && file.evidence_role === "consent");
+}
+function evidencedScopes(authenticEvidence) {
+  return new Set(authenticEvidence.filter((file) => file.evidence_role === "rights").flatMap((file) => (Array.isArray(file.permission_scope) ? file.permission_scope : [])));
 }
 function sensitivityCleared(record) {
   return SENSITIVITY_CLEARED_VALUES.has(String(record?.sensitive_culture_status || ""));
@@ -543,15 +556,15 @@ function rightsGate(record = rightsFor()) {
   const conditional = (key) => ({ gate: "conditional", label: t("gate.conditional"), cls: "warn", reason: t(key) });
   if (!record) return blocked("gate.reason.noRecord");
   const authenticEvidence = authenticEvidenceFor(record.dataset_id);
-  if (!authenticEvidence.length) return blocked("gate.reason.noAuthentic");
+  const rightsScopes = evidencedScopes(authenticEvidence);
+  if (!authenticEvidence.some((file) => file.evidence_role === "rights")) return blocked("gate.reason.noAuthentic");
   if (record.rights_gate === "blocked") return blocked("gate.reason.markedBlocked");
-  if (!record.permission_scope?.research) return blocked("gate.reason.noResearch");
+  if (!record.permission_scope?.research || !rightsScopes.has("research")) return blocked("gate.reason.noResearch");
   const expiry = expiryStatus(record.expiry_date);
   if (expiry === "expired") return blocked("gate.reason.expired");
   if (expiry === "unresolved") return blocked("gate.reason.expiryUnresolved");
   if (consentRequired(record) && !authenticConsentFor(record, authenticEvidence)) return blocked("gate.reason.noConsent");
-  const evidenceScopes = new Set(authenticEvidence.filter((file) => file.evidence_role === "rights").flatMap((file) => file.permission_scope || []));
-  const hasPublicationEvidence = evidenceScopes.has("publication") || evidenceScopes.has("public_demo");
+  const hasPublicationEvidence = rightsScopes.has("publication") || rightsScopes.has("public_demo");
   if (!record.permission_scope?.publication || !record.permission_scope?.public_demo || !hasPublicationEvidence) return conditional("gate.reason.conditional");
   if (record.sensitive_culture_status === "review_required") return conditional("gate.reason.sensitiveReview");
   if (!sensitivityCleared(record)) return conditional("gate.reason.sensitiveUnknown");
@@ -561,7 +574,9 @@ function rightsGate(record = rightsFor()) {
 // (BUNDLED_MANIFESTS), not the current browser state, so that a sequence of imports cannot build on itself.
 // An imported evidence record keeps a source file only if the bundled registry has a file-backed record with
 // the same id, digest and dataset; its role, scope and path are then taken from the bundled record. An imported
-// rights record cannot lift a blocked status recorded in the bundle or in the current state.
+// rights record cannot lift a blocked status recorded in the bundle or in the current state. For a dataset that
+// ships in the bundle it may narrow the permission scope but not widen it, and it cannot change the consent,
+// expiry or cultural-sensitivity conditions.
 const BUNDLED_MANIFESTS = JSON.parse(JSON.stringify((typeof window !== "undefined" && window.JXICH_MANIFESTS) || {}));
 const PROTECTED_EVIDENCE_FIELDS = ["dataset_id", "sha256", "source_file_present", "source_file_path", "evidence_role", "permission_scope", "verification_status"];
 function reconcileImportedEvidence(reference, imported) {
@@ -576,9 +591,22 @@ function reconcileImportedEvidence(reference, imported) {
       : file;
   });
 }
-function reconcileImportedRights(references, imported) {
+const PROTECTED_RIGHTS_FIELDS = ["consent_form_id", "expiry_date", "sensitive_culture_status", "sensitive_culture_review"];
+function reconcileImportedRights(references, imported, bundled = []) {
   const blockedIds = new Set((references || []).filter((record) => record.rights_gate === "blocked").map((record) => record.dataset_id));
-  return (imported || []).map((record) => (blockedIds.has(record.dataset_id) && record.rights_gate !== "blocked" ? { ...record, rights_gate: "blocked" } : record));
+  const shipped = new Map((bundled || []).map((record) => [record.dataset_id, record]));
+  return (imported || []).map((record) => {
+    let next = blockedIds.has(record.dataset_id) && record.rights_gate !== "blocked" ? { ...record, rights_gate: "blocked" } : record;
+    const base = shipped.get(record.dataset_id);
+    if (!base) return next;
+    const keys = Object.keys({ ...base.permission_scope, ...next.permission_scope });
+    next = { ...next, permission_scope: Object.fromEntries(keys.map((key) => [key, Boolean(base.permission_scope?.[key] && next.permission_scope?.[key])])) };
+    PROTECTED_RIGHTS_FIELDS.forEach((key) => {
+      if (key in base) next[key] = base[key];
+      else delete next[key];
+    });
+    return next;
+  });
 }
 function verifyAuditChain() {
   const rows = [...(state.auditLog || [])].sort((a, b) => (a.sequence || 0) - (b.sequence || 0));
@@ -606,11 +634,22 @@ function validateChecksumRegistry() {
   return { pass: files.length > 0 && bad.length === 0, count: files.length, detail: `${files.length} local manifest file hashes registered` };
 }
 function validateSampleLeakage() {
+  return sampleLeakage(state.samples || []);
+}
+// Moving a whole dataset moves all of its sample rows. The move is refused if it would put an object, collection
+// event, capture session or duplicate group on both sides of train/eval that was not already there, so leakage
+// that predates the move does not block unrelated moves (and a move that removes leakage is allowed).
+function splitMove(samples, datasetId, split) {
+  const moved = samples.map((sample) => (sample.dataset_id === datasetId ? { ...sample, split } : sample));
+  const before = new Set(sampleLeakage(samples).violations);
+  return { samples: moved, added: sampleLeakage(moved).violations.filter((key) => !before.has(key)) };
+}
+function sampleLeakage(samples) {
   const keys = ["object_id", "event_id", "capture_session_id", "duplicate_group_id", "phash"];
   const violations = [];
   keys.forEach((key) => {
     const map = new Map();
-    (state.samples || []).forEach((sample) => {
+    samples.forEach((sample) => {
       const value = sample[key];
       if (!value) return;
       if (!map.has(value)) map.set(value, new Set());
@@ -620,7 +659,7 @@ function validateSampleLeakage() {
       if (splits.has("train") && splits.has("eval")) violations.push(`${key}:${value}`);
     });
   });
-  return { pass: violations.length === 0, count: violations.length, detail: violations.length ? violations.slice(0, 4).join(", ") : `${state.samples?.length || 0} samples checked; no train/eval leakage` };
+  return { pass: violations.length === 0, count: violations.length, violations, detail: violations.length ? violations.slice(0, 4).join(", ") : `${samples.length} samples checked; no train/eval leakage` };
 }
 function renderRights() {
   const dataset = findDataset();
@@ -663,12 +702,12 @@ function validateEvidence() {
   const activeAssignments = (state.splits || []).filter((assignment) => assignment.split === "train" || assignment.split === "eval");
   const failures = [];
   activeAssignments.forEach((assignment) => {
-    const verified = verifiedEvidenceFor(assignment.dataset_id);
+    const authentic = authenticEvidenceFor(assignment.dataset_id);
     const gate = rightsGate(rightsFor(assignment.dataset_id));
-    if (!verified.length) failures.push(`${assignment.dataset_id}: no verified evidence`);
+    if (!authentic.length) failures.push(`${assignment.dataset_id}: no authentic evidence`);
     if (gate.gate === "blocked") failures.push(`${assignment.dataset_id}: rights blocked in active split`);
   });
-  const holdoutPending = (state.splits || []).filter((assignment) => assignment.split === "holdout").filter((assignment) => !verifiedEvidenceFor(assignment.dataset_id).length).length;
+  const holdoutPending = (state.splits || []).filter((assignment) => assignment.split === "holdout").filter((assignment) => !authenticEvidenceFor(assignment.dataset_id).length).length;
   const allEvidence = state.evidenceFiles || [];
   const placeholderCount = allEvidence.filter((file) => file.source_file_present === false).length;
   const authenticityNote = placeholderCount
@@ -678,7 +717,7 @@ function validateEvidence() {
     pass: failures.length === 0,
     count: activeAssignments.length,
     pending: holdoutPending,
-    detail: (failures.length ? failures.slice(0, 4).join(", ") : `${activeAssignments.length} train/eval datasets have verified evidence; ${holdoutPending} pending datasets isolated in holdout`) + authenticityNote,
+    detail: (failures.length ? failures.slice(0, 4).join(", ") : `${activeAssignments.length} train/eval datasets have authentic evidence; ${holdoutPending} pending datasets isolated in holdout`) + authenticityNote,
   };
 }
 
@@ -733,8 +772,8 @@ function activeReuseLayers(dataset = findDataset()) {
 }
 function reuseGateState(layerId, dataset = findDataset()) {
   const gate = rightsGate(rightsFor(dataset?.id));
+  if (gate.gate === "blocked") return { state: "blocked", label: "rights blocked" };
   if (layerId === "inheritor" && gate.gate !== "pass") return { state: "blocked", label: "blocked by consent" };
-  if ((layerId === "history" || layerId === "semantic") && gate.gate === "blocked") return { state: "blocked", label: "rights blocked" };
   if (gate.gate === "conditional") return { state: "conditional", label: "conditional reuse" };
   return { state: "pass", label: "linked" };
 }
@@ -840,7 +879,7 @@ function mergeById(freshArr, storedArr, key) {
 }
 // Bump whenever the bundled manifests change in a way stored browser state must not mask
 // (stored records otherwise take precedence over bundled ones in mergeById).
-const VALIDATION_REVISION = "validated-20261004-release-v1.0.4";
+const VALIDATION_REVISION = "validated-20261004-release-v1.0.5";
 function normalizeStoredState(stored) {
   const fresh = createInitialState();
   const needsValidationRefresh = stored.validationRevision !== VALIDATION_REVISION;
@@ -893,7 +932,7 @@ function generationGate(dataset = findDataset()) {
   if (gate.gate === "blocked") return { state: "blocked", label: t("gen.state.blocked"), cls: "block", reason: gate.reason };
   const derivativeMode = ["image-to-image", "inpainting", "controlnet"].includes(settings.mode);
   const needsDerivative = derivativeMode || activeReuseLayers(dataset).some((layer) => ["appearance", "history", "semantic"].includes(layer.id));
-  if (needsDerivative && !rights.permission_scope?.derivative) {
+  if (needsDerivative && !(rights.permission_scope?.derivative && evidencedScopes(authenticEvidenceFor(dataset.id)).has("derivative"))) {
     return { state: "blocked", label: t("gen.state.blocked"), cls: "block", reason: t("gen.state.noDerivativeReason") };
   }
   if (!sensitivityCleared(rights)) return { state: "blocked", label: t("gen.state.blocked"), cls: "block", reason: t("gen.state.sensitiveReason") };
@@ -1181,7 +1220,25 @@ function validateImportedPackage(payload) {
   }
   if (payload.audit_log && !Array.isArray(payload.audit_log)) failures.push("audit_log must be array");
   if (payload.generation_manifest?.runs && !Array.isArray(payload.generation_manifest.runs)) failures.push("generation_manifest.runs must be array");
+  const samples = payload.sample_manifest?.samples;
+  if (samples !== undefined && !Array.isArray(samples)) failures.push("sample_manifest.samples must be array");
+  else if (samples) {
+    const leakage = sampleLeakage(samples);
+    if (!leakage.pass) failures.push(`sample_manifest has train/eval leakage: ${leakage.detail}`);
+  }
+  const assignments = payload.split_manifest?.assignments;
+  if (assignments !== undefined && !Array.isArray(assignments)) failures.push("split_manifest.assignments must be array");
   return { pass: failures.length === 0, failures };
+}
+// After an import, a train/eval assignment whose dataset the gate blocks is moved to holdout together with its
+// sample rows, as the interface would refuse that assignment.
+function reconcileImportedSplits(assignments, samples, isBlocked) {
+  const demoted = new Set((assignments || []).filter((item) => (item.split === "train" || item.split === "eval") && isBlocked(item.dataset_id)).map((item) => item.dataset_id));
+  return {
+    demoted: [...demoted],
+    assignments: (assignments || []).map((item) => (demoted.has(item.dataset_id) ? { ...item, split: "holdout", locked: false, note: `Moved to holdout on import: rights gate blocked (was ${item.split}).` } : item)),
+    samples: (samples || []).map((sample) => (demoted.has(sample.dataset_id) && sample.split !== "holdout" ? { ...sample, split: "holdout" } : sample)),
+  };
 }
 
 function exportResearchPackage() {
@@ -1224,7 +1281,7 @@ function importResearchPackage(file) {
       if (!importCheck.pass) throw new Error(importCheck.failures.join("; "));
       if (payload.dataset_manifest?.datasets) state.datasets = payload.dataset_manifest.datasets.map((item) => ({ ...item, id: item.id || item.dataset_id }));
       else if (payload.datasets) state.datasets = payload.datasets.map((item) => ({ ...item, id: item.id || item.dataset_id }));
-      if (payload.rights_manifest?.rights) state.rights = reconcileImportedRights([...(BUNDLED_MANIFESTS.rights_manifest?.rights || []), ...state.rights], payload.rights_manifest.rights);
+      if (payload.rights_manifest?.rights) state.rights = reconcileImportedRights([...(BUNDLED_MANIFESTS.rights_manifest?.rights || []), ...state.rights], payload.rights_manifest.rights, BUNDLED_MANIFESTS.rights_manifest?.rights || []);
       if (payload.split_manifest?.assignments) { state.splits = payload.split_manifest.assignments; state.splitPolicy = payload.split_manifest.split_policy || state.splitPolicy; }
       if (payload.kg_claims?.claims) state.kgClaims = payload.kg_claims.claims;
       if (payload.evidence_manifest?.evidence_files) state.evidenceFiles = reconcileImportedEvidence(BUNDLED_MANIFESTS.evidence_manifest?.evidence_files || [], payload.evidence_manifest.evidence_files);
@@ -1234,7 +1291,11 @@ function importResearchPackage(file) {
       if (payload.board) state.board = payload.board;
       state.selectedId = payload.selected_id || state.board[0] || state.datasets[0]?.id || null;
       ensureGenerationState();
-      audit("import_research_package", file.name, "Imported schema-validated generation research package JSON.");
+      const splitCheck = reconcileImportedSplits(state.splits, state.samples, (id) => rightsGate(rightsFor(id)).gate === "blocked");
+      state.splits = splitCheck.assignments;
+      state.samples = splitCheck.samples;
+      const demotedNote = splitCheck.demoted.length ? ` Moved to holdout because the rights gate blocks them: ${splitCheck.demoted.join(", ")}.` : "";
+      audit("import_research_package", file.name, `Imported schema-validated generation research package JSON.${demotedNote}`);
       render();
     } catch (error) {
       window.alert(t("alert.importFailed", { message: error.message }));
@@ -1461,7 +1522,7 @@ if (typeof module !== "undefined" && module.exports) {
     chainHash, stableStringify, sha256Hex, createAuditEntry, verifyAuditChain,
     validateSchema, validateChecksumRegistry, validateSampleLeakage, validateEvidence,
     validatedPlatformReport, validateGenerationTrace, rightsGate, rightsFor, splitFor, applyPermissionToggle, isExpired, expiryStatus, sensitivityCleared,
-    generationGate, reconcileImportedEvidence, reconcileImportedRights,
+    generationGate, reconcileImportedEvidence, reconcileImportedRights, reconcileImportedSplits, validateImportedPackage, sampleLeakage, splitMove, setSplit, reuseGateState,
     findDataset, createRightsRecord, createInitialState, replaceState, getState,
     evidenceFor, verifiedEvidenceFor, authenticEvidenceFor, imageEvidenceFor,
     normalizeStoredState, mergeById, Storage, loadState, loadInitialState,

@@ -103,7 +103,7 @@ const CLEAR = { consent_form_id: "not_applicable", expiry_date: "not_applicable"
 
 test("rightsGate blocks when required consent has no authentic evidence file, and admits it once the consent file is present", () => {
   const rights = [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", consent_form_id: "CONSENT-1", permission_scope: FULL_SCOPE }];
-  const pendingConsent = { dataset_id: "DS-1", evidence_file_id: "CONSENT-1", evidence_type: "inheritor_consent", verification_status: "pending", sha256: "sha256:pending", source_file_present: false, permission_scope: [] };
+  const pendingConsent = { dataset_id: "DS-1", evidence_file_id: "CONSENT-1", evidence_type: "inheritor_consent", evidence_role: "consent", verification_status: "pending", sha256: "sha256:pending", source_file_present: false, permission_scope: [] };
   app.replaceState(baseState({ rights, evidenceFiles: [AUTHENTIC_PUB, pendingConsent] }));
   assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "blocked");
 
@@ -157,6 +157,11 @@ test("generation is refused without derivative permission for image-to-image, an
   assert.equal(app.generationGate(app.findDataset("DS-1")).state, "blocked");
   app.replaceState(baseState({ datasets: [dataset], selectedId: "DS-1", generation: generation("text-to-image"), rights: [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", permission_scope: FULL_SCOPE }], evidenceFiles: [AUTHENTIC_PUB] }));
   assert.equal(app.generationGate(app.findDataset("DS-1")).state, "pass");
+  const derivativeRecord = [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", permission_scope: { ...FULL_SCOPE, derivative: true } }];
+  app.replaceState(baseState({ datasets: [dataset], selectedId: "DS-1", generation: generation("image-to-image"), rights: derivativeRecord, evidenceFiles: [AUTHENTIC_PUB] }));
+  assert.equal(app.generationGate(app.findDataset("DS-1")).state, "blocked", "derivative granted in the record but not in the rights file");
+  app.replaceState(baseState({ datasets: [dataset], selectedId: "DS-1", generation: generation("image-to-image"), rights: derivativeRecord, evidenceFiles: [{ ...AUTHENTIC_PUB, permission_scope: ["research", "publication", "derivative"] }] }));
+  assert.notEqual(app.generationGate(app.findDataset("DS-1")).state, "blocked");
 });
 
 test("an imported package cannot assert unregistered source files or lift a curator's block", () => {
@@ -191,10 +196,36 @@ test("import cannot turn on a placeholder's file flag, move a known file to anot
   assert.equal(afterSecond[0].rights_gate, "blocked");
 });
 
+test("import may narrow a bundled dataset's scope but not widen it, and cannot change its consent, expiry or sensitivity", () => {
+  const bundled = [{ dataset_id: "DS-1", rights_gate: "pending_review", consent_form_id: "CONSENT-1", expiry_date: "2027-07-01", sensitive_culture_status: "review_required", permission_scope: { research: true, publication: false, derivative: false } }];
+  const [record] = app.reconcileImportedRights(bundled, [{ dataset_id: "DS-1", rights_gate: "pending_review", consent_form_id: "not_applicable", expiry_date: "not_applicable", sensitive_culture_status: "reviewed_no_restriction", permission_scope: { research: false, publication: true, derivative: true } }], bundled);
+  assert.deepEqual(record.permission_scope, { research: false, publication: false, derivative: false });
+  assert.equal(record.consent_form_id, "CONSENT-1");
+  assert.equal(record.expiry_date, "2027-07-01");
+  assert.equal(record.sensitive_culture_status, "review_required");
+  const [other] = app.reconcileImportedRights(bundled, [{ dataset_id: "DS-NEW", consent_form_id: "not_applicable", permission_scope: { research: true } }], bundled);
+  assert.equal(other.consent_form_id, "not_applicable", "a dataset that is not in the bundle is taken as imported");
+});
+
 test("a content file cannot supply the publication scope: only evidence with the rights role counts at step 7", () => {
-  const contentOnly = { ...AUTHENTIC_PUB, evidence_role: "content" };
-  app.replaceState(baseState({ rights: [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", permission_scope: FULL_SCOPE }], evidenceFiles: [contentOnly] }));
+  const researchOnly = { ...AUTHENTIC_PUB, permission_scope: ["research"] };
+  const content = { ...AUTHENTIC_PUB, evidence_file_id: "IMG-1", evidence_role: "content" };
+  app.replaceState(baseState({ rights: [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", permission_scope: FULL_SCOPE }], evidenceFiles: [researchOnly, content] }));
   assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "conditional");
+});
+
+test("step 2 needs an authentic rights file, and research must be listed in it as well as granted in the record", () => {
+  const rights = [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", permission_scope: FULL_SCOPE }];
+  app.replaceState(baseState({ rights, evidenceFiles: [{ ...AUTHENTIC_PUB, evidence_role: "content" }] }));
+  assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "blocked", "a content file alone does not open the gate");
+  app.replaceState(baseState({ rights, evidenceFiles: [{ ...AUTHENTIC_PUB, permission_scope: ["publication"] }] }));
+  assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "blocked", "research granted in the record but not in the rights file");
+});
+
+test("consent is satisfied only by a file with the consent role, not by a rights file that happens to carry the id", () => {
+  const rights = [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", consent_form_id: "DOC-1", permission_scope: FULL_SCOPE }];
+  app.replaceState(baseState({ rights, evidenceFiles: [AUTHENTIC_PUB] }));
+  assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "blocked");
 });
 
 test("only the listed no-expiry, no-consent and cleared-sensitivity values are exempt", () => {
@@ -243,6 +274,68 @@ test("validateSampleLeakage passes when train/eval/holdout share no split-unit k
     ],
   }));
   assert.equal(app.validateSampleLeakage().pass, true);
+});
+
+test("moving a dataset to another split is refused, audited and left unchanged when it would create leakage", () => {
+  global.window.alert = () => {};
+  const samples = [
+    { dataset_id: "DS-1", object_id: "OBJ-1", event_id: "E1", capture_session_id: "C1", split: "train" },
+    { dataset_id: "DS-2", object_id: "OBJ-1", event_id: "E2", capture_session_id: "C2", split: "eval" },
+  ];
+  app.replaceState(baseState({
+    rights: [{ ...CLEAR, dataset_id: "DS-2", rights_gate: "conditional", permission_scope: FULL_SCOPE }],
+    evidenceFiles: [{ ...AUTHENTIC_PUB, dataset_id: "DS-2" }],
+    splits: [{ dataset_id: "DS-2", split: "eval", locked: false }],
+    samples,
+  }));
+  assert.equal(app.validateSampleLeakage().pass, false, "fixture starts with one shared object");
+  app.replaceState({ ...app.getState(), samples: [samples[0], { ...samples[1], split: "holdout" }], splits: [{ dataset_id: "DS-2", split: "holdout", locked: false }] });
+  app.setSplit("DS-2", "eval");
+  const state = app.getState();
+  assert.equal(app.splitFor("DS-2").split, "holdout");
+  assert.equal(state.samples[1].split, "holdout");
+  assert.equal(state.auditLog[0].action, "split_change_rejected");
+  assert.equal(app.sampleLeakage(state.samples.map((sample) => (sample.dataset_id === "DS-2" ? { ...sample, split: "train" } : sample))).pass, true);
+});
+
+test("only leakage that a move adds blocks it: earlier leakage neither blocks unrelated moves nor a move that removes it", () => {
+  const samples = [
+    { dataset_id: "A", object_id: "OBJ-1", split: "train" },
+    { dataset_id: "B", object_id: "OBJ-1", split: "eval" },
+    { dataset_id: "C", object_id: "OBJ-9", split: "holdout" },
+  ];
+  assert.deepEqual(app.splitMove(samples, "C", "train").added, []);
+  assert.deepEqual(app.splitMove(samples, "B", "holdout").added, []);
+  assert.equal(app.sampleLeakage(app.splitMove(samples, "B", "holdout").samples).pass, true);
+  assert.deepEqual(app.splitMove([...samples, { dataset_id: "D", object_id: "OBJ-9", split: "eval" }], "C", "train").added, ["object_id:OBJ-9"]);
+});
+
+test("an imported package with leaking samples is rejected, and blocked train/eval datasets are moved to holdout with their samples", () => {
+  const leaking = { dataset_manifest: { datasets: [] }, sample_manifest: { samples: [{ dataset_id: "A", object_id: "OBJ-1", split: "train" }, { dataset_id: "B", object_id: "OBJ-1", split: "eval" }] } };
+  const check = app.validateImportedPackage(leaking);
+  assert.equal(check.pass, false);
+  assert.match(check.failures.join(" "), /object_id:OBJ-1/);
+  const result = app.reconcileImportedSplits(
+    [{ dataset_id: "A", split: "eval", locked: true }, { dataset_id: "B", split: "train" }],
+    [{ dataset_id: "A", object_id: "OBJ-2", split: "eval" }, { dataset_id: "B", object_id: "OBJ-3", split: "train" }],
+    (id) => id === "A",
+  );
+  assert.deepEqual(result.demoted, ["A"]);
+  assert.deepEqual(result.assignments.map((item) => [item.split, Boolean(item.locked)]), [["holdout", false], ["train", false]]);
+  assert.deepEqual(result.samples.map((sample) => sample.split), ["holdout", "train"]);
+});
+
+test("a blocked dataset is blocked on every reuse layer, and validateEvidence counts only authentic evidence", () => {
+  app.replaceState(baseState({
+    datasets: [{ id: "DS-1", reuse_layers: ["appearance", "rights"] }],
+    rights: [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", permission_scope: FULL_SCOPE }],
+    evidenceFiles: [{ ...AUTHENTIC_PUB, source_file_present: false }],
+    splits: [{ dataset_id: "DS-1", split: "train", locked: false }],
+  }));
+  for (const layer of ["appearance", "rights", "history", "semantic", "inheritor"]) {
+    assert.equal(app.reuseGateState(layer, app.findDataset("DS-1")).state, "blocked", layer);
+  }
+  assert.match(app.validateEvidence().detail, /DS-1: no authentic evidence/);
 });
 
 test("validateSchema reports every dataset missing a required manifest field", () => {

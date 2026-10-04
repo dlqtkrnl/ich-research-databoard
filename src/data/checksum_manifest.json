@@ -1,12 +1,12 @@
 {
   "manifest_version": "2026.10-v1.0",
-  "generated_at": "2026-10-04T06:39:16.082Z",
+  "generated_at": "2026-10-04T07:36:29.400Z",
   "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
   "files": [
     {
       "path": "data/dataset_manifest.json",
-      "sha256": "sha256:86bfabe5b7c3e7c24b650fcd6bb5a2fda65ae970b7f87cdce2e5aae50ac3eec7",
-      "bytes": 8464,
+      "sha256": "sha256:83e02da1e5ac1839dab01787858e285021d67c89cb026a56436062182c484fdc",
+      "bytes": 8459,
       "role": "core_manifest"
     },
     {
@@ -23,8 +23,8 @@
     },
     {
       "path": "data/evidence_manifest.json",
-      "sha256": "sha256:459cda638eca7b5fffdde53ebdfaf7fd1cec3fe80c02eb23a40db1d91b0db268",
-      "bytes": 14677,
+      "sha256": "sha256:a5b99abb502ff5184083d442dd472d79dcc822ca7e1d202cd8ddfa848057692b",
+      "bytes": 14592,
       "role": "core_manifest"
     },
     {
@@ -41,8 +41,8 @@
     },
     {
       "path": "data/kg_claims.json",
-      "sha256": "sha256:ac461013403dc5696ccc73f9114b93a86f624ed3e65581067e9432c5fc9e0593",
-      "bytes": 16407,
+      "sha256": "sha256:99dba077053005a3f2bd50495c225ded93594679d538818f9905a7c97f169f6a",
+      "bytes": 16428,
       "role": "core_manifest"
     },
     {

@@ -94,7 +94,7 @@
     "board.removeTitle": { en: "Removes it from the board only; the manifest record is unaffected", zh: "仅从研究板移除，不影响 manifest 记录" },
     "split.empty": { en: "No datasets in {title}", zh: "暂无 {title}" },
     "split.title": { en: "Train / eval / holdout governance", zh: "训练集 / 评测集 / Holdout 治理" },
-    "split.desc": { en: "Leakage is checked by object_id, event_id and capture_session_id; the eval set can be locked.", zh: "按 object_id、event_id、capture_session_id 防止泄漏；评测集可锁定。" },
+    "split.desc": { en: "A move that would share an object_id, event_id, capture_session_id or duplicate group between train and eval is refused; the eval set can be locked.", zh: "若移动会使训练集与评测集共享 object_id、event_id、capture_session_id 或重复组，则拒绝移动；评测集可锁定。" },
     "split.lock": { en: "Lock eval set", zh: "锁定评测集" },
     "split.train": { en: "Train", zh: "训练集" },
     "split.trainHint": { en: "Used for model training", zh: "用于模型学习" },
@@ -131,6 +131,7 @@
 
     // Alerts and confirmations
     "alert.evalLocked": { en: "The eval set is locked. To change it, first create a new split version in the research record.", zh: "评测集已锁定。若要修改，请先在研究记录中创建新的 split 版本。" },
+    "alert.splitLeakage": { en: "This move would put the same object, collection event, capture session or duplicate group in both train and eval ({detail}). The split was not changed.", zh: "此操作会使同一对象、采集事件、拍摄场次或重复组同时出现在训练集和评测集中（{detail}）。分割未更改。" },
     "alert.gateBlocked": { en: "The Rights Gate has not passed, so this dataset cannot enter train or eval. Add research authorization first.", zh: "Rights Gate 未通过，不能进入训练集或评测集。请先补齐研究授权。" },
     "alert.inheritor": { en: "Inheritor-related reuse requires full consent, portrait / personal-data review and public-display permission.", zh: "传承人相关复用需要完整授权、肖像/个人信息复核与公开展示许可。" },
     "alert.genBlocked": { en: "Generation blocked: {reason}", zh: "生成被阻止：{reason}" },
@@ -142,9 +143,9 @@
     "gate.conditional": { en: "Conditional", zh: "证据条件通过" },
     "gate.pass": { en: "Evidence passed", zh: "证据通过" },
     "gate.reason.noRecord": { en: "No rights record", zh: "缺少权利记录" },
-    "gate.reason.noAuthentic": { en: "No authentic evidence file (verified, with the real file present — not a placeholder)", zh: "没有 authentic evidence file（已验证且真实文件存在，非 placeholder）" },
+    "gate.reason.noAuthentic": { en: "No authentic rights evidence file (verified, with the real file present — not a placeholder)", zh: "没有 authentic 权利证据文件（已验证且真实文件存在，非 placeholder）" },
     "gate.reason.markedBlocked": { en: "Rights Gate is marked blocked", zh: "Rights Gate 标记为 blocked" },
-    "gate.reason.noResearch": { en: "Research use scope not granted", zh: "未获得 research 使用范围" },
+    "gate.reason.noResearch": { en: "Research use is not granted in both the record and an authentic rights file", zh: "权利记录与 authentic 权利文件未同时授予 research 使用范围" },
     "gate.reason.expired": { en: "The rights record has expired", zh: "权利记录已过期" },
     "gate.reason.noConsent": { en: "Required consent is not backed by an authentic evidence file", zh: "所需同意书没有 authentic evidence file 支撑" },
     "gate.reason.sensitiveReview": { en: "Cultural-sensitivity review is still required", zh: "仍需文化敏感性审查" },

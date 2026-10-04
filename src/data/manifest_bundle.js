@@ -1,7 +1,7 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 // Source of truth: data/*.json (see MANIFEST_KEYS in scripts/build_manifest_bundle.mjs)
 // Regenerate with: node scripts/hash_files.mjs && node scripts/build_manifest_bundle.mjs
-// Generated at: 2026-10-04T06:39:16.132Z
+// Generated at: 2026-10-04T07:36:29.519Z
 window.JXICH_MANIFESTS = {
   "dataset_manifest": {
     "manifest_version": "2026.10-v1.0",
@@ -200,7 +200,7 @@ window.JXICH_MANIFESTS = {
           "history",
           "rights"
         ],
-        "analysis": "来自 Smithsonian Cooper Hewitt National Design Museum 的3件18-19世纪日本麻(hemp/bast fiber)相关藏品，共8张官方CC0高分辨率图像，本会话中实际下载并重新计算SHA-256（非占位符，非pilot）。包含2件型纸(katagami，防染用镂空纸模：楮纸+柿涩染+丝线)与1件马被麻织物(umakake，478.8×64.8cm)实物共6张照片。重要限制：均为日本藏品，与江西夏布(中国苎麻)、韩国모시同属bast fiber材料系但地域工艺传统不同——应作为\"工艺相邻的独立真实对照数据集\"使用，不可替代或等同于JXICH-XB-001 江西夏布 pilot数据集。"
+        "analysis": "来自 Smithsonian Cooper Hewitt National Design Museum 的3件18-19世纪日本麻(hemp/bast fiber)相关藏品，共8张官方CC0高分辨率图像，于2026-10-04下载并重新计算SHA-256（非占位符，非pilot）。包含2件型纸(katagami，防染用镂空纸模：楮纸+柿涩染+丝线)与1件马被麻织物(umakake，478.8×64.8cm)实物共6张照片。重要限制：均为日本藏品，与江西夏布(中国苎麻)、韩国모시同属bast fiber材料系但地域工艺传统不同——应作为\"工艺相邻的独立真实对照数据集\"使用，不可替代或等同于JXICH-XB-001 江西夏布 pilot数据集。"
       }
     ]
   },
@@ -800,7 +800,7 @@ window.JXICH_MANIFESTS = {
         "subject": "CHNDMKatagamiStencil",
         "predicate": "usesSubstrate",
         "object": "KozoWashiPaperWithKakishibuTannin",
-        "evidence_id": "SRC-CHNDM-1959-150-2-KATAGAMI",
+        "evidence_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
         "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
         "confidence": 0.93,
         "review_status": "source_verified"
@@ -811,8 +811,8 @@ window.JXICH_MANIFESTS = {
         "subject": "CHNDMHempTextileJP",
         "predicate": "locatedIn",
         "object": "Japan",
-        "evidence_id": "SRC-CHNDM-2001-2-1-UMAKAKE-01",
-        "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
+        "evidence_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
+        "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/221591",
         "confidence": 0.97,
         "review_status": "source_verified"
       },
@@ -822,7 +822,7 @@ window.JXICH_MANIFESTS = {
         "subject": "CHNDMHempTextileJP",
         "predicate": "isNotIdenticalTo",
         "object": "XiabuWeaving",
-        "evidence_id": "SRC-CHNDM-2001-2-1-UMAKAKE-01",
+        "evidence_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
         "source_url": "README.md#known-limitations",
         "confidence": 0.95,
         "review_status": "source_verified"
@@ -838,16 +838,16 @@ window.JXICH_MANIFESTS = {
         "evidence_type": "institutional_permission",
         "evidence_role": "rights",
         "file_name": "江西夏布采集机构授权书_20260701.pdf",
-        "sha256": "sha256:7af3d4a66e5f0d9b7a1d8a7c8d20e21c1fb5a31c2eb1d5b395b2117f2c6a7701",
+        "sha256": "sha256:illustrative-not-computed",
         "verification_status": "verified",
-        "verified_by": "project_legal_reviewer",
+        "verified_by": "illustrative_placeholder_no_reviewer",
         "verified_at": "2026-07-03T00:00:00+08:00",
         "permission_scope": [
           "research"
         ],
         "expiry_date": "2027-07-01",
         "source_file_present": false,
-        "source_file_note": "placeholder_demo_record — no PDF stored in this repo; sha256 is illustrative, not computed from a real file"
+        "source_file_note": "placeholder_demo_record — no PDF stored in this repo and no digest computed; the verified status is kept so that the gate's handling of verified-but-placeholder evidence can be demonstrated"
       },
       {
         "evidence_file_id": "CONSENT-XB-INHERITOR-PENDING",
@@ -870,7 +870,7 @@ window.JXICH_MANIFESTS = {
         "evidence_type": "official_dataset_terms_page",
         "evidence_role": "rights",
         "file_name": "dtd_official_page_snapshot_20260703.html",
-        "sha256": "sha256:2f65d00d7e60e4b7d3b1d471a6e9203a9b1d91fb468768fd92e857d5a86c11db",
+        "sha256": "sha256:illustrative-not-computed",
         "verification_status": "verified",
         "verified_by": "source_audit",
         "verified_at": "2026-07-03T00:00:00+08:00",
@@ -879,7 +879,7 @@ window.JXICH_MANIFESTS = {
         ],
         "expiry_date": "source_terms_dependent",
         "source_file_present": false,
-        "source_file_note": "placeholder_demo_record — no HTML snapshot stored in this repo; sha256 is illustrative, not computed from a real file"
+        "source_file_note": "placeholder_demo_record — no HTML snapshot stored in this repo and no digest computed"
       },
       {
         "evidence_file_id": "OFFICIAL-FASHIONPEDIA-TERMS-20260703",
@@ -887,7 +887,7 @@ window.JXICH_MANIFESTS = {
         "evidence_type": "official_license_terms_page",
         "evidence_role": "rights",
         "file_name": "fashionpedia_terms_snapshot_20260703.html",
-        "sha256": "sha256:b77d7a9eb60467e5e7a5b1e03fd0fc5dd8488bc8ce391b11f94e721a0bcedb52",
+        "sha256": "sha256:illustrative-not-computed",
         "verification_status": "verified",
         "verified_by": "source_audit",
         "verified_at": "2026-07-03T00:00:00+08:00",
@@ -897,7 +897,7 @@ window.JXICH_MANIFESTS = {
         ],
         "expiry_date": "source_terms_dependent",
         "source_file_present": false,
-        "source_file_note": "placeholder_demo_record — no HTML snapshot stored in this repo; sha256 is illustrative, not computed from a real file"
+        "source_file_note": "placeholder_demo_record — no HTML snapshot stored in this repo and no digest computed"
       },
       {
         "evidence_file_id": "DEEPFASHION2-APPLICATION-PENDING",
@@ -1299,13 +1299,13 @@ window.JXICH_MANIFESTS = {
   },
   "checksum_manifest": {
     "manifest_version": "2026.10-v1.0",
-    "generated_at": "2026-10-04T06:39:16.082Z",
+    "generated_at": "2026-10-04T07:36:29.400Z",
     "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
     "files": [
       {
         "path": "data/dataset_manifest.json",
-        "sha256": "sha256:86bfabe5b7c3e7c24b650fcd6bb5a2fda65ae970b7f87cdce2e5aae50ac3eec7",
-        "bytes": 8464,
+        "sha256": "sha256:83e02da1e5ac1839dab01787858e285021d67c89cb026a56436062182c484fdc",
+        "bytes": 8459,
         "role": "core_manifest"
       },
       {
@@ -1322,8 +1322,8 @@ window.JXICH_MANIFESTS = {
       },
       {
         "path": "data/evidence_manifest.json",
-        "sha256": "sha256:459cda638eca7b5fffdde53ebdfaf7fd1cec3fe80c02eb23a40db1d91b0db268",
-        "bytes": 14677,
+        "sha256": "sha256:a5b99abb502ff5184083d442dd472d79dcc822ca7e1d202cd8ddfa848057692b",
+        "bytes": 14592,
         "role": "core_manifest"
       },
       {
@@ -1340,8 +1340,8 @@ window.JXICH_MANIFESTS = {
       },
       {
         "path": "data/kg_claims.json",
-        "sha256": "sha256:ac461013403dc5696ccc73f9114b93a86f624ed3e65581067e9432c5fc9e0593",
-        "bytes": 16407,
+        "sha256": "sha256:99dba077053005a3f2bd50495c225ded93594679d538818f9905a7c97f169f6a",
+        "bytes": 16428,
         "role": "core_manifest"
       },
       {

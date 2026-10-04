@@ -15,8 +15,9 @@ afterwards:
 2. **Evidence-authenticity registry**: keeps "the record is schema-complete and
    reviewed" (`verified`) separate from "the source file is present and its SHA-256 was
    recomputed from the actual bytes" (`authentic`).
-3. **Split-leakage validator**: blocks train / eval / holdout splits that share an
-   `object_id`, `event_id` or `capture_session_id`.
+3. **Split-leakage validator**: reports train / eval splits that share an `object_id`,
+   `event_id`, `capture_session_id` or duplicate group, and refuses a split change in the
+   interface that would create such an overlap.
 4. **Client-side audit hash-chain**: every state change is appended to a SHA-256
    hash-chained log that detects later tampering with recorded entries.
 
@@ -55,27 +56,30 @@ research state, the audit log or exported packages.
 ## Governance mechanisms
 
 **Rights Gate** (`rightsGate` in `app.js`). A dataset is blocked unless it has at least
-one authentic evidence file (`verification_status: "verified"` **and**
-`source_file_present: true`) and the `research` scope is granted. It passes fully only
-when `publication` and `public_demo` are also granted and backed by a *rights* evidence file
-(`evidence_role: "rights"`) whose scope covers publication; otherwise it is *conditional* (research use only).
+one authentic *rights* evidence file (`evidence_role: "rights"`, `verification_status: "verified"`
+**and** `source_file_present: true`) and the `research` scope is granted both in the rights
+record and in such a file. It passes fully only when `publication` and `public_demo` are also
+granted and a rights file covers at least one of them; otherwise it is *conditional* (research use only).
 Three recorded conditions are also enforced, and a value the gate does not recognise
 counts against the dataset. `expiry_date` must be a valid `YYYY-MM-DD` date that has not
 passed (it expires at the end of that day, UTC) or one of the listed no-expiry values (`not_applicable`, `not_applicable_cc0_no_expiry`,
 `not_applicable_cc_by_no_expiry`);
 anything else, including a missing or malformed date, blocks. A `consent_form_id` other
 than `not_applicable` must name an authentic evidence file with that exact
-`evidence_file_id` (a missing id blocks). `sensitive_culture_status` must be
+`evidence_file_id` and `evidence_role: "consent"` (a missing id blocks). `sensitive_culture_status` must be
 exactly `not_applicable` or `reviewed_no_restriction`; `review_required` or any other value caps
 the result at *conditional* and stops generation. The Generation Lab refuses
-image-to-image modes and source-copying reuse layers when `derivative` is not granted;
+image-conditioned modes and source-copying reuse layers unless `derivative` is granted in
+the record and listed in an authentic rights file;
 `commercial`, `portrait_status` and `cross_border_transfer_status` are recorded and
 displayed but not enforced. A permission toggle in the interface changes the scope only
 and never lifts a `rights_gate: "blocked"` status recorded by the curator, and an
 imported research package can neither lift a block recorded in the bundled manifests or the
 current state, nor mark an evidence record as file-backed unless the bundled registry has a
 file-backed record with the same id, digest and dataset (whose role and scope are then kept).
-Other rights fields in an imported package replace the current ones, and a change of the
+For a dataset that ships in the bundle, an import may narrow the permission scope but not
+widen it, and it keeps the bundled `consent_form_id`, `expiry_date` and cultural-sensitivity
+status; for other datasets the imported rights fields replace the current ones. A change of the
 bundled-data revision discards browser edits and restarts the audit log. A dataset
 registered in the interface starts with a pending expiry and consent and stays blocked until
 its rights record is completed in `rights_manifest.json`.
@@ -90,9 +94,12 @@ alongside its content files, and only the rights files carry a publication scope
 repository and whose SHA-256 matches the recomputed digest count as authentic, and the
 UI reports the number of placeholder records explicitly.
 
-**Split leakage** (`validateSampleLeakage`). Reports the exact shared key, for example
-`object_id:XB-OBJ-07`, when one physical object, collection event or capture session
-appears in more than one split.
+**Split leakage** (`validateSampleLeakage`, `sampleLeakage`). Reports the exact shared key,
+for example `object_id:XB-OBJ-07`, when one physical object, collection event, capture
+session or duplicate group appears in both train and eval. Moving a dataset to another split
+moves all of its sample rows, and the move is refused and logged if it would add such an
+overlap. An imported package whose sample rows overlap in this way is rejected, and an imported
+train or eval assignment for a dataset the gate blocks is moved to holdout with its samples.
 
 **Audit hash-chain** (`createAuditEntry`, `verifyAuditChain`). Entries carry `sequence`,
 `previous_hash` and `entry_hash`. Hashes are standard SHA-256 (a pure-JS
@@ -154,7 +161,9 @@ Notes on the real data:
 
 - **KG triples.** 26 of the 32 triples are `release_ready` in the source package and
   appear as `source_verified`. The other 6 are `review_flagged` and appear as
-  `expert_review_required`; they are released as-is and remain flagged.
+  `expert_review_required`; they are released as-is and remain flagged. In the app each
+  triple points to the CSV as a whole; the per-triple source is in the CSV's
+  `official_source_id` column.
 - **Cooper Hewitt images.** All three objects are Japanese. They share the bast-fibre
   material family with Jiangxi ramie cloth but come from a different craft tradition, so
   they serve as a process-adjacent comparison set, not a substitute for Jiangxi data
@@ -165,8 +174,10 @@ Notes on the real data:
 - `JXICH-XB-001` is pilot data. Its dataset checksum is the placeholder
   `sha256:pilot-placeholder-...`, and `sample_manifest.json` holds 4 example rows for it against
   the manifest's target of 320 images and 42 records.
-- 5 of the 16 evidence records have `source_file_present: false`; their hashes are
-  illustrative. Do not describe them as verified evidence.
+- 5 of the 16 evidence records have `source_file_present: false`. Three of them keep the
+  status `verified` to demonstrate how the gate treats a reviewed record without a file; their
+  digest is the marker `sha256:illustrative-not-computed`. Do not describe them as verified
+  evidence.
 - Inheritor (传承人) consent is pending, so no inheritor images or personal data are
   included.
 - The 2D / 2.5D / 3D view is a schematic CSS preview, not a photogrammetry, NeRF or mesh
@@ -182,11 +193,13 @@ Notes on the real data:
 
 ## Testing
 
-`npm test` runs 41 tests with Node's built-in test runner:
+`npm test` runs 50 tests with Node's built-in test runner:
 
 - `test/validation.test.js`: Rights Gate, audit hash-chain (including tamper detection),
   split leakage, schema, checksum registry and evidence authenticity, run against the
   real `app.js` code.
+- `test/golden.test.js`: loads `manifest_bundle.js` as the browser does and checks the
+  gate result of every bundled dataset (the values in the table above).
 - `test/integrity.test.js`: fails if any registered file's bytes change, if any file-backed evidence record does not match its file, if
   `manifest_bundle.js` is stale, or if a KG claim breaks the vocabulary.
 - `test/storage-adapter.test.js`: the optional persistence adapter and its
@@ -232,7 +245,8 @@ See [`ARCHIVING.md`](./ARCHIVING.md) for the release and Zenodo archiving checkl
 
 If you use this software, please cite it using [`CITATION.cff`](./CITATION.cff).
 Archived on Zenodo: concept DOI (all versions)
-[10.5281/zenodo.23121468](https://doi.org/10.5281/zenodo.23121468); v1.0.4
+[10.5281/zenodo.23121468](https://doi.org/10.5281/zenodo.23121468); v1.0.5 DOI is listed on
+the Zenodo record after release; v1.0.4
 [10.5281/zenodo.23132657](https://doi.org/10.5281/zenodo.23132657); v1.0.3
 [10.5281/zenodo.23132324](https://doi.org/10.5281/zenodo.23132324); v1.0.2
 [10.5281/zenodo.23131690](https://doi.org/10.5281/zenodo.23131690); v1.0.1

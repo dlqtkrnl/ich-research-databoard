@@ -414,7 +414,7 @@
       "subject": "CHNDMKatagamiStencil",
       "predicate": "usesSubstrate",
       "object": "KozoWashiPaperWithKakishibuTannin",
-      "evidence_id": "SRC-CHNDM-1959-150-2-KATAGAMI",
+      "evidence_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
       "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
       "confidence": 0.93,
       "review_status": "source_verified"
@@ -425,8 +425,8 @@
       "subject": "CHNDMHempTextileJP",
       "predicate": "locatedIn",
       "object": "Japan",
-      "evidence_id": "SRC-CHNDM-2001-2-1-UMAKAKE-01",
-      "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
+      "evidence_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
+      "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/221591",
       "confidence": 0.97,
       "review_status": "source_verified"
     },
@@ -436,7 +436,7 @@
       "subject": "CHNDMHempTextileJP",
       "predicate": "isNotIdenticalTo",
       "object": "XiabuWeaving",
-      "evidence_id": "SRC-CHNDM-2001-2-1-UMAKAKE-01",
+      "evidence_id": "SI-OPENACCESS-CHNDM-RECORDS-20261004",
       "source_url": "README.md#known-limitations",
       "confidence": 0.95,
       "review_status": "source_verified"

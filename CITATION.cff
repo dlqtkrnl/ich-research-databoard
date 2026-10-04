@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: >-
-  If you use this software (the platform code, not the /data directory
+  If you use this software (the platform code, not the src/data/ directory
   contents — see the "License" section of README.md for why those are
   governed separately), please cite it using the metadata below.
 title: >-
@@ -8,11 +8,13 @@ title: >-
   intangible cultural heritage AI datasets
 type: software
 abstract: >-
-  A browser-only MVP research prototype for Jiangxi Intangible Cultural
-  Heritage (ICH) visual data governance: a Rights Gate for permission-scope
-  enforcement, train/eval/holdout split governance with leakage checks, a
-  knowledge-graph / ontology layer, an AI Generation Lab, and an append-only
-  SHA-256 audit hash-chain. No build tools or server required — open
+  A browser-only governance toolkit for intangible cultural heritage (ICH)
+  AI datasets: a rights gate that admits a dataset to training, evaluation
+  or generation only when authentic rights files and the recorded
+  permissions allow it, an evidence registry that separates reviewed
+  records from re-hashable files, a split-leakage validator, and a
+  client-side SHA-256 audit hash-chain. The case data comes from Jiangxi
+  ramie-cloth (xiabu) heritage. No build tools or server required — open
   src/index.html directly.
 authors:
   - family-names: "Lee"
@@ -45,7 +47,7 @@ repository-code: "https://github.com/dlqtkrnl/ich-research-databoard"
 # date-released and version should be set to match the tag/Release that
 # Zenodo archives (see ARCHIVING.md). Update at release time.
 date-released: "2026-10-04"
-version: "1.0.4"
+version: "1.0.5"
 keywords:
   - intangible-cultural-heritage
   - data-governance
@@ -58,5 +60,5 @@ keywords:
 # src/*.js, src/*.css, scripts/, test/). The contents of src/data/ are NOT
 # covered by this license — they have mixed, per-record rights status
 # (CC0 / rights-restricted / unpublished placeholder). See README.md
-# "License" section and data/rights_manifest.json before reusing or
-# redistributing anything under data/.
+# "License" section and src/data/rights_manifest.json before reusing or
+# redistributing anything under src/data/.

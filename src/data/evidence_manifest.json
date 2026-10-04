@@ -7,16 +7,16 @@
       "evidence_type": "institutional_permission",
       "evidence_role": "rights",
       "file_name": "江西夏布采集机构授权书_20260701.pdf",
-      "sha256": "sha256:7af3d4a66e5f0d9b7a1d8a7c8d20e21c1fb5a31c2eb1d5b395b2117f2c6a7701",
+      "sha256": "sha256:illustrative-not-computed",
       "verification_status": "verified",
-      "verified_by": "project_legal_reviewer",
+      "verified_by": "illustrative_placeholder_no_reviewer",
       "verified_at": "2026-07-03T00:00:00+08:00",
       "permission_scope": [
         "research"
       ],
       "expiry_date": "2027-07-01",
       "source_file_present": false,
-      "source_file_note": "placeholder_demo_record — no PDF stored in this repo; sha256 is illustrative, not computed from a real file"
+      "source_file_note": "placeholder_demo_record — no PDF stored in this repo and no digest computed; the verified status is kept so that the gate's handling of verified-but-placeholder evidence can be demonstrated"
     },
     {
       "evidence_file_id": "CONSENT-XB-INHERITOR-PENDING",
@@ -39,7 +39,7 @@
       "evidence_type": "official_dataset_terms_page",
       "evidence_role": "rights",
       "file_name": "dtd_official_page_snapshot_20260703.html",
-      "sha256": "sha256:2f65d00d7e60e4b7d3b1d471a6e9203a9b1d91fb468768fd92e857d5a86c11db",
+      "sha256": "sha256:illustrative-not-computed",
       "verification_status": "verified",
       "verified_by": "source_audit",
       "verified_at": "2026-07-03T00:00:00+08:00",
@@ -48,7 +48,7 @@
       ],
       "expiry_date": "source_terms_dependent",
       "source_file_present": false,
-      "source_file_note": "placeholder_demo_record — no HTML snapshot stored in this repo; sha256 is illustrative, not computed from a real file"
+      "source_file_note": "placeholder_demo_record — no HTML snapshot stored in this repo and no digest computed"
     },
     {
       "evidence_file_id": "OFFICIAL-FASHIONPEDIA-TERMS-20260703",
@@ -56,7 +56,7 @@
       "evidence_type": "official_license_terms_page",
       "evidence_role": "rights",
       "file_name": "fashionpedia_terms_snapshot_20260703.html",
-      "sha256": "sha256:b77d7a9eb60467e5e7a5b1e03fd0fc5dd8488bc8ce391b11f94e721a0bcedb52",
+      "sha256": "sha256:illustrative-not-computed",
       "verification_status": "verified",
       "verified_by": "source_audit",
       "verified_at": "2026-07-03T00:00:00+08:00",
@@ -66,7 +66,7 @@
       ],
       "expiry_date": "source_terms_dependent",
       "source_file_present": false,
-      "source_file_note": "placeholder_demo_record — no HTML snapshot stored in this repo; sha256 is illustrative, not computed from a real file"
+      "source_file_note": "placeholder_demo_record — no HTML snapshot stored in this repo and no digest computed"
     },
     {
       "evidence_file_id": "DEEPFASHION2-APPLICATION-PENDING",
