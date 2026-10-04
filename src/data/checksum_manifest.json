@@ -1,6 +1,6 @@
 {
   "manifest_version": "2026.10-v1.0",
-  "generated_at": "2026-10-04T05:51:40.266Z",
+  "generated_at": "2026-10-04T06:16:25.098Z",
   "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
   "files": [
     {
@@ -17,8 +17,8 @@
     },
     {
       "path": "data/rights_manifest.json",
-      "sha256": "sha256:1adbd9e0bada94143cc53c670ed43fe1e6a7e3e0bac12e008c5cc3cded69daac",
-      "bytes": 4540,
+      "sha256": "sha256:9002eddade9b2565dd61dffbb29946231b6d3305238580bcb2455e72a3e3fece",
+      "bytes": 4974,
       "role": "core_manifest"
     },
     {

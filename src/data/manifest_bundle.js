@@ -1,7 +1,7 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 // Source of truth: data/*.json (see MANIFEST_KEYS in scripts/build_manifest_bundle.mjs)
 // Regenerate with: node scripts/hash_files.mjs && node scripts/build_manifest_bundle.mjs
-// Generated at: 2026-10-04T05:51:40.315Z
+// Generated at: 2026-10-04T06:16:25.229Z
 window.JXICH_MANIFESTS = {
   "dataset_manifest": {
     "manifest_version": "2026.10-v1.0",
@@ -322,7 +322,13 @@ window.JXICH_MANIFESTS = {
         },
         "portrait_status": "not_applicable",
         "personal_data_status": "not_applicable",
-        "sensitive_culture_status": "not_applicable_foreign_public_museum_collection",
+        "sensitive_culture_status": "reviewed_no_restriction",
+        "sensitive_culture_review": {
+          "reviewed_by": "Yun Kyung Lee (curator)",
+          "reviewed_at": "2026-10-04",
+          "scope": "the 8 bundled images of Cooper Hewitt objects 1959-150-2, 1976-103-105 (katagami dyeing stencils) and 2001-2-1 (horse wrapping cloth, umakake)",
+          "finding": "no sacred, ritual-restricted or community-protected content identified; the CC0 license was not taken as evidence of cultural appropriateness"
+        },
         "cross_border_transfer_status": "unrestricted_public_domain",
         "expiry_date": "not_applicable_cc0_no_expiry",
         "rights_gate": "pass"
@@ -1288,7 +1294,7 @@ window.JXICH_MANIFESTS = {
   },
   "checksum_manifest": {
     "manifest_version": "2026.10-v1.0",
-    "generated_at": "2026-10-04T05:51:40.266Z",
+    "generated_at": "2026-10-04T06:16:25.098Z",
     "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
     "files": [
       {
@@ -1305,8 +1311,8 @@ window.JXICH_MANIFESTS = {
       },
       {
         "path": "data/rights_manifest.json",
-        "sha256": "sha256:1adbd9e0bada94143cc53c670ed43fe1e6a7e3e0bac12e008c5cc3cded69daac",
-        "bytes": 4540,
+        "sha256": "sha256:9002eddade9b2565dd61dffbb29946231b6d3305238580bcb2455e72a3e3fece",
+        "bytes": 4974,
         "role": "core_manifest"
       },
       {
