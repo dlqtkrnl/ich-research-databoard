@@ -33,6 +33,21 @@ test("the bundled datasets produce the gate results reported in Table 2", () => 
   assert.equal(app.validateSampleLeakage().pass, true);
 });
 
+test("splitting the bundled photographs of one Cooper Hewitt object across train and eval is caught", () => {
+  // Six of the eight shipped images show horse cover 2001-2-1; putting three of them in evaluation shares the
+  // object, its duplicate group and the digitization event and session with the training images.
+  const state = app.replaceState(app.createInitialState());
+  const photos = state.samples.filter((sample) => sample.object_id === "CHNDM-2001-2-1");
+  assert.equal(photos.length, 6);
+  const moved = new Set(photos.slice(3).map((sample) => sample.sample_id));
+  const result = app.sampleLeakage(state.samples.map((sample) => (moved.has(sample.sample_id) ? { ...sample, split: "eval" } : sample)));
+  assert.equal(result.pass, false);
+  for (const key of ["object_id:CHNDM-2001-2-1", "duplicate_group_id:dup-chndm-2001-2-1", "event_id:CHNDM-SI-OPENACCESS-DIGITIZATION", "capture_session_id:CHNDM-SI-OPENACCESS-2026"]) {
+    assert.ok(result.violations.includes(key), key);
+  }
+  assert.equal(result.violations.length, 4);
+});
+
 test("17 evidence records ship with the release, 12 of them authentic", () => {
   const state = app.replaceState(app.createInitialState());
   assert.equal(state.evidenceFiles.length, 17);

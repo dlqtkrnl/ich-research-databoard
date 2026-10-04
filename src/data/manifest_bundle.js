@@ -1,7 +1,7 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 // Source of truth: data/*.json (see MANIFEST_KEYS in scripts/build_manifest_bundle.mjs)
 // Regenerate with: node scripts/hash_files.mjs && node scripts/build_manifest_bundle.mjs
-// Generated at: 2026-10-04T08:32:56.361Z
+// Generated at: 2026-10-04T10:19:20.923Z
 window.JXICH_MANIFESTS = {
   "dataset_manifest": {
     "manifest_version": "2026.10-v1.0",
@@ -170,10 +170,10 @@ window.JXICH_MANIFESTS = {
       },
       {
         "dataset_id": "PUB-CHNDM-HEMP-JP-009",
-        "name": "Cooper Hewitt 麻(hemp)型纸与实物织物样本集（日本，CC0公有领域）",
+        "name": "Cooper Hewitt hemp katagami and textile set (Japan, CC0)",
         "category": "公开纹理",
         "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
-        "owner": "Smithsonian's Cooper Hewitt, National Design Museum；经 Smithsonian Open Access API 确认 media_usage=CC0",
+        "owner": "Cooper Hewitt, Smithsonian Design Museum；经 Smithsonian Open Access API 确认 media_usage=CC0",
         "volume": "3 objects / 8 images",
         "collection_date": "2026-07-04",
         "version": "v1.0-real-cc0-verified",
@@ -200,7 +200,7 @@ window.JXICH_MANIFESTS = {
           "history",
           "rights"
         ],
-        "analysis": "来自 Smithsonian Cooper Hewitt National Design Museum 的3件18-19世纪日本麻(hemp/bast fiber)相关藏品，共8张官方CC0高分辨率图像，于2026年7月下载并重新计算SHA-256（非占位符，非pilot）。包含2件型纸(katagami，防染用镂空纸模：楮纸+柿涩染+丝线)与1件马被麻织物(umakake，478.8×64.8cm)实物共6张照片。重要限制：均为日本藏品，与江西夏布(中国苎麻)、韩国모시同属bast fiber材料系但地域工艺传统不同——应作为\"工艺相邻的独立真实对照数据集\"使用，不可替代或等同于JXICH-XB-001 江西夏布 pilot数据集。"
+        "analysis": "Eight official CC0 high-resolution images of three 18th-19th-century Japanese hemp/bast-fiber objects from the Smithsonian's Cooper Hewitt, Smithsonian Design Museum; images downloaded in July 2026 and SHA-256 recomputed (real files, not placeholders or pilot data); object records retrieved on 4 October 2026. Two katagami dyeing stencils (mulberry paper, persimmon tannin, silk thread; one image each) and one horse cover (umakake, 478.8 x 64.8 cm; six images). Limitation: these are Japanese objects that share the bast-fiber material family with Jiangxi xiabu (Chinese ramie) and Korean mosi but belong to a different regional craft tradition; they serve as an independent, craft-adjacent comparison set and cannot substitute for the JXICH-XB-001 Jiangxi xiabu pilot."
       }
     ]
   },
@@ -1349,13 +1349,13 @@ window.JXICH_MANIFESTS = {
   },
   "checksum_manifest": {
     "manifest_version": "2026.10-v1.0",
-    "generated_at": "2026-10-04T08:32:56.317Z",
+    "generated_at": "2026-10-04T10:19:20.796Z",
     "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
     "files": [
       {
         "path": "data/dataset_manifest.json",
-        "sha256": "sha256:a1a4e2206017a37aa11f06ad933af095cea9c469fce1a1e7362fbf2a23f2bea5",
-        "bytes": 8460,
+        "sha256": "sha256:703fdae4147bf2fc916120b26b1ecb7a5def43a3a722e8762ee6181110197123",
+        "bytes": 8553,
         "role": "core_manifest"
       },
       {

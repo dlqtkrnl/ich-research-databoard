@@ -165,10 +165,10 @@
     },
     {
       "dataset_id": "PUB-CHNDM-HEMP-JP-009",
-      "name": "Cooper Hewitt 麻(hemp)型纸与实物织物样本集（日本，CC0公有领域）",
+      "name": "Cooper Hewitt hemp katagami and textile set (Japan, CC0)",
       "category": "公开纹理",
       "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
-      "owner": "Smithsonian's Cooper Hewitt, National Design Museum；经 Smithsonian Open Access API 确认 media_usage=CC0",
+      "owner": "Cooper Hewitt, Smithsonian Design Museum；经 Smithsonian Open Access API 确认 media_usage=CC0",
       "volume": "3 objects / 8 images",
       "collection_date": "2026-07-04",
       "version": "v1.0-real-cc0-verified",
@@ -195,7 +195,7 @@
         "history",
         "rights"
       ],
-      "analysis": "来自 Smithsonian Cooper Hewitt National Design Museum 的3件18-19世纪日本麻(hemp/bast fiber)相关藏品，共8张官方CC0高分辨率图像，于2026年7月下载并重新计算SHA-256（非占位符，非pilot）。包含2件型纸(katagami，防染用镂空纸模：楮纸+柿涩染+丝线)与1件马被麻织物(umakake，478.8×64.8cm)实物共6张照片。重要限制：均为日本藏品，与江西夏布(中国苎麻)、韩国모시同属bast fiber材料系但地域工艺传统不同——应作为\"工艺相邻的独立真实对照数据集\"使用，不可替代或等同于JXICH-XB-001 江西夏布 pilot数据集。"
+      "analysis": "Eight official CC0 high-resolution images of three 18th-19th-century Japanese hemp/bast-fiber objects from the Smithsonian's Cooper Hewitt, Smithsonian Design Museum; images downloaded in July 2026 and SHA-256 recomputed (real files, not placeholders or pilot data); object records retrieved on 4 October 2026. Two katagami dyeing stencils (mulberry paper, persimmon tannin, silk thread; one image each) and one horse cover (umakake, 478.8 x 64.8 cm; six images). Limitation: these are Japanese objects that share the bast-fiber material family with Jiangxi xiabu (Chinese ramie) and Korean mosi but belong to a different regional craft tradition; they serve as an independent, craft-adjacent comparison set and cannot substitute for the JXICH-XB-001 Jiangxi xiabu pilot."
     }
   ]
 }

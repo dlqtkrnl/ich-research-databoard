@@ -898,7 +898,7 @@ function mergeById(freshArr, storedArr, key) {
 }
 // Bump whenever the bundled manifests change in a way stored browser state must not mask
 // (stored records otherwise take precedence over bundled ones in mergeById).
-const VALIDATION_REVISION = "validated-20261004-release-v1.0.6";
+const VALIDATION_REVISION = "validated-20261004-release-v1.0.7";
 function normalizeStoredState(stored) {
   const fresh = createInitialState();
   const needsValidationRefresh = stored.validationRevision !== VALIDATION_REVISION;
@@ -920,10 +920,15 @@ function normalizeStoredState(stored) {
   };
   // A revision bump forces a fresh genesis chain rather than bridging into it: the bundled records were
   // replaced, and entries from older builds may be hashed under an older algorithm (e.g. the pre-SHA-256
-  // 32-bit checksum) that today's chainHash() cannot re-verify.
+  // 32-bit checksum) that today's chainHash() cannot re-verify. As on Reset, the new genesis entry records
+  // the head of the discarded chain, so that an exported copy of the old log can be matched to it.
   const chainReady = !needsValidationRefresh && Array.isArray(migrated.auditLog) && migrated.auditLog.length && migrated.auditLog.every((row) => row.entry_hash && row.previous_hash && row.sequence);
   if (!chainReady) {
-    const migrationEntry = createAuditEntry("reset_audit_chain_for_revision", "system", `Bundled manifests refreshed to ${VALIDATION_REVISION}; audit log restarted from a new SHA-256 genesis entry.`, "GENESIS", 1);
+    const discarded = (Array.isArray(stored.auditLog) ? stored.auditLog : [])
+      .filter((row) => row && /^[0-9a-f]{64}$/.test(row.entry_hash) && Number.isInteger(row.sequence) && row.sequence > 0)
+      .reduce((head, row) => (!head || row.sequence > head.sequence ? row : head), null);
+    const discardedNote = discarded ? ` The discarded chain ended at sequence ${discarded.sequence} with entry hash ${discarded.entry_hash}.` : "";
+    const migrationEntry = createAuditEntry("reset_audit_chain_for_revision", "system", `Bundled manifests refreshed to ${VALIDATION_REVISION}; audit log restarted from a new SHA-256 genesis entry.${discardedNote}`, "GENESIS", 1);
     migrated.auditLog = [migrationEntry];
     migrated.auditSequence = 1;
   } else {

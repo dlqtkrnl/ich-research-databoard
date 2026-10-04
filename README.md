@@ -83,7 +83,9 @@ file-backed record with the same id, digest and dataset (whose role and scope ar
 For a dataset that ships in the bundle, an import may narrow the permission scope but not
 widen it, and it keeps the bundled `consent_form_id`, `expiry_date` and cultural-sensitivity
 status; for other datasets the imported rights fields replace the current ones. A change of the
-bundled-data revision discards browser edits and restarts the audit log. A dataset
+bundled-data revision discards browser edits and restarts the audit log; the new genesis entry
+records the sequence number and hash of the discarded chain's last entry, so export the package
+before upgrading to keep the earlier log. A dataset
 registered in the interface starts with a pending expiry and consent and stays blocked until
 its rights record is completed in `rights_manifest.json`.
 The `rights_gate` field stored in `rights_manifest.json` is the curator's status, of
@@ -202,20 +204,21 @@ Notes on the real data:
 
 ## Testing
 
-`npm test` runs 55 tests with Node's built-in test runner:
+`npm test` runs 57 tests with Node's built-in test runner:
 
 - `test/validation.test.js`: Rights Gate, audit hash-chain (including tamper detection),
   split leakage, schema, checksum registry and evidence authenticity, run against the
   real `app.js` code.
 - `test/golden.test.js`: loads `manifest_bundle.js` as the browser does and checks the
-  gate result of every bundled dataset (the values in the table above).
+  gate result of every bundled dataset (the values in the table above), and that splitting the
+  bundled photographs of one Cooper Hewitt object across train and eval is caught.
 - `test/integrity.test.js`: fails if any registered file's bytes change, if any file-backed evidence record does not match its file, if
   `manifest_bundle.js` is stale, or if a KG claim breaks the vocabulary.
 - `test/storage-adapter.test.js`: the optional persistence adapter and its
   `localStorage` fallback.
 - `test/i18n.test.js`: every interface string exists in both English and Chinese.
 - `test/state-migration.test.js`: stale browser state from an older revision is replaced
-  by the bundled manifests.
+  by the bundled manifests, and the head of the discarded audit chain is recorded.
 
 GitHub Actions runs the suite on Ubuntu and Windows with Node 22 and 24
 (`.github/workflows/ci.yml`).

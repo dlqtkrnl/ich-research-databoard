@@ -1,12 +1,12 @@
 {
   "manifest_version": "2026.10-v1.0",
-  "generated_at": "2026-10-04T08:32:56.317Z",
+  "generated_at": "2026-10-04T10:19:20.796Z",
   "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
   "files": [
     {
       "path": "data/dataset_manifest.json",
-      "sha256": "sha256:a1a4e2206017a37aa11f06ad933af095cea9c469fce1a1e7362fbf2a23f2bea5",
-      "bytes": 8460,
+      "sha256": "sha256:703fdae4147bf2fc916120b26b1ecb7a5def43a3a722e8762ee6181110197123",
+      "bytes": 8553,
       "role": "core_manifest"
     },
     {
