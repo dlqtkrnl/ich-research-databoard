@@ -1,7 +1,7 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 // Source of truth: data/*.json (see MANIFEST_KEYS in scripts/build_manifest_bundle.mjs)
 // Regenerate with: node scripts/hash_files.mjs && node scripts/build_manifest_bundle.mjs
-// Generated at: 2026-10-04T06:16:25.229Z
+// Generated at: 2026-10-04T06:39:16.132Z
 window.JXICH_MANIFESTS = {
   "dataset_manifest": {
     "manifest_version": "2026.10-v1.0",
@@ -836,6 +836,7 @@ window.JXICH_MANIFESTS = {
         "evidence_file_id": "DOC-XB-INSTITUTION-20260701",
         "dataset_id": "JXICH-XB-001",
         "evidence_type": "institutional_permission",
+        "evidence_role": "rights",
         "file_name": "江西夏布采集机构授权书_20260701.pdf",
         "sha256": "sha256:7af3d4a66e5f0d9b7a1d8a7c8d20e21c1fb5a31c2eb1d5b395b2117f2c6a7701",
         "verification_status": "verified",
@@ -852,6 +853,7 @@ window.JXICH_MANIFESTS = {
         "evidence_file_id": "CONSENT-XB-INHERITOR-PENDING",
         "dataset_id": "JXICH-XB-001",
         "evidence_type": "inheritor_or_portrait_consent",
+        "evidence_role": "consent",
         "file_name": "夏布传承人肖像与访谈同意书_PENDING.pdf",
         "sha256": "sha256:pending",
         "verification_status": "pending",
@@ -866,6 +868,7 @@ window.JXICH_MANIFESTS = {
         "evidence_file_id": "OFFICIAL-DTD-WEBPAGE-20260703",
         "dataset_id": "PUB-DTD-001",
         "evidence_type": "official_dataset_terms_page",
+        "evidence_role": "rights",
         "file_name": "dtd_official_page_snapshot_20260703.html",
         "sha256": "sha256:2f65d00d7e60e4b7d3b1d471a6e9203a9b1d91fb468768fd92e857d5a86c11db",
         "verification_status": "verified",
@@ -882,6 +885,7 @@ window.JXICH_MANIFESTS = {
         "evidence_file_id": "OFFICIAL-FASHIONPEDIA-TERMS-20260703",
         "dataset_id": "PUB-FASHIONPEDIA-002",
         "evidence_type": "official_license_terms_page",
+        "evidence_role": "rights",
         "file_name": "fashionpedia_terms_snapshot_20260703.html",
         "sha256": "sha256:b77d7a9eb60467e5e7a5b1e03fd0fc5dd8488bc8ce391b11f94e721a0bcedb52",
         "verification_status": "verified",
@@ -899,6 +903,7 @@ window.JXICH_MANIFESTS = {
         "evidence_file_id": "DEEPFASHION2-APPLICATION-PENDING",
         "dataset_id": "PUB-DEEPFASHION2-004",
         "evidence_type": "controlled_access_application",
+        "evidence_role": "rights",
         "file_name": "deepfashion2_access_application_PENDING.pdf",
         "sha256": "sha256:pending",
         "verification_status": "blocked",
@@ -967,7 +972,7 @@ window.JXICH_MANIFESTS = {
         "expiry_date": "not_applicable_cc0",
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json",
-        "source_file_note": "real_file — the three Smithsonian Open Access API records (edanmdm:chndm_1959-150-2, chndm_1976-103-105, chndm_2001-2-1) retrieved 2026-10-04; each states metadata and media usage access = CC0 (31,109 bytes)"
+        "source_file_note": "real_file — the three Smithsonian Open Access API records (edanmdm:chndm_1959-150-2, chndm_1976-103-105, chndm_2001-2-1) retrieved 2026-10-04 and combined into one file under a short header (each API response is kept unchanged under records[]); each states metadata and media usage access = CC0 (31,109 bytes)"
       },
       {
         "evidence_file_id": "SRC-CHNDM-1959-150-2-KATAGAMI",
@@ -1294,7 +1299,7 @@ window.JXICH_MANIFESTS = {
   },
   "checksum_manifest": {
     "manifest_version": "2026.10-v1.0",
-    "generated_at": "2026-10-04T06:16:25.098Z",
+    "generated_at": "2026-10-04T06:39:16.082Z",
     "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
     "files": [
       {
@@ -1317,8 +1322,8 @@ window.JXICH_MANIFESTS = {
       },
       {
         "path": "data/evidence_manifest.json",
-        "sha256": "sha256:4b9da578a1c802f91b55429305b3332f9046e881dc3b2f8c15bd7b90762e0b23",
-        "bytes": 14409,
+        "sha256": "sha256:459cda638eca7b5fffdde53ebdfaf7fd1cec3fe80c02eb23a40db1d91b0db268",
+        "bytes": 14677,
         "role": "core_manifest"
       },
       {

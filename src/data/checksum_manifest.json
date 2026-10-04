@@ -1,6 +1,6 @@
 {
   "manifest_version": "2026.10-v1.0",
-  "generated_at": "2026-10-04T06:16:25.098Z",
+  "generated_at": "2026-10-04T06:39:16.082Z",
   "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
   "files": [
     {
@@ -23,8 +23,8 @@
     },
     {
       "path": "data/evidence_manifest.json",
-      "sha256": "sha256:4b9da578a1c802f91b55429305b3332f9046e881dc3b2f8c15bd7b90762e0b23",
-      "bytes": 14409,
+      "sha256": "sha256:459cda638eca7b5fffdde53ebdfaf7fd1cec3fe80c02eb23a40db1d91b0db268",
+      "bytes": 14677,
       "role": "core_manifest"
     },
     {

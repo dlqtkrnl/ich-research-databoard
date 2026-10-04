@@ -57,22 +57,28 @@ research state, the audit log or exported packages.
 **Rights Gate** (`rightsGate` in `app.js`). A dataset is blocked unless it has at least
 one authentic evidence file (`verification_status: "verified"` **and**
 `source_file_present: true`) and the `research` scope is granted. It passes fully only
-when `publication` and `public_demo` are also granted and backed by evidence whose own
-scope covers publication; otherwise it is *conditional* (research use only).
+when `publication` and `public_demo` are also granted and backed by a *rights* evidence file
+(`evidence_role: "rights"`) whose scope covers publication; otherwise it is *conditional* (research use only).
 Three recorded conditions are also enforced, and a value the gate does not recognise
 counts against the dataset. `expiry_date` must be a valid `YYYY-MM-DD` date that has not
-passed (it expires at the end of that day, UTC) or a value beginning `not_applicable`;
+passed (it expires at the end of that day, UTC) or one of the listed no-expiry values (`not_applicable`, `not_applicable_cc0_no_expiry`,
+`not_applicable_cc_by_no_expiry`);
 anything else, including a missing or malformed date, blocks. A `consent_form_id` other
-than `not_applicable…` must name an authentic evidence file with that exact
+than `not_applicable` must name an authentic evidence file with that exact
 `evidence_file_id` (a missing id blocks). `sensitive_culture_status` must be
-`not_applicable…` or `reviewed_no_restriction`; `review_required` or any other value caps
+exactly `not_applicable` or `reviewed_no_restriction`; `review_required` or any other value caps
 the result at *conditional* and stops generation. The Generation Lab refuses
 image-to-image modes and source-copying reuse layers when `derivative` is not granted;
 `commercial`, `portrait_status` and `cross_border_transfer_status` are recorded and
 displayed but not enforced. A permission toggle in the interface changes the scope only
 and never lifts a `rights_gate: "blocked"` status recorded by the curator, and an
-imported research package can neither lift such a block nor mark an evidence record as
-file-backed unless the same id and digest are already registered.
+imported research package can neither lift a block recorded in the bundled manifests or the
+current state, nor mark an evidence record as file-backed unless the bundled registry has a
+file-backed record with the same id, digest and dataset (whose role and scope are then kept).
+Other rights fields in an imported package replace the current ones, and a change of the
+bundled-data revision discards browser edits and restarts the audit log. A dataset
+registered in the interface starts with a pending expiry and consent and stays blocked until
+its rights record is completed in `rights_manifest.json`.
 The `rights_gate` field stored in `rights_manifest.json` is the curator's status, of
 which only `blocked` binds the gate; the result shown in the app is computed on every
 render. Each dataset that passes or is conditional has a *rights* evidence file (the P12
@@ -159,7 +165,7 @@ Notes on the real data:
 - `JXICH-XB-001` is pilot data. Its dataset checksum is the placeholder
   `sha256:pilot-placeholder-...`, and `sample_manifest.json` holds 4 example rows for it against
   the manifest's target of 320 images and 42 records.
-- 5 of the 14 evidence records have `source_file_present: false`; their hashes are
+- 5 of the 16 evidence records have `source_file_present: false`; their hashes are
   illustrative. Do not describe them as verified evidence.
 - Inheritor (传承人) consent is pending, so no inheritor images or personal data are
   included.
@@ -176,7 +182,7 @@ Notes on the real data:
 
 ## Testing
 
-`npm test` runs 38 tests with Node's built-in test runner:
+`npm test` runs 41 tests with Node's built-in test runner:
 
 - `test/validation.test.js`: Rights Gate, audit hash-chain (including tamper detection),
   split leakage, schema, checksum registry and evidence authenticity, run against the

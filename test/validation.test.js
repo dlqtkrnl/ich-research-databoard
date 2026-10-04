@@ -77,7 +77,7 @@ test("rightsGate passes only when research+publication+public_demo scopes AND au
       rights_gate: "conditional",
       permission_scope: { research: true, publication: true, public_demo: true, derivative: false, commercial: false },
     }],
-    evidenceFiles: [{ dataset_id: "DS-1", verification_status: "verified", sha256: "sha256:abc", source_file_present: true, permission_scope: ["research", "publication"] }],
+    evidenceFiles: [{ dataset_id: "DS-1", evidence_role: "rights", verification_status: "verified", sha256: "sha256:abc", source_file_present: true, permission_scope: ["research", "publication"] }],
   }));
   const gate = app.rightsGate(app.rightsFor("DS-1"));
   assert.equal(gate.gate, "pass");
@@ -96,7 +96,7 @@ test("rightsGate blocks verified-but-placeholder evidence (source_file_present:f
   assert.equal(gate.gate, "blocked");
 });
 
-const AUTHENTIC_PUB = { dataset_id: "DS-1", evidence_file_id: "DOC-1", evidence_type: "license_page", verification_status: "verified", sha256: "sha256:abc", source_file_present: true, permission_scope: ["research", "publication"] };
+const AUTHENTIC_PUB = { dataset_id: "DS-1", evidence_file_id: "DOC-1", evidence_type: "license_page", evidence_role: "rights", verification_status: "verified", sha256: "sha256:abc", source_file_present: true, permission_scope: ["research", "publication"] };
 const FULL_SCOPE = { research: true, publication: true, public_demo: true, derivative: false, commercial: false };
 // Conditions that the gate treats as resolved; tests that are not about them spread this into the rights record.
 const CLEAR = { consent_form_id: "not_applicable", expiry_date: "not_applicable", sensitive_culture_status: "not_applicable" };
@@ -160,15 +160,48 @@ test("generation is refused without derivative permission for image-to-image, an
 });
 
 test("an imported package cannot assert unregistered source files or lift a curator's block", () => {
-  const current = [{ evidence_file_id: "E-1", sha256: "sha256:aaa", source_file_present: true }];
-  const imported = app.reconcileImportedEvidence(current, [
-    { evidence_file_id: "E-1", sha256: "sha256:aaa", source_file_present: true },
-    { evidence_file_id: "E-1", sha256: "sha256:bbb", source_file_present: true },
-    { evidence_file_id: "E-2", sha256: "sha256:ccc", source_file_present: true },
+  const bundled = [{ evidence_file_id: "E-1", dataset_id: "DS-1", sha256: "sha256:aaa", source_file_present: true, evidence_role: "content", permission_scope: [] }];
+  const imported = app.reconcileImportedEvidence(bundled, [
+    { evidence_file_id: "E-1", dataset_id: "DS-1", sha256: "sha256:aaa", source_file_present: true, evidence_role: "rights", permission_scope: ["publication"] },
+    { evidence_file_id: "E-1", dataset_id: "DS-1", sha256: "sha256:bbb", source_file_present: true },
+    { evidence_file_id: "E-2", dataset_id: "DS-1", sha256: "sha256:ccc", source_file_present: true },
   ]);
   assert.deepEqual(imported.map((file) => file.source_file_present), [true, false, false]);
+  assert.equal(imported[0].evidence_role, "content", "role and scope come from the bundled record");
+  assert.deepEqual(imported[0].permission_scope, []);
   const rights = app.reconcileImportedRights([{ dataset_id: "DS-1", rights_gate: "blocked" }], [{ dataset_id: "DS-1", rights_gate: "pass" }, { dataset_id: "DS-2", rights_gate: "pass" }]);
   assert.deepEqual(rights.map((record) => record.rights_gate), ["blocked", "pass"]);
+});
+
+test("import cannot turn on a placeholder's file flag, move a known file to another dataset, or lift a bundled block in two steps", () => {
+  const bundled = [
+    { evidence_file_id: "PH-1", dataset_id: "DS-1", sha256: "sha256:ph", source_file_present: false, evidence_role: "rights", permission_scope: ["research"] },
+    { evidence_file_id: "IMG-1", dataset_id: "DS-2", sha256: "sha256:img", source_file_present: true, evidence_role: "content", permission_scope: [] },
+  ];
+  const [flipped, moved] = app.reconcileImportedEvidence(bundled, [
+    { ...bundled[0], source_file_present: true },
+    { ...bundled[1], dataset_id: "DS-1", evidence_role: "rights", permission_scope: ["publication"] },
+  ]);
+  assert.equal(flipped.source_file_present, false);
+  assert.equal(moved.source_file_present, false);
+  assert.notEqual(moved.evidence_role, "rights");
+  const bundledRights = [{ dataset_id: "DS-1", rights_gate: "blocked" }];
+  const afterFirst = app.reconcileImportedRights([...bundledRights, { dataset_id: "DS-1", rights_gate: "blocked" }], []);
+  const afterSecond = app.reconcileImportedRights([...bundledRights, ...afterFirst], [{ dataset_id: "DS-1", rights_gate: "pass" }]);
+  assert.equal(afterSecond[0].rights_gate, "blocked");
+});
+
+test("a content file cannot supply the publication scope: only evidence with the rights role counts at step 7", () => {
+  const contentOnly = { ...AUTHENTIC_PUB, evidence_role: "content" };
+  app.replaceState(baseState({ rights: [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", permission_scope: FULL_SCOPE }], evidenceFiles: [contentOnly] }));
+  assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "conditional");
+});
+
+test("only the listed no-expiry, no-consent and cleared-sensitivity values are exempt", () => {
+  assert.equal(app.expiryStatus("not_applicable_whatever"), "unresolved");
+  app.replaceState(baseState({ rights: [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", consent_form_id: "not_applicable_trust_me", permission_scope: FULL_SCOPE }], evidenceFiles: [AUTHENTIC_PUB] }));
+  assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "blocked");
+  assert.equal(app.sensitivityCleared({ sensitive_culture_status: "not_applicable_foreign_public_museum_collection" }), false);
 });
 
 test("rightsGate caps a dataset under cultural-sensitivity review at conditional", () => {
