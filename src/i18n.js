@@ -145,6 +145,9 @@
     "gate.reason.noAuthentic": { en: "No authentic evidence file (verified, with the real file present — not a placeholder)", zh: "没有 authentic evidence file（已验证且真实文件存在，非 placeholder）" },
     "gate.reason.markedBlocked": { en: "Rights Gate is marked blocked", zh: "Rights Gate 标记为 blocked" },
     "gate.reason.noResearch": { en: "Research use scope not granted", zh: "未获得 research 使用范围" },
+    "gate.reason.expired": { en: "The rights record has expired", zh: "权利记录已过期" },
+    "gate.reason.noConsent": { en: "Required consent is not backed by an authentic evidence file", zh: "所需同意书没有 authentic evidence file 支撑" },
+    "gate.reason.sensitiveReview": { en: "Cultural-sensitivity review is still required", zh: "仍需文化敏感性审查" },
     "gate.reason.conditional": { en: "Research evidence available; publication / demo evidence insufficient", zh: "研究证据可用；公开发布/演示证据不足" },
     "gate.reason.pass": { en: "Permission scope matches the authentic evidence files", zh: "权利范围与 authentic evidence file 一致" },
 

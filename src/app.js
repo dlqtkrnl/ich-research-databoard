@@ -236,12 +236,14 @@ function lockEval() {
   audit("lock_eval_split", "split_manifest", "All current eval assignments locked.");
   render();
 }
-function togglePermission(datasetId, key, checked) {
-  const rights = rightsFor(datasetId);
+// The gate is computed by rightsGate(); a scope toggle changes the scope only and never lifts an
+// explicit "blocked" status recorded by the curator.
+function applyPermissionToggle(rights, key, checked) {
   rights.permission_scope[key] = checked;
-  if (rights.permission_scope.research && rights.rights_gate === "blocked") rights.rights_gate = "conditional";
-  if (!rights.permission_scope.research) rights.rights_gate = "blocked";
-  if (rights.permission_scope.research && rights.permission_scope.publication && rights.permission_scope.public_demo) rights.rights_gate = "pass";
+  return rights;
+}
+function togglePermission(datasetId, key, checked) {
+  applyPermissionToggle(rightsFor(datasetId), key, checked);
   audit("update_rights_scope", datasetId, `${key}=${checked}`);
   render();
 }
@@ -501,15 +503,32 @@ function authenticEvidenceFor(datasetId = state.selectedId) {
 function imageEvidenceFor(datasetId = state.selectedId) {
   return authenticEvidenceFor(datasetId).filter((file) => file.source_file_path && /\.(jpe?g|png|webp|gif)$/i.test(file.file_name || ""));
 }
+// Conditions recorded with the rights record that the gate enforces (in addition to scope and evidence):
+// an expiry date in the past blocks; a consent form that is not "not_applicable" must be backed by an
+// authentic evidence file (matched by id, or by an evidence_type naming consent); sensitive-culture review caps at conditional.
+function isExpired(expiry, today = new Date()) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(expiry || ""))) return false;
+  return new Date(`${expiry}T23:59:59Z`) < today;
+}
+function consentRequired(record) {
+  const id = String(record?.consent_form_id || "");
+  return Boolean(id) && !id.startsWith("not_applicable");
+}
+function authenticConsentFor(record, authenticEvidence) {
+  return authenticEvidence.some((file) => file.evidence_file_id === record.consent_form_id || /consent/i.test(file.evidence_type || ""));
+}
 function rightsGate(record = rightsFor()) {
   if (!record) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.noRecord") };
   const authenticEvidence = authenticEvidenceFor(record.dataset_id);
   if (!authenticEvidence.length) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.noAuthentic") };
   if (record.rights_gate === "blocked") return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.markedBlocked") };
   if (!record.permission_scope?.research) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.noResearch") };
+  if (isExpired(record.expiry_date)) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.expired") };
+  if (consentRequired(record) && !authenticConsentFor(record, authenticEvidence)) return { gate: "blocked", label: t("gate.blocked"), cls: "block", reason: t("gate.reason.noConsent") };
   const evidenceScopes = new Set(authenticEvidence.flatMap((file) => file.permission_scope || []));
   const hasPublicationEvidence = evidenceScopes.has("publication") || evidenceScopes.has("public_demo");
   if (!record.permission_scope?.publication || !record.permission_scope?.public_demo || !hasPublicationEvidence) return { gate: "conditional", label: t("gate.conditional"), cls: "warn", reason: t("gate.reason.conditional") };
+  if (record.sensitive_culture_status === "review_required") return { gate: "conditional", label: t("gate.conditional"), cls: "warn", reason: t("gate.reason.sensitiveReview") };
   return { gate: "pass", label: t("gate.pass"), cls: "good", reason: t("gate.reason.pass") };
 }
 function verifyAuditChain() {
@@ -1391,7 +1410,7 @@ if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     chainHash, stableStringify, sha256Hex, createAuditEntry, verifyAuditChain,
     validateSchema, validateChecksumRegistry, validateSampleLeakage, validateEvidence,
-    validatedPlatformReport, validateGenerationTrace, rightsGate, rightsFor, splitFor,
+    validatedPlatformReport, validateGenerationTrace, rightsGate, rightsFor, splitFor, applyPermissionToggle, isExpired,
     findDataset, createRightsRecord, createInitialState, replaceState, getState,
     evidenceFor, verifiedEvidenceFor, authenticEvidenceFor, imageEvidenceFor,
     normalizeStoredState, mergeById, Storage, loadState, loadInitialState,

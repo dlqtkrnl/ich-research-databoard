@@ -1,6 +1,6 @@
 {
   "name": "ich-research-databoard",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Browser-only governance toolkit for intangible cultural heritage (ICH) AI datasets: rights gate, split-leakage validator, evidence-authenticity registry, and a client-side SHA-256 audit hash-chain.",
   "license": "MIT",

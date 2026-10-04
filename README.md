@@ -59,6 +59,13 @@ one authentic evidence file (`verification_status: "verified"` **and**
 `source_file_present: true`) and the `research` scope is granted. It passes fully only
 when `publication` and `public_demo` are also granted and backed by evidence whose own
 scope covers publication; otherwise it is *conditional* (research use only).
+Three recorded conditions are also enforced: a rights record whose `expiry_date` has
+passed is blocked; a `consent_form_id` other than `not_applicable` must be backed by an
+authentic evidence file (otherwise blocked); and `sensitive_culture_status:
+"review_required"` caps the result at *conditional*. The `derivative` scope is checked by
+the Generation Lab; `commercial`, `portrait_status` and `cross_border_transfer_status` are
+recorded and displayed but not enforced. A permission toggle in the interface changes the
+scope only and never lifts a `rights_gate: "blocked"` status recorded by the curator.
 The `rights_gate` field stored in `rights_manifest.json` is the status declared from the
 permission scope alone; the gate shown in the app is computed on every render and also
 requires authentic evidence, so the two can differ (for example, `JXICH-XB-001` is
@@ -122,7 +129,7 @@ original bytes), so the registered hashes hold on Windows, macOS and Linux check
 
 | Dataset | What it is | Rights Gate | Redistributable |
 |---|---|---|---|
-| `JXICH-XBEMB-KG-P12` | 32 source-linked KG triples on Xiabu embroidery (夏布绣) from the author's own manuscript | pass | Yes, **CC BY 4.0** ([`data/kg_sources/LICENSE.md`](./src/data/kg_sources/LICENSE.md)) |
+| `JXICH-XBEMB-KG-P12` | 32 source-linked KG triples on Xiabu embroidery (夏布绣) from the author's own manuscript | conditional (cultural-sensitivity review pending) | Yes, **CC BY 4.0** ([`data/kg_sources/LICENSE.md`](./src/data/kg_sources/LICENSE.md)) |
 | `PUB-CHNDM-HEMP-JP-009` | 8 images of 3 Japanese hemp textiles (katagami stencils, *umakake*), Cooper Hewitt, Smithsonian Open Access | pass | Yes, **CC0** |
 | `JXICH-XB-001` | Jiangxi Xiabu pilot: metadata structure only, 4 example sample rows, inheritor consent pending | blocked | No (placeholder / pilot) |
 | `PUB-DTD-001`, `PUB-FASHIONPEDIA-002`, `PUB-DEEPFASHION2-004` | Metadata connectors for public datasets; no files included | blocked | No (no files bundled) |
@@ -161,7 +168,7 @@ Notes on the real data:
 
 ## Testing
 
-`npm test` runs 29 tests with Node's built-in test runner:
+`npm test` runs 33 tests with Node's built-in test runner:
 
 - `test/validation.test.js`: Rights Gate, audit hash-chain (including tamper detection),
   split leakage, schema, checksum registry and evidence authenticity, run against the

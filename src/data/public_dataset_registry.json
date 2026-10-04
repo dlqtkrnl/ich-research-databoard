@@ -90,7 +90,7 @@
     "source_url": "https://collection.cooperhewitt.org/view/objects/asitem/id/122755",
     "data_type": "real CC0 collection images ingested into the platform (not citation-only) — 2 dye-resist paper stencils (katagami, hemp-leaf motif) + 1 woven bast-fiber horse-cover cloth (umakake), 8 images total",
     "scale": "3 objects (chndm_1959-150-2, chndm_1976-103-105, chndm_2001-2-1) / 8 images; verified via api.si.edu with media_usage=CC0 on each record; downloaded and byte-for-byte SHA-256 recomputed (2026-07-10)",
-    "best_for": ["process-adjacent bast-fiber textile comparison for 江西夏布", "first fully-passing (Rights Gate = pass) real evidence-verified dataset in this platform besides the author's own P12 KG data", "demonstrating the CC0 image-ingestion path end-to-end"],
+    "best_for": ["process-adjacent bast-fiber textile comparison for 江西夏布", "the only fully-passing (Rights Gate = pass) real evidence-verified dataset in this platform (the author's own P12 KG data is conditional pending cultural-sensitivity review)", "demonstrating the CC0 image-ingestion path end-to-end"],
     "license_note": "Confirmed CC0 (public domain dedication) via Smithsonian Open Access API media_usage field for these 3 specific records, verified by direct API fetch (2026-07-10) — not assumed from institution-level marketing language.",
     "platform_use": "images physically copied into data/public_dataset_sources/chndm_hemp_textile_jp/ and registered with real sha256 in dataset_manifest.json/evidence_manifest.json/sample_manifest.json/checksum_manifest.json; important limitation: these are Japanese collection items, not Chinese 苎麻 or Korean 모시 — position as an independent process-adjacent comparison set, not a substitute for JXICH-XB-001"
   }

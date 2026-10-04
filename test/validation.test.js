@@ -95,6 +95,49 @@ test("rightsGate blocks verified-but-placeholder evidence (source_file_present:f
   assert.equal(gate.gate, "blocked");
 });
 
+const AUTHENTIC_PUB = { dataset_id: "DS-1", evidence_file_id: "DOC-1", evidence_type: "license_page", verification_status: "verified", sha256: "sha256:abc", source_file_present: true, permission_scope: ["research", "publication"] };
+const FULL_SCOPE = { research: true, publication: true, public_demo: true, derivative: false, commercial: false };
+
+test("rightsGate blocks when required consent has no authentic evidence file, and admits it once the consent file is present", () => {
+  const rights = [{ dataset_id: "DS-1", rights_gate: "conditional", consent_form_id: "CONSENT-1", permission_scope: FULL_SCOPE }];
+  const pendingConsent = { dataset_id: "DS-1", evidence_file_id: "CONSENT-1", evidence_type: "inheritor_consent", verification_status: "pending", sha256: "sha256:pending", source_file_present: false, permission_scope: [] };
+  app.replaceState(baseState({ rights, evidenceFiles: [AUTHENTIC_PUB, pendingConsent] }));
+  assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "blocked");
+
+  const presentConsent = { ...pendingConsent, verification_status: "verified", sha256: "sha256:def", source_file_present: true };
+  app.replaceState(baseState({ rights, evidenceFiles: [AUTHENTIC_PUB, presentConsent] }));
+  assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "pass");
+});
+
+test("rightsGate blocks a rights record whose expiry date has passed", () => {
+  app.replaceState(baseState({
+    rights: [{ dataset_id: "DS-1", rights_gate: "conditional", consent_form_id: "not_applicable", expiry_date: "2000-01-01", permission_scope: FULL_SCOPE }],
+    evidenceFiles: [AUTHENTIC_PUB],
+  }));
+  assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "blocked");
+  assert.equal(app.isExpired("2999-12-31"), false);
+  assert.equal(app.isExpired("source_terms_dependent"), false);
+});
+
+test("rightsGate caps a dataset under cultural-sensitivity review at conditional", () => {
+  app.replaceState(baseState({
+    rights: [{ dataset_id: "DS-1", rights_gate: "conditional", consent_form_id: "not_applicable", sensitive_culture_status: "review_required", permission_scope: FULL_SCOPE }],
+    evidenceFiles: [AUTHENTIC_PUB],
+  }));
+  assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "conditional");
+});
+
+test("a permission toggle never lifts an explicit blocked status recorded by the curator", () => {
+  app.replaceState(baseState({
+    rights: [{ dataset_id: "DS-1", rights_gate: "blocked", consent_form_id: "not_applicable", permission_scope: { ...FULL_SCOPE, research: false } }],
+    evidenceFiles: [AUTHENTIC_PUB],
+  }));
+  const record = app.rightsFor("DS-1");
+  app.applyPermissionToggle(record, "research", true);
+  assert.equal(record.rights_gate, "blocked");
+  assert.equal(app.rightsGate(record).gate, "blocked");
+});
+
 test("validateSampleLeakage flags an object_id that appears in both train and eval", () => {
   app.replaceState(baseState({
     samples: [

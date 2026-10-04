@@ -54,7 +54,7 @@ npm test              # 단위 테스트 + 위 무결성 검사 전체 실행
 ## 검증·감사 메커니즘
 
 - **Audit hash-chain**: 모든 상태 변경이 `sequence`/`previous_hash`/`entry_hash`를 가진 append-only 로그로 기록됩니다. 해시는 표준 **SHA-256**(순수 JS 구현, `app.js`의 `sha256Hex`)이며, `test/validation.test.js`에서 Node 내장 `crypto` 모듈과 대조 검증합니다.
-- **Rights Gate**: `permission_scope`(research/publication/public_demo/derivative/commercial)와 verified evidence file hash가 모두 있어야 통과. 없으면 훈련/평가/공개 전시로 진입 차단.
+- **Rights Gate**: research 범위와 authentic evidence file(검증됨 + 실제 파일 존재)이 있어야 하고, publication·public_demo 범위와 공개용 증거까지 있어야 통과(pass). 만료일이 지났거나, 필요한 동의서가 authentic 증거로 뒷받침되지 않으면 차단(blocked). 문화적 민감성 검토가 필요하면(`review_required`) 최대 conditional. `commercial`·초상·국외 이전 조건은 기록·표시만 하고 판정에 쓰지 않음. 화면의 권한 체크박스는 범위만 바꾸며 큐레이터가 기록한 blocked를 해제하지 않음.
 - **Split Governance**: `object_id`/`event_id`/`capture_session_id`로 train/eval 누출을 검사하고, 평가셋은 잠글 수 있습니다.
 - **자동화 테스트**: `test/validation.test.js` — `rightsGate`, `verifyAuditChain`(변조 탐지 포함), `validateSampleLeakage`, `validateSchema`, `validateChecksumRegistry`, `authenticEvidenceFor` 등 핵심 검증 로직을 실제 `app.js` 코드에 대해 실행합니다. `test/integrity.test.js`는 해시 레지스트리·번들 동기화·온톨로지 어휘 검사 스크립트를 실행해 실패 시 테스트를 실패시킵니다. 실행: `npm test` (Node 22 이상). GitHub Actions(`.github/workflows/ci.yml`)가 Ubuntu·Windows × Node 22·24에서 같은 테스트를 실행합니다.
 - **온톨로지 레이어 (`data/ontology/`)**: `predicate_vocabulary.json`(30개 predicate의 class/domain/range 통제 어휘)와 `competency_questions.json`(8개 competency question)로 `kg_claims.json`을 검증합니다. `node scripts/validate_ontology.mjs`로 실행하며, predicate/역할/신뢰도 범위 위반을 탐지하고 각 claim의 `evidence_id`가 실제 `evidence_manifest.json` 항목으로 연결되는지(현재 40건 중 35건 연결, 5건은 비공식 label) 정직하게 보고합니다. **이것은 OWL/SHACL 추론기가 아니라 경량 어휘·제약 검사기입니다** — 파일 자체의 `note` 필드에도 이 범위 제한이 명시되어 있습니다.

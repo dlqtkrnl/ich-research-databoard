@@ -1,7 +1,7 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 // Source of truth: data/*.json (see MANIFEST_KEYS in scripts/build_manifest_bundle.mjs)
 // Regenerate with: node scripts/hash_files.mjs && node scripts/build_manifest_bundle.mjs
-// Generated at: 2026-10-03T12:39:38.376Z
+// Generated at: 2026-10-04T05:09:17.393Z
 window.JXICH_MANIFESTS = {
   "dataset_manifest": {
     "manifest_version": "2026.10-v1.0",
@@ -1289,7 +1289,7 @@ window.JXICH_MANIFESTS = {
   },
   "checksum_manifest": {
     "manifest_version": "2026.10-v1.0",
-    "generated_at": "2026-10-03T12:39:38.233Z",
+    "generated_at": "2026-10-04T05:09:17.351Z",
     "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
     "files": [
       {
@@ -1336,8 +1336,8 @@ window.JXICH_MANIFESTS = {
       },
       {
         "path": "data/public_dataset_registry.json",
-        "sha256": "sha256:ea1040e2020c4b58bbc4977841b36fb795ce4bbd8f8a4001722526d371282f39",
-        "bytes": 11169,
+        "sha256": "sha256:ffd5013eb8b5c71b240b9cfd51330042c73091d3c710c48809b5ba48b9a2f893",
+        "bytes": 11217,
         "role": "reference_only"
       },
       {
