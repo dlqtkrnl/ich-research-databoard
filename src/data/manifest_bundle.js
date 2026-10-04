@@ -1,7 +1,7 @@
 // AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY.
 // Source of truth: data/*.json (see MANIFEST_KEYS in scripts/build_manifest_bundle.mjs)
 // Regenerate with: node scripts/hash_files.mjs && node scripts/build_manifest_bundle.mjs
-// Generated at: 2026-10-04T07:36:29.519Z
+// Generated at: 2026-10-04T08:32:56.361Z
 window.JXICH_MANIFESTS = {
   "dataset_manifest": {
     "manifest_version": "2026.10-v1.0",
@@ -147,7 +147,7 @@ window.JXICH_MANIFESTS = {
         "volume": "32 released source-linked triples（从37条候选中筛选，26条release-ready + 6条review-flagged）；引用29篇文献语料库，但语料库PDF本身未随附",
         "collection_date": "2026-06-28",
         "version": "v18.37（P12 附录数据包版本）",
-        "checksum": "sha256:b433e9d07a193c94377b47dcd62c7b213f9b6da4c486fc05fb7816e21fac9495",
+        "checksum": "sha256:ce29e9cc17fbbe0daf4b9c01b834dec7f35bc35ad601e939a91e9ad3d25c53ee",
         "annotation_schema": "triple_id, subject, predicate, object, evidence_summary, claim_category, evidence_role, source_priority, score, risk_status, release_status, official_source_id, provenance_status",
         "risk_level": "medium",
         "readiness": 85,
@@ -177,7 +177,7 @@ window.JXICH_MANIFESTS = {
         "volume": "3 objects / 8 images",
         "collection_date": "2026-07-04",
         "version": "v1.0-real-cc0-verified",
-        "checksum": "sha256:20fcb2e427ff5138640a67c140bdef23ccc81752dcbb0c84b5c222b0f51cbf9e",
+        "checksum": "sha256:80d80db131f79cf1e53ac5ba120580a95b23953a91606355c03fe991ba5bf8a6",
         "annotation_schema": "image_id, object_id(accession_no), event_id, capture_session_id, material, technique, rights_id",
         "risk_level": "low",
         "readiness": 92,
@@ -200,7 +200,7 @@ window.JXICH_MANIFESTS = {
           "history",
           "rights"
         ],
-        "analysis": "来自 Smithsonian Cooper Hewitt National Design Museum 的3件18-19世纪日本麻(hemp/bast fiber)相关藏品，共8张官方CC0高分辨率图像，于2026-10-04下载并重新计算SHA-256（非占位符，非pilot）。包含2件型纸(katagami，防染用镂空纸模：楮纸+柿涩染+丝线)与1件马被麻织物(umakake，478.8×64.8cm)实物共6张照片。重要限制：均为日本藏品，与江西夏布(中国苎麻)、韩国모시同属bast fiber材料系但地域工艺传统不同——应作为\"工艺相邻的独立真实对照数据集\"使用，不可替代或等同于JXICH-XB-001 江西夏布 pilot数据集。"
+        "analysis": "来自 Smithsonian Cooper Hewitt National Design Museum 的3件18-19世纪日本麻(hemp/bast fiber)相关藏品，共8张官方CC0高分辨率图像，于2026年7月下载并重新计算SHA-256（非占位符，非pilot）。包含2件型纸(katagami，防染用镂空纸模：楮纸+柿涩染+丝线)与1件马被麻织物(umakake，478.8×64.8cm)实物共6张照片。重要限制：均为日本藏品，与江西夏布(中国苎麻)、韩国모시同属bast fiber材料系但地域工艺传统不同——应作为\"工艺相邻的独立真实对照数据集\"使用，不可替代或等同于JXICH-XB-001 江西夏布 pilot数据集。"
       }
     ]
   },
@@ -327,7 +327,9 @@ window.JXICH_MANIFESTS = {
           "reviewed_by": "Yun Kyung Lee (curator)",
           "reviewed_at": "2026-10-04",
           "scope": "the 8 bundled images of Cooper Hewitt objects 1959-150-2, 1976-103-105 (katagami dyeing stencils) and 2001-2-1 (horse wrapping cloth, umakake)",
-          "finding": "no sacred, ritual-restricted or community-protected content identified; the CC0 license was not taken as evidence of cultural appropriateness"
+          "finding": "no sacred, ritual-restricted or community-protected content identified; the CC0 license was not taken as evidence of cultural appropriateness",
+          "external_consultation": "none recorded",
+          "evidence_file_id": "REVIEW-CHNDM-SENSITIVITY-20261004"
         },
         "cross_border_transfer_status": "unrestricted_public_domain",
         "expiry_date": "not_applicable_cc0_no_expiry",
@@ -450,6 +452,7 @@ window.JXICH_MANIFESTS = {
         "object": "MinjianXiuhuo_XiabuXiu",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU01",
+        "evidence_locator": "triple_id=IKU01",
         "confidence": 1,
         "review_status": "source_verified"
       },
@@ -461,6 +464,7 @@ window.JXICH_MANIFESTS = {
         "object": "NationalICHRepresentativeProject",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU02",
+        "evidence_locator": "triple_id=IKU02",
         "confidence": 1,
         "review_status": "source_verified"
       },
@@ -472,6 +476,7 @@ window.JXICH_MANIFESTS = {
         "object": "VII-77",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU03",
+        "evidence_locator": "triple_id=IKU03",
         "confidence": 1,
         "review_status": "source_verified"
       },
@@ -483,6 +488,7 @@ window.JXICH_MANIFESTS = {
         "object": "TraditionalFineArt",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU04",
+        "evidence_locator": "triple_id=IKU04",
         "confidence": 1,
         "review_status": "source_verified"
       },
@@ -494,6 +500,7 @@ window.JXICH_MANIFESTS = {
         "object": "XinyuCity_Jiangxi",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU05",
+        "evidence_locator": "triple_id=IKU05",
         "confidence": 1,
         "review_status": "source_verified"
       },
@@ -505,6 +512,7 @@ window.JXICH_MANIFESTS = {
         "object": "JiangxiYuzhouEmbroideryWorkshopCoLtd",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU06",
+        "evidence_locator": "triple_id=IKU06",
         "confidence": 0.9,
         "review_status": "source_verified"
       },
@@ -516,6 +524,7 @@ window.JXICH_MANIFESTS = {
         "object": "XiabuRamieCloth",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU07",
+        "evidence_locator": "triple_id=IKU07",
         "confidence": 0.9,
         "review_status": "source_verified"
       },
@@ -527,6 +536,7 @@ window.JXICH_MANIFESTS = {
         "object": "JiangxiRamieRegion",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU08",
+        "evidence_locator": "triple_id=IKU08",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -538,6 +548,7 @@ window.JXICH_MANIFESTS = {
         "object": "NorthernSongOrigin",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU09",
+        "evidence_locator": "triple_id=IKU09",
         "confidence": 0.7,
         "review_status": "expert_review_required"
       },
@@ -549,6 +560,7 @@ window.JXICH_MANIFESTS = {
         "object": "WomenCraftCommunity",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU10",
+        "evidence_locator": "triple_id=IKU10",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -560,6 +572,7 @@ window.JXICH_MANIFESTS = {
         "object": "Softening",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU11",
+        "evidence_locator": "triple_id=IKU11",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -571,6 +584,7 @@ window.JXICH_MANIFESTS = {
         "object": "HeatIroning",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU12",
+        "evidence_locator": "triple_id=IKU12",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -582,6 +596,7 @@ window.JXICH_MANIFESTS = {
         "object": "Sketching",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU13",
+        "evidence_locator": "triple_id=IKU13",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -593,6 +608,7 @@ window.JXICH_MANIFESTS = {
         "object": "FrameMounting",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU14",
+        "evidence_locator": "triple_id=IKU14",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -604,6 +620,7 @@ window.JXICH_MANIFESTS = {
         "object": "ThreadMatching",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU15",
+        "evidence_locator": "triple_id=IKU15",
         "confidence": 0.7,
         "review_status": "source_verified"
       },
@@ -615,6 +632,7 @@ window.JXICH_MANIFESTS = {
         "object": "StitchTechnique",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU16",
+        "evidence_locator": "triple_id=IKU16",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -626,6 +644,7 @@ window.JXICH_MANIFESTS = {
         "object": "VoidSolidStitch",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU17",
+        "evidence_locator": "triple_id=IKU17",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -637,6 +656,7 @@ window.JXICH_MANIFESTS = {
         "object": "LayeredStitchRepertoire",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU18",
+        "evidence_locator": "triple_id=IKU18",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -648,6 +668,7 @@ window.JXICH_MANIFESTS = {
         "object": "LineRhythm",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU19",
+        "evidence_locator": "triple_id=IKU19",
         "confidence": 0.7,
         "review_status": "source_verified"
       },
@@ -659,6 +680,7 @@ window.JXICH_MANIFESTS = {
         "object": "SubduedPalette",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU20",
+        "evidence_locator": "triple_id=IKU20",
         "confidence": 0.7,
         "review_status": "source_verified"
       },
@@ -670,6 +692,7 @@ window.JXICH_MANIFESTS = {
         "object": "VoidSolidAmbiguity",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU21",
+        "evidence_locator": "triple_id=IKU21",
         "confidence": 0.7,
         "review_status": "source_verified"
       },
@@ -681,6 +704,7 @@ window.JXICH_MANIFESTS = {
         "object": "InkWashFlavor",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU22",
+        "evidence_locator": "triple_id=IKU22",
         "confidence": 0.7,
         "review_status": "expert_review_required"
       },
@@ -692,6 +716,7 @@ window.JXICH_MANIFESTS = {
         "object": "FamilyAndCommunityMentorship",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU23",
+        "evidence_locator": "triple_id=IKU23",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -703,6 +728,7 @@ window.JXICH_MANIFESTS = {
         "object": "WomenEmployment",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU24",
+        "evidence_locator": "triple_id=IKU24",
         "confidence": 0.6,
         "review_status": "expert_review_required"
       },
@@ -714,6 +740,7 @@ window.JXICH_MANIFESTS = {
         "object": "ZhangXiaohong",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU25",
+        "evidence_locator": "triple_id=IKU25",
         "confidence": 0.9,
         "review_status": "source_verified"
       },
@@ -725,6 +752,7 @@ window.JXICH_MANIFESTS = {
         "object": "TrainingWorkshop",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU26",
+        "evidence_locator": "triple_id=IKU26",
         "confidence": 0.6,
         "review_status": "expert_review_required"
       },
@@ -736,6 +764,7 @@ window.JXICH_MANIFESTS = {
         "object": "XiabuEmbroidery",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU27",
+        "evidence_locator": "triple_id=IKU27",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -747,6 +776,7 @@ window.JXICH_MANIFESTS = {
         "object": "Breathability",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU28",
+        "evidence_locator": "triple_id=IKU28",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -758,6 +788,7 @@ window.JXICH_MANIFESTS = {
         "object": "XiabuWeavingWorkflow",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU29",
+        "evidence_locator": "triple_id=IKU29",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -769,6 +800,7 @@ window.JXICH_MANIFESTS = {
         "object": "ContemporaryProductiveProtection",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU30",
+        "evidence_locator": "triple_id=IKU30",
         "confidence": 0.6,
         "review_status": "expert_review_required"
       },
@@ -780,6 +812,7 @@ window.JXICH_MANIFESTS = {
         "object": "ICHPlusModernLife",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU31",
+        "evidence_locator": "triple_id=IKU31",
         "confidence": 0.5,
         "review_status": "expert_review_required"
       },
@@ -791,6 +824,7 @@ window.JXICH_MANIFESTS = {
         "object": "XiabuWeaving",
         "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
         "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU32",
+        "evidence_locator": "triple_id=IKU32",
         "confidence": 0.8,
         "review_status": "source_verified"
       },
@@ -872,7 +906,7 @@ window.JXICH_MANIFESTS = {
         "file_name": "dtd_official_page_snapshot_20260703.html",
         "sha256": "sha256:illustrative-not-computed",
         "verification_status": "verified",
-        "verified_by": "source_audit",
+        "verified_by": "illustrative_placeholder_no_recorded_review",
         "verified_at": "2026-07-03T00:00:00+08:00",
         "permission_scope": [
           "research_metadata"
@@ -889,7 +923,7 @@ window.JXICH_MANIFESTS = {
         "file_name": "fashionpedia_terms_snapshot_20260703.html",
         "sha256": "sha256:illustrative-not-computed",
         "verification_status": "verified",
-        "verified_by": "source_audit",
+        "verified_by": "illustrative_placeholder_no_recorded_review",
         "verified_at": "2026-07-03T00:00:00+08:00",
         "permission_scope": [
           "research_metadata",
@@ -973,6 +1007,22 @@ window.JXICH_MANIFESTS = {
         "source_file_present": true,
         "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json",
         "source_file_note": "real_file — the three Smithsonian Open Access API records (edanmdm:chndm_1959-150-2, chndm_1976-103-105, chndm_2001-2-1) retrieved 2026-10-04 and combined into one file under a short header (each API response is kept unchanged under records[]); each states metadata and media usage access = CC0 (31,109 bytes)"
+      },
+      {
+        "evidence_file_id": "REVIEW-CHNDM-SENSITIVITY-20261004",
+        "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+        "evidence_type": "cultural_sensitivity_review_record",
+        "evidence_role": "sensitivity_review",
+        "file_name": "sensitivity_review_20261004.md",
+        "sha256": "sha256:fdaca50629cbb9f29c61266ca922ddbb3bdba2ece4a00f7307ae366052620fbe",
+        "verification_status": "verified",
+        "verified_by": "direct_sha256_recomputation",
+        "verified_at": "2026-10-04T00:00:00+08:00",
+        "permission_scope": [],
+        "expiry_date": "not_applicable",
+        "source_file_present": true,
+        "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/sensitivity_review_20261004.md",
+        "source_file_note": "the author's own review as curator (not independent), stored as a file so the gate can check it exists and is unchanged"
       },
       {
         "evidence_file_id": "SRC-CHNDM-1959-150-2-KATAGAMI",
@@ -1299,13 +1349,13 @@ window.JXICH_MANIFESTS = {
   },
   "checksum_manifest": {
     "manifest_version": "2026.10-v1.0",
-    "generated_at": "2026-10-04T07:36:29.400Z",
+    "generated_at": "2026-10-04T08:32:56.317Z",
     "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
     "files": [
       {
         "path": "data/dataset_manifest.json",
-        "sha256": "sha256:83e02da1e5ac1839dab01787858e285021d67c89cb026a56436062182c484fdc",
-        "bytes": 8459,
+        "sha256": "sha256:a1a4e2206017a37aa11f06ad933af095cea9c469fce1a1e7362fbf2a23f2bea5",
+        "bytes": 8460,
         "role": "core_manifest"
       },
       {
@@ -1316,14 +1366,14 @@ window.JXICH_MANIFESTS = {
       },
       {
         "path": "data/rights_manifest.json",
-        "sha256": "sha256:9002eddade9b2565dd61dffbb29946231b6d3305238580bcb2455e72a3e3fece",
-        "bytes": 4974,
+        "sha256": "sha256:ce6651e0fabfad604d5414d2c092a367ef73e3801c941acc5e4ed377a6214e00",
+        "bytes": 5089,
         "role": "core_manifest"
       },
       {
         "path": "data/evidence_manifest.json",
-        "sha256": "sha256:a5b99abb502ff5184083d442dd472d79dcc822ca7e1d202cd8ddfa848057692b",
-        "bytes": 14592,
+        "sha256": "sha256:24d8ff9754d27be29b9753a5a4a5e41a0eca22a74380f2dd30ffa0078492b2bc",
+        "bytes": 15531,
         "role": "core_manifest"
       },
       {
@@ -1340,8 +1390,8 @@ window.JXICH_MANIFESTS = {
       },
       {
         "path": "data/kg_claims.json",
-        "sha256": "sha256:99dba077053005a3f2bd50495c225ded93594679d538818f9905a7c97f169f6a",
-        "bytes": 16428,
+        "sha256": "sha256:00b8d4864470c29b003a187951a1f437985f0478c9d3915b81d2c51f1e126413",
+        "bytes": 17868,
         "role": "core_manifest"
       },
       {
@@ -1372,6 +1422,12 @@ window.JXICH_MANIFESTS = {
         "path": "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json",
         "sha256": "sha256:d317408d5f46a0e3ff41dc5bfe6a2441345e07dc121be921255da115c827a026",
         "bytes": 31109,
+        "role": "evidence_source"
+      },
+      {
+        "path": "data/public_dataset_sources/chndm_hemp_textile_jp/sensitivity_review_20261004.md",
+        "sha256": "sha256:fdaca50629cbb9f29c61266ca922ddbb3bdba2ece4a00f7307ae366052620fbe",
+        "bytes": 910,
         "role": "evidence_source"
       },
       {

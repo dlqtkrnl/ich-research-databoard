@@ -41,7 +41,7 @@
       "file_name": "dtd_official_page_snapshot_20260703.html",
       "sha256": "sha256:illustrative-not-computed",
       "verification_status": "verified",
-      "verified_by": "source_audit",
+      "verified_by": "illustrative_placeholder_no_recorded_review",
       "verified_at": "2026-07-03T00:00:00+08:00",
       "permission_scope": [
         "research_metadata"
@@ -58,7 +58,7 @@
       "file_name": "fashionpedia_terms_snapshot_20260703.html",
       "sha256": "sha256:illustrative-not-computed",
       "verification_status": "verified",
-      "verified_by": "source_audit",
+      "verified_by": "illustrative_placeholder_no_recorded_review",
       "verified_at": "2026-07-03T00:00:00+08:00",
       "permission_scope": [
         "research_metadata",
@@ -142,6 +142,22 @@
       "source_file_present": true,
       "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json",
       "source_file_note": "real_file — the three Smithsonian Open Access API records (edanmdm:chndm_1959-150-2, chndm_1976-103-105, chndm_2001-2-1) retrieved 2026-10-04 and combined into one file under a short header (each API response is kept unchanged under records[]); each states metadata and media usage access = CC0 (31,109 bytes)"
+    },
+    {
+      "evidence_file_id": "REVIEW-CHNDM-SENSITIVITY-20261004",
+      "dataset_id": "PUB-CHNDM-HEMP-JP-009",
+      "evidence_type": "cultural_sensitivity_review_record",
+      "evidence_role": "sensitivity_review",
+      "file_name": "sensitivity_review_20261004.md",
+      "sha256": "sha256:fdaca50629cbb9f29c61266ca922ddbb3bdba2ece4a00f7307ae366052620fbe",
+      "verification_status": "verified",
+      "verified_by": "direct_sha256_recomputation",
+      "verified_at": "2026-10-04T00:00:00+08:00",
+      "permission_scope": [],
+      "expiry_date": "not_applicable",
+      "source_file_present": true,
+      "source_file_path": "data/public_dataset_sources/chndm_hemp_textile_jp/sensitivity_review_20261004.md",
+      "source_file_note": "the author's own review as curator (not independent), stored as a file so the gate can check it exists and is unchanged"
     },
     {
       "evidence_file_id": "SRC-CHNDM-1959-150-2-KATAGAMI",

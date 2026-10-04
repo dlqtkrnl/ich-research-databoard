@@ -144,8 +144,26 @@ test("a missing or unrecognised cultural-sensitivity status holds the dataset at
     app.replaceState(baseState({ rights: [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", sensitive_culture_status: status, permission_scope: FULL_SCOPE }], evidenceFiles: [AUTHENTIC_PUB] }));
     assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "conditional", `status ${status}`);
   }
-  app.replaceState(baseState({ rights: [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", sensitive_culture_status: "reviewed_no_restriction", permission_scope: FULL_SCOPE }], evidenceFiles: [AUTHENTIC_PUB] }));
+  const review = { dataset_id: "DS-1", evidence_file_id: "REVIEW-1", evidence_role: "sensitivity_review", verification_status: "verified", sha256: "sha256:rev", source_file_present: true, permission_scope: [] };
+  app.replaceState(baseState({ rights: [{ ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", sensitive_culture_status: "reviewed_no_restriction", sensitive_culture_review: { reviewed_by: "curator", evidence_file_id: "REVIEW-1" }, permission_scope: FULL_SCOPE }], evidenceFiles: [AUTHENTIC_PUB, review] }));
   assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "pass");
+});
+
+test("a review status of reviewed_no_restriction clears step 8 only with the authentic review file it names", () => {
+  const dataset = { id: "DS-1", reuse_layers: [] };
+  const record = { ...CLEAR, dataset_id: "DS-1", rights_gate: "conditional", sensitive_culture_status: "reviewed_no_restriction", sensitive_culture_review: { reviewed_by: "curator", evidence_file_id: "REVIEW-1" }, permission_scope: FULL_SCOPE };
+  const review = { dataset_id: "DS-1", evidence_file_id: "REVIEW-1", evidence_role: "sensitivity_review", verification_status: "verified", sha256: "sha256:rev", source_file_present: true, permission_scope: [] };
+  const cases = [
+    [[AUTHENTIC_PUB], "no review file"],
+    [[AUTHENTIC_PUB, { ...review, source_file_present: false }], "placeholder review file"],
+    [[AUTHENTIC_PUB, { ...review, evidence_role: "content" }], "file without the review role"],
+    [[AUTHENTIC_PUB, { ...review, evidence_file_id: "REVIEW-2" }], "a review file the record does not name"],
+  ];
+  for (const [evidenceFiles, label] of cases) {
+    app.replaceState(baseState({ datasets: [dataset], selectedId: "DS-1", generation: { settings: { mode: "text-to-image" }, runs: [] }, rights: [record], evidenceFiles }));
+    assert.equal(app.rightsGate(app.rightsFor("DS-1")).gate, "conditional", label);
+    assert.equal(app.generationGate(app.findDataset("DS-1")).state, "blocked", label);
+  }
 });
 
 test("generation is refused without derivative permission for image-to-image, and while a sensitivity review is pending", () => {
@@ -308,6 +326,37 @@ test("only leakage that a move adds blocks it: earlier leakage neither blocks un
   assert.deepEqual(app.splitMove(samples, "B", "holdout").added, []);
   assert.equal(app.sampleLeakage(app.splitMove(samples, "B", "holdout").samples).pass, true);
   assert.deepEqual(app.splitMove([...samples, { dataset_id: "D", object_id: "OBJ-9", split: "eval" }], "C", "train").added, ["object_id:OBJ-9"]);
+});
+
+test("import cannot clear step 8: a forged review file is not authentic and a bundled review pointer is restored", () => {
+  const bundledEvidence = [{ evidence_file_id: "REVIEW-1", dataset_id: "DS-1", sha256: "sha256:rev", source_file_present: true, evidence_role: "sensitivity_review", verification_status: "verified", permission_scope: [] }];
+  const [forged] = app.reconcileImportedEvidence(bundledEvidence, [{ evidence_file_id: "REVIEW-X", dataset_id: "DS-2", sha256: "sha256:fake", source_file_present: true, evidence_role: "sensitivity_review", verification_status: "verified" }]);
+  assert.equal(forged.source_file_present, false);
+  const bundledRights = [{ dataset_id: "DS-1", sensitive_culture_status: "review_required", permission_scope: FULL_SCOPE }];
+  const [record] = app.reconcileImportedRights(bundledRights, [{ dataset_id: "DS-1", sensitive_culture_status: "reviewed_no_restriction", sensitive_culture_review: { evidence_file_id: "REVIEW-1" }, permission_scope: FULL_SCOPE }], bundledRights);
+  assert.equal(record.sensitive_culture_status, "review_required");
+  assert.equal("sensitive_culture_review" in record, false);
+});
+
+test("review entries may be an object or an array; null and non-object entries are ignored", () => {
+  const review = { dataset_id: "DS-1", evidence_file_id: "REVIEW-1", evidence_role: "sensitivity_review", verification_status: "verified", sha256: "sha256:rev", source_file_present: true };
+  const base = { dataset_id: "DS-1", sensitive_culture_status: "reviewed_no_restriction" };
+  assert.equal(app.sensitivityCleared({ ...base, sensitive_culture_review: [null, "x", 3, { evidence_file_id: "REVIEW-1" }] }, [review]), true);
+  assert.equal(app.sensitivityCleared({ ...base, sensitive_culture_review: [null, "REVIEW-1"] }, [review]), false);
+  assert.equal(app.sensitivityCleared({ ...base, sensitive_culture_review: null }, [review]), false);
+  assert.equal(app.sensitivityCleared({ ...base }, [review]), false);
+});
+
+test("a dataset whose sample rows already span several splits is not moved, so a per-sample split is kept", () => {
+  const samples = [
+    { dataset_id: "DTD", object_id: "T-1", split: "train" },
+    { dataset_id: "DTD", object_id: "E-1", split: "eval" },
+    { dataset_id: "OTHER", object_id: "O-1", split: "holdout" },
+  ];
+  const move = app.splitMove(samples, "DTD", "train");
+  assert.deepEqual(move.mixed, ["eval", "train"]);
+  assert.deepEqual(move.samples.map((sample) => sample.split), ["train", "eval", "holdout"]);
+  assert.deepEqual(app.splitMove(samples, "OTHER", "train").mixed, []);
 });
 
 test("an imported package with leaking samples is rejected, and blocked train/eval datasets are moved to holdout with their samples", () => {

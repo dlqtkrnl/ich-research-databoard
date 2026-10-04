@@ -30,6 +30,7 @@ const CANONICAL_FILES = [
   { path: "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv", role: "evidence_source" },
   { path: "data/kg_sources/LICENSE.md", role: "evidence_source" },
   { path: "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json", role: "evidence_source" },
+  { path: "data/public_dataset_sources/chndm_hemp_textile_jp/sensitivity_review_20261004.md", role: "evidence_source" },
   { path: "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_1959-150-2_katagami.jpg", role: "evidence_source" },
   { path: "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_1976-103-105_katagami.jpg", role: "evidence_source" },
   { path: "data/public_dataset_sources/chndm_hemp_textile_jp/chndm_2001-2-1_umakake_01.jpg", role: "evidence_source" },

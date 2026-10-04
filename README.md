@@ -67,8 +67,11 @@ passed (it expires at the end of that day, UTC) or one of the listed no-expiry v
 anything else, including a missing or malformed date, blocks. A `consent_form_id` other
 than `not_applicable` must name an authentic evidence file with that exact
 `evidence_file_id` and `evidence_role: "consent"` (a missing id blocks). `sensitive_culture_status` must be
-exactly `not_applicable` or `reviewed_no_restriction`; `review_required` or any other value caps
-the result at *conditional* and stops generation. The Generation Lab refuses
+exactly `not_applicable` or `reviewed_no_restriction`, and `reviewed_no_restriction` counts only when
+the review recorded in `sensitive_culture_review` names an authentic evidence file with
+`evidence_role: "sensitivity_review"`; `review_required` or any other value caps the result at
+*conditional* and stops generation. The Cooper Hewitt review is the author's own, as curator, and
+is stored as such in `sensitivity_review_20261004.md`. The Generation Lab refuses
 image-conditioned modes and source-copying reuse layers unless `derivative` is granted in
 the record and listed in an authentic rights file;
 `commercial`, `portrait_status` and `cross_border_transfer_status` are recorded and
@@ -98,7 +101,9 @@ UI reports the number of placeholder records explicitly.
 for example `object_id:XB-OBJ-07`, when one physical object, collection event, capture
 session or duplicate group appears in both train and eval. Moving a dataset to another split
 moves all of its sample rows, and the move is refused and logged if it would add such an
-overlap. An imported package whose sample rows overlap in this way is rejected, and an imported
+overlap. A dataset is the unit of assignment in the interface: a dataset whose sample rows
+already span several splits (such as an official benchmark split) is not moved, and its
+per-sample split is changed in `sample_manifest.json`. An imported package whose sample rows overlap in this way is rejected, and an imported
 train or eval assignment for a dataset the gate blocks is moved to holdout with its samples.
 
 **Audit hash-chain** (`createAuditEntry`, `verifyAuditChain`). Entries carry `sequence`,
@@ -116,7 +121,7 @@ a lightweight vocabulary and constraint checker, not an OWL / SHACL reasoner.
 
 **Checksums, two layers.** In the browser, `validateChecksumRegistry` only checks that
 registry entries are well-formed `sha256:<64 hex>` values. Byte-level integrity is
-checked by `scripts/hash_files.mjs --verify`, which re-reads the 20 registered files and
+checked by `scripts/hash_files.mjs --verify`, which re-reads the 21 registered files and
 recomputes their digests.
 
 ## Data model
@@ -130,7 +135,7 @@ recomputes their digests.
 | `evidence_manifest.json` | Evidence files: hash, verification status, `source_file_present` |
 | `split_manifest.json`, `sample_manifest.json` | Split assignments and sample-level split units |
 | `kg_claims.json` | 40 knowledge-graph claims with provenance |
-| `checksum_manifest.json` | SHA-256 registry for 20 manifests, schemas and evidence sources |
+| `checksum_manifest.json` | SHA-256 registry for 21 manifests, schemas and evidence sources |
 | `public_dataset_registry.json` | Reference metadata only (not loaded by the app) |
 
 `data/manifest_bundle.js` is generated from the JSON files so the app can run from
@@ -161,9 +166,13 @@ Notes on the real data:
 
 - **KG triples.** 26 of the 32 triples are `release_ready` in the source package and
   appear as `source_verified`. The other 6 are `review_flagged` and appear as
-  `expert_review_required`; they are released as-is and remain flagged. In the app each
-  triple points to the CSV as a whole; the per-triple source is in the CSV's
-  `official_source_id` column.
+  `expert_review_required`; they are released as-is and remain flagged. Each claim's
+  `evidence_locator` (`triple_id=IKU01`, ...) names its row in the CSV, where the
+  `official_source_id` column gives the source of that triple.
+- **Dataset checksums.** For a dataset with file-backed content, `checksum` is the SHA-256 of
+  its content-file digests as recorded (including the `sha256:` prefix), sorted, one per line,
+  each followed by a newline
+  (checked in `test/golden.test.js`). The other datasets carry placeholder values.
 - **Cooper Hewitt images.** All three objects are Japanese. They share the bast-fibre
   material family with Jiangxi ramie cloth but come from a different craft tradition, so
   they serve as a process-adjacent comparison set, not a substitute for Jiangxi data
@@ -174,7 +183,7 @@ Notes on the real data:
 - `JXICH-XB-001` is pilot data. Its dataset checksum is the placeholder
   `sha256:pilot-placeholder-...`, and `sample_manifest.json` holds 4 example rows for it against
   the manifest's target of 320 images and 42 records.
-- 5 of the 16 evidence records have `source_file_present: false`. Three of them keep the
+- 5 of the 17 evidence records have `source_file_present: false`. Three of them keep the
   status `verified` to demonstrate how the gate treats a reviewed record without a file; their
   digest is the marker `sha256:illustrative-not-computed`. Do not describe them as verified
   evidence.
@@ -193,7 +202,7 @@ Notes on the real data:
 
 ## Testing
 
-`npm test` runs 50 tests with Node's built-in test runner:
+`npm test` runs 55 tests with Node's built-in test runner:
 
 - `test/validation.test.js`: Rights Gate, audit hash-chain (including tamper detection),
   split leakage, schema, checksum registry and evidence authenticity, run against the

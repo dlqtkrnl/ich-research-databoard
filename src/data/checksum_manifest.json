@@ -1,12 +1,12 @@
 {
   "manifest_version": "2026.10-v1.0",
-  "generated_at": "2026-10-04T07:36:29.400Z",
+  "generated_at": "2026-10-04T08:32:56.317Z",
   "generated_by": "scripts/hash_files.mjs (Node crypto, byte-level SHA-256 of files on disk)",
   "files": [
     {
       "path": "data/dataset_manifest.json",
-      "sha256": "sha256:83e02da1e5ac1839dab01787858e285021d67c89cb026a56436062182c484fdc",
-      "bytes": 8459,
+      "sha256": "sha256:a1a4e2206017a37aa11f06ad933af095cea9c469fce1a1e7362fbf2a23f2bea5",
+      "bytes": 8460,
       "role": "core_manifest"
     },
     {
@@ -17,14 +17,14 @@
     },
     {
       "path": "data/rights_manifest.json",
-      "sha256": "sha256:9002eddade9b2565dd61dffbb29946231b6d3305238580bcb2455e72a3e3fece",
-      "bytes": 4974,
+      "sha256": "sha256:ce6651e0fabfad604d5414d2c092a367ef73e3801c941acc5e4ed377a6214e00",
+      "bytes": 5089,
       "role": "core_manifest"
     },
     {
       "path": "data/evidence_manifest.json",
-      "sha256": "sha256:a5b99abb502ff5184083d442dd472d79dcc822ca7e1d202cd8ddfa848057692b",
-      "bytes": 14592,
+      "sha256": "sha256:24d8ff9754d27be29b9753a5a4a5e41a0eca22a74380f2dd30ffa0078492b2bc",
+      "bytes": 15531,
       "role": "core_manifest"
     },
     {
@@ -41,8 +41,8 @@
     },
     {
       "path": "data/kg_claims.json",
-      "sha256": "sha256:99dba077053005a3f2bd50495c225ded93594679d538818f9905a7c97f169f6a",
-      "bytes": 16428,
+      "sha256": "sha256:00b8d4864470c29b003a187951a1f437985f0478c9d3915b81d2c51f1e126413",
+      "bytes": 17868,
       "role": "core_manifest"
     },
     {
@@ -73,6 +73,12 @@
       "path": "data/public_dataset_sources/chndm_hemp_textile_jp/smithsonian_open_access_records_20261004.json",
       "sha256": "sha256:d317408d5f46a0e3ff41dc5bfe6a2441345e07dc121be921255da115c827a026",
       "bytes": 31109,
+      "role": "evidence_source"
+    },
+    {
+      "path": "data/public_dataset_sources/chndm_hemp_textile_jp/sensitivity_review_20261004.md",
+      "sha256": "sha256:fdaca50629cbb9f29c61266ca922ddbb3bdba2ece4a00f7307ae366052620fbe",
+      "bytes": 910,
       "role": "evidence_source"
     },
     {

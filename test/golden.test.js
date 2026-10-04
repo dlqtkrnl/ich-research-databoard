@@ -33,8 +33,19 @@ test("the bundled datasets produce the gate results reported in Table 2", () => 
   assert.equal(app.validateSampleLeakage().pass, true);
 });
 
-test("16 evidence records ship with the release, 11 of them authentic", () => {
+test("17 evidence records ship with the release, 12 of them authentic", () => {
   const state = app.replaceState(app.createInitialState());
-  assert.equal(state.evidenceFiles.length, 16);
-  assert.equal(state.evidenceFiles.filter((file) => file.verification_status === "verified" && file.source_file_present === true).length, 11);
+  assert.equal(state.evidenceFiles.length, 17);
+  assert.equal(state.evidenceFiles.filter((file) => file.verification_status === "verified" && file.source_file_present === true).length, 12);
+});
+
+// A dataset checksum is the SHA-256 of its file-backed content digests, sorted, one "sha256:<hex>" per line.
+test("dataset checksums of the file-backed datasets follow the documented definition", () => {
+  const crypto = require("node:crypto");
+  const state = app.replaceState(app.createInitialState());
+  for (const id of ["JXICH-XBEMB-KG-P12", "PUB-CHNDM-HEMP-JP-009"]) {
+    const digests = state.evidenceFiles.filter((file) => file.dataset_id === id && file.evidence_role === "content" && file.source_file_present === true).map((file) => file.sha256).sort();
+    const expected = "sha256:" + crypto.createHash("sha256").update(digests.map((digest) => `${digest}\n`).join("")).digest("hex");
+    assert.equal(app.findDataset(id).checksum, expected, id);
+  }
 });

@@ -64,6 +64,7 @@
       "object": "MinjianXiuhuo_XiabuXiu",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU01",
+      "evidence_locator": "triple_id=IKU01",
       "confidence": 1.0,
       "review_status": "source_verified"
     },
@@ -75,6 +76,7 @@
       "object": "NationalICHRepresentativeProject",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU02",
+      "evidence_locator": "triple_id=IKU02",
       "confidence": 1.0,
       "review_status": "source_verified"
     },
@@ -86,6 +88,7 @@
       "object": "VII-77",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU03",
+      "evidence_locator": "triple_id=IKU03",
       "confidence": 1.0,
       "review_status": "source_verified"
     },
@@ -97,6 +100,7 @@
       "object": "TraditionalFineArt",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU04",
+      "evidence_locator": "triple_id=IKU04",
       "confidence": 1.0,
       "review_status": "source_verified"
     },
@@ -108,6 +112,7 @@
       "object": "XinyuCity_Jiangxi",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU05",
+      "evidence_locator": "triple_id=IKU05",
       "confidence": 1.0,
       "review_status": "source_verified"
     },
@@ -119,6 +124,7 @@
       "object": "JiangxiYuzhouEmbroideryWorkshopCoLtd",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU06",
+      "evidence_locator": "triple_id=IKU06",
       "confidence": 0.9,
       "review_status": "source_verified"
     },
@@ -130,6 +136,7 @@
       "object": "XiabuRamieCloth",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU07",
+      "evidence_locator": "triple_id=IKU07",
       "confidence": 0.9,
       "review_status": "source_verified"
     },
@@ -141,6 +148,7 @@
       "object": "JiangxiRamieRegion",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU08",
+      "evidence_locator": "triple_id=IKU08",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -152,6 +160,7 @@
       "object": "NorthernSongOrigin",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU09",
+      "evidence_locator": "triple_id=IKU09",
       "confidence": 0.7,
       "review_status": "expert_review_required"
     },
@@ -163,6 +172,7 @@
       "object": "WomenCraftCommunity",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU10",
+      "evidence_locator": "triple_id=IKU10",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -174,6 +184,7 @@
       "object": "Softening",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU11",
+      "evidence_locator": "triple_id=IKU11",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -185,6 +196,7 @@
       "object": "HeatIroning",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU12",
+      "evidence_locator": "triple_id=IKU12",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -196,6 +208,7 @@
       "object": "Sketching",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU13",
+      "evidence_locator": "triple_id=IKU13",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -207,6 +220,7 @@
       "object": "FrameMounting",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU14",
+      "evidence_locator": "triple_id=IKU14",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -218,6 +232,7 @@
       "object": "ThreadMatching",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU15",
+      "evidence_locator": "triple_id=IKU15",
       "confidence": 0.7,
       "review_status": "source_verified"
     },
@@ -229,6 +244,7 @@
       "object": "StitchTechnique",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU16",
+      "evidence_locator": "triple_id=IKU16",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -240,6 +256,7 @@
       "object": "VoidSolidStitch",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU17",
+      "evidence_locator": "triple_id=IKU17",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -251,6 +268,7 @@
       "object": "LayeredStitchRepertoire",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU18",
+      "evidence_locator": "triple_id=IKU18",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -262,6 +280,7 @@
       "object": "LineRhythm",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU19",
+      "evidence_locator": "triple_id=IKU19",
       "confidence": 0.7,
       "review_status": "source_verified"
     },
@@ -273,6 +292,7 @@
       "object": "SubduedPalette",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU20",
+      "evidence_locator": "triple_id=IKU20",
       "confidence": 0.7,
       "review_status": "source_verified"
     },
@@ -284,6 +304,7 @@
       "object": "VoidSolidAmbiguity",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU21",
+      "evidence_locator": "triple_id=IKU21",
       "confidence": 0.7,
       "review_status": "source_verified"
     },
@@ -295,6 +316,7 @@
       "object": "InkWashFlavor",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU22",
+      "evidence_locator": "triple_id=IKU22",
       "confidence": 0.7,
       "review_status": "expert_review_required"
     },
@@ -306,6 +328,7 @@
       "object": "FamilyAndCommunityMentorship",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU23",
+      "evidence_locator": "triple_id=IKU23",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -317,6 +340,7 @@
       "object": "WomenEmployment",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU24",
+      "evidence_locator": "triple_id=IKU24",
       "confidence": 0.6,
       "review_status": "expert_review_required"
     },
@@ -328,6 +352,7 @@
       "object": "ZhangXiaohong",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU25",
+      "evidence_locator": "triple_id=IKU25",
       "confidence": 0.9,
       "review_status": "source_verified"
     },
@@ -339,6 +364,7 @@
       "object": "TrainingWorkshop",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU26",
+      "evidence_locator": "triple_id=IKU26",
       "confidence": 0.6,
       "review_status": "expert_review_required"
     },
@@ -350,6 +376,7 @@
       "object": "XiabuEmbroidery",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU27",
+      "evidence_locator": "triple_id=IKU27",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -361,6 +388,7 @@
       "object": "Breathability",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU28",
+      "evidence_locator": "triple_id=IKU28",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -372,6 +400,7 @@
       "object": "XiabuWeavingWorkflow",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU29",
+      "evidence_locator": "triple_id=IKU29",
       "confidence": 0.8,
       "review_status": "source_verified"
     },
@@ -383,6 +412,7 @@
       "object": "ContemporaryProductiveProtection",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU30",
+      "evidence_locator": "triple_id=IKU30",
       "confidence": 0.6,
       "review_status": "expert_review_required"
     },
@@ -394,6 +424,7 @@
       "object": "ICHPlusModernLife",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU31",
+      "evidence_locator": "triple_id=IKU31",
       "confidence": 0.5,
       "review_status": "expert_review_required"
     },
@@ -405,6 +436,7 @@
       "object": "XiabuWeaving",
       "evidence_id": "SRC-XBEMB-KG-P12-TRIPLES32",
       "source_url": "data/kg_sources/xiabu_embroidery_p12_source_linked_triples_32.csv#IKU32",
+      "evidence_locator": "triple_id=IKU32",
       "confidence": 0.8,
       "review_status": "source_verified"
     },

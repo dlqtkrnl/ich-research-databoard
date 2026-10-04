@@ -131,6 +131,7 @@
 
     // Alerts and confirmations
     "alert.evalLocked": { en: "The eval set is locked. To change it, first create a new split version in the research record.", zh: "评测集已锁定。若要修改，请先在研究记录中创建新的 split 版本。" },
+    "alert.splitMixed": { en: "This dataset's sample rows are already divided between splits ({splits}), for example by an official benchmark split. Change them per sample in sample_manifest.json; the split was not changed.", zh: "该数据集的样本行已分属不同分割（{splits}），例如官方基准分割。请在 sample_manifest.json 中按样本修改；分割未更改。" },
     "alert.splitLeakage": { en: "This move would put the same object, collection event, capture session or duplicate group in both train and eval ({detail}). The split was not changed.", zh: "此操作会使同一对象、采集事件、拍摄场次或重复组同时出现在训练集和评测集中（{detail}）。分割未更改。" },
     "alert.gateBlocked": { en: "The Rights Gate has not passed, so this dataset cannot enter train or eval. Add research authorization first.", zh: "Rights Gate 未通过，不能进入训练集或评测集。请先补齐研究授权。" },
     "alert.inheritor": { en: "Inheritor-related reuse requires full consent, portrait / personal-data review and public-display permission.", zh: "传承人相关复用需要完整授权、肖像/个人信息复核与公开展示许可。" },
@@ -150,6 +151,7 @@
     "gate.reason.noConsent": { en: "Required consent is not backed by an authentic evidence file", zh: "所需同意书没有 authentic evidence file 支撑" },
     "gate.reason.sensitiveReview": { en: "Cultural-sensitivity review is still required", zh: "仍需文化敏感性审查" },
     "gate.reason.expiryUnresolved": { en: "The rights record has no valid expiry date (expected YYYY-MM-DD or not_applicable)", zh: "权利记录没有有效的到期日期（应为 YYYY-MM-DD 或 not_applicable）" },
+    "gate.reason.sensitiveNoFile": { en: "The cultural-sensitivity review is recorded but not stored as an authentic review file", zh: "文化敏感性审查已记录，但未作为 authentic 审查文件保存" },
     "gate.reason.sensitiveUnknown": { en: "Cultural-sensitivity status is missing or not recognised", zh: "文化敏感性状态缺失或无法识别" },
     "gate.reason.conditional": { en: "Research evidence available; publication / demo evidence insufficient", zh: "研究证据可用；公开发布/演示证据不足" },
     "gate.reason.pass": { en: "Permission scope matches the authentic evidence files", zh: "权利范围与 authentic evidence file 一致" },

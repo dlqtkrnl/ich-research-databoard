@@ -142,7 +142,7 @@
       "volume": "32 released source-linked triples（从37条候选中筛选，26条release-ready + 6条review-flagged）；引用29篇文献语料库，但语料库PDF本身未随附",
       "collection_date": "2026-06-28",
       "version": "v18.37（P12 附录数据包版本）",
-      "checksum": "sha256:b433e9d07a193c94377b47dcd62c7b213f9b6da4c486fc05fb7816e21fac9495",
+      "checksum": "sha256:ce29e9cc17fbbe0daf4b9c01b834dec7f35bc35ad601e939a91e9ad3d25c53ee",
       "annotation_schema": "triple_id, subject, predicate, object, evidence_summary, claim_category, evidence_role, source_priority, score, risk_status, release_status, official_source_id, provenance_status",
       "risk_level": "medium",
       "readiness": 85,
@@ -172,7 +172,7 @@
       "volume": "3 objects / 8 images",
       "collection_date": "2026-07-04",
       "version": "v1.0-real-cc0-verified",
-      "checksum": "sha256:20fcb2e427ff5138640a67c140bdef23ccc81752dcbb0c84b5c222b0f51cbf9e",
+      "checksum": "sha256:80d80db131f79cf1e53ac5ba120580a95b23953a91606355c03fe991ba5bf8a6",
       "annotation_schema": "image_id, object_id(accession_no), event_id, capture_session_id, material, technique, rights_id",
       "risk_level": "low",
       "readiness": 92,
@@ -195,7 +195,7 @@
         "history",
         "rights"
       ],
-      "analysis": "来自 Smithsonian Cooper Hewitt National Design Museum 的3件18-19世纪日本麻(hemp/bast fiber)相关藏品，共8张官方CC0高分辨率图像，于2026-10-04下载并重新计算SHA-256（非占位符，非pilot）。包含2件型纸(katagami，防染用镂空纸模：楮纸+柿涩染+丝线)与1件马被麻织物(umakake，478.8×64.8cm)实物共6张照片。重要限制：均为日本藏品，与江西夏布(中国苎麻)、韩国모시同属bast fiber材料系但地域工艺传统不同——应作为\"工艺相邻的独立真实对照数据集\"使用，不可替代或等同于JXICH-XB-001 江西夏布 pilot数据集。"
+      "analysis": "来自 Smithsonian Cooper Hewitt National Design Museum 的3件18-19世纪日本麻(hemp/bast fiber)相关藏品，共8张官方CC0高分辨率图像，于2026年7月下载并重新计算SHA-256（非占位符，非pilot）。包含2件型纸(katagami，防染用镂空纸模：楮纸+柿涩染+丝线)与1件马被麻织物(umakake，478.8×64.8cm)实物共6张照片。重要限制：均为日本藏品，与江西夏布(中国苎麻)、韩国모시同属bast fiber材料系但地域工艺传统不同——应作为\"工艺相邻的独立真实对照数据集\"使用，不可替代或等同于JXICH-XB-001 江西夏布 pilot数据集。"
     }
   ]
 }
