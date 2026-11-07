@@ -1,0 +1,61 @@
+{
+  "node": "v22.23.4",
+  "platform": "linux-x64",
+  "repeats": 7,
+  "rows": [
+    {
+      "sample_rows": 1000,
+      "datasets": 10,
+      "audit_entries": 1000,
+      "leakage_check_ms": 0.25,
+      "split_move_ms": 0.52,
+      "rights_gate_all_datasets_ms": 0.08,
+      "gate_results": {
+        "conditional": 6,
+        "pass": 2,
+        "blocked": 2
+      },
+      "audit_chain_verify_ms": 9.6,
+      "serialize_state_ms": 1.2,
+      "state_without_log_chars": 231414,
+      "audit_log_chars_per_entry": 304,
+      "stored_state_chars": 535030
+    },
+    {
+      "sample_rows": 10000,
+      "datasets": 100,
+      "audit_entries": 10000,
+      "leakage_check_ms": 4.02,
+      "split_move_ms": 4.2,
+      "rights_gate_all_datasets_ms": 0.48,
+      "gate_results": {
+        "conditional": 54,
+        "pass": 26,
+        "blocked": 20
+      },
+      "audit_chain_verify_ms": 97.2,
+      "serialize_state_ms": 9.7,
+      "state_without_log_chars": 2361526,
+      "audit_log_chars_per_entry": 307,
+      "stored_state_chars": 5428145
+    },
+    {
+      "sample_rows": 100000,
+      "datasets": 1000,
+      "audit_entries": 100000,
+      "leakage_check_ms": 37.21,
+      "split_move_ms": 76.11,
+      "rights_gate_all_datasets_ms": 14.74,
+      "gate_results": {
+        "conditional": 534,
+        "pass": 266,
+        "blocked": 200
+      },
+      "audit_chain_verify_ms": 1047.8,
+      "serialize_state_ms": 122.6,
+      "state_without_log_chars": 24112132,
+      "audit_log_chars_per_entry": 310,
+      "stored_state_chars": 55078754
+    }
+  ]
+}

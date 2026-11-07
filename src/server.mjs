@@ -181,7 +181,15 @@ function serveStatic(req, res, url) {
   }
 }
 
+// The server holds rights and consent records and has no authentication, so it answers only requests addressed
+// to this machine by name. A web page on another origin that rebinds its own host name to 127.0.0.1 (DNS rebinding)
+// sends its own name in the Host header and is refused. Set ALLOWED_HOSTS (comma-separated host:port) to extend this.
+const ALLOWED_HOSTS = new Set([`127.0.0.1:${PORT}`, `localhost:${PORT}`, `[::1]:${PORT}`, `${HOST}:${PORT}`,
+  ...String(process.env.ALLOWED_HOSTS || "").split(",").map((value) => value.trim()).filter(Boolean)]);
+
 const server = createServer((req, res) => {
+  // Applies to static files too: evidence files (e.g. consent forms) are served from src/data.
+  if (!ALLOWED_HOSTS.has(String(req.headers.host || "").toLowerCase())) { sendJson(res, 403, { error: "host_not_allowed" }); return; }
   const url = new URL(req.url, `http://${req.headers.host || `${HOST}:${PORT}`}`);
   if (url.pathname.startsWith("/api/")) {
     handleApi(req, res, url).catch((error) => {

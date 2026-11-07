@@ -1,0 +1,56 @@
+{
+  "images": 8,
+  "copies": 40,
+  "copy_to_source_bits": {
+    "max": 22,
+    "mean": 5.8
+  },
+  "same_object_view_bits": {
+    "chndm_2001-2-1_umakake_01~chndm_2001-2-1_umakake_02": 26,
+    "chndm_2001-2-1_umakake_01~chndm_2001-2-1_umakake_03": 32,
+    "chndm_2001-2-1_umakake_01~chndm_2001-2-1_umakake_04": 44,
+    "chndm_2001-2-1_umakake_01~chndm_2001-2-1_umakake_05": 32,
+    "chndm_2001-2-1_umakake_01~chndm_2001-2-1_umakake_06": 32,
+    "chndm_2001-2-1_umakake_02~chndm_2001-2-1_umakake_03": 24,
+    "chndm_2001-2-1_umakake_02~chndm_2001-2-1_umakake_04": 40,
+    "chndm_2001-2-1_umakake_02~chndm_2001-2-1_umakake_05": 34,
+    "chndm_2001-2-1_umakake_02~chndm_2001-2-1_umakake_06": 32,
+    "chndm_2001-2-1_umakake_03~chndm_2001-2-1_umakake_04": 28,
+    "chndm_2001-2-1_umakake_03~chndm_2001-2-1_umakake_05": 30,
+    "chndm_2001-2-1_umakake_03~chndm_2001-2-1_umakake_06": 32,
+    "chndm_2001-2-1_umakake_04~chndm_2001-2-1_umakake_05": 28,
+    "chndm_2001-2-1_umakake_04~chndm_2001-2-1_umakake_06": 30,
+    "chndm_2001-2-1_umakake_05~chndm_2001-2-1_umakake_06": 32
+  },
+  "different_object_min_bits": 20,
+  "thresholds": [
+    {
+      "T": 6,
+      "copies_grouped_with_source": "25/40",
+      "groups": 23,
+      "groups_spanning_objects": 0,
+      "views_of_2001-2-1_grouped_together": []
+    },
+    {
+      "T": 10,
+      "copies_grouped_with_source": "29/40",
+      "groups": 19,
+      "groups_spanning_objects": 0,
+      "views_of_2001-2-1_grouped_together": []
+    },
+    {
+      "T": 14,
+      "copies_grouped_with_source": "35/40",
+      "groups": 13,
+      "groups_spanning_objects": 0,
+      "views_of_2001-2-1_grouped_together": []
+    },
+    {
+      "T": 18,
+      "copies_grouped_with_source": "38/40",
+      "groups": 8,
+      "groups_spanning_objects": 1,
+      "views_of_2001-2-1_grouped_together": []
+    }
+  ]
+}

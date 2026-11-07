@@ -55,8 +55,8 @@ identifiers:
 repository-code: "https://github.com/dlqtkrnl/ich-research-databoard"
 # date-released and version should be set to match the tag/Release that
 # Zenodo archives (see ARCHIVING.md). Update at release time.
-date-released: "2026-10-04"
-version: "1.0.7"
+date-released: "2026-11-07"
+version: "1.0.8"
 keywords:
   - intangible-cultural-heritage
   - data-governance

@@ -16,6 +16,8 @@ const STORAGE_HEALTH_TIMEOUT_MS = 400;
 const Storage = {
   serverAvailable: false,
   probed: false,
+  lastWriteError: null,
+  lastServerWriteError: null,
   // Fast, bounded feature-detect for the optional server. Never throws; any failure
   // (no server running, file:// origin, timeout) just leaves serverAvailable false and
   // every subsequent call transparently falls back to localStorage.
@@ -59,13 +61,16 @@ const Storage = {
   // depend on the network. If the server is reachable, the write is additionally
   // mirrored there in the background, best-effort; callers do not need to await this.
   set(key, value) {
-    try { localStorage.setItem(key, JSON.stringify(value)); } catch (error) { console.warn(`Storage.set: localStorage write failed for ${key}`, error); }
+    // A failed write (typically the browser's ~5 MB localStorage quota) is recorded in lastWriteError so the
+    // Overview can show that the current state is not saved in this browser, instead of failing silently.
+    try { localStorage.setItem(key, JSON.stringify(value)); this.lastWriteError = null; } catch (error) { this.lastWriteError = (error && error.name) || String(error); console.warn(`Storage.set: localStorage write failed for ${key}`, error); }
     if (this.serverAvailable) {
       fetch(`/api/state/${encodeURIComponent(key)}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(value),
-      }).catch((error) => { console.warn(`Storage.set: server mirror failed for ${key}`, error); this.serverAvailable = false; });
+      }).then((res) => { this.lastServerWriteError = res && res.ok ? null : `HTTP ${res ? res.status : "?"}`; })
+        .catch((error) => { console.warn(`Storage.set: server mirror failed for ${key}`, error); this.serverAvailable = false; this.lastServerWriteError = "unreachable"; });
     }
   },
   remove(key) {
@@ -908,7 +913,9 @@ function normalizeStoredState(stored) {
     validationRevision: VALIDATION_REVISION,
     version: needsValidationRefresh ? fresh.version : (stored.version || fresh.version),
     datasets: needsValidationRefresh ? fresh.datasets : mergeById(fresh.datasets, stored.datasets, "id"),
-    rights: needsValidationRefresh ? fresh.rights : mergeById(fresh.rights, stored.rights, "dataset_id"),
+    // Stored records otherwise take precedence, but a block or a narrowed scope in the bundled manifests (a revocation
+    // edited into rights_manifest.json) must win over a more permissive record saved in this browser.
+    rights: needsValidationRefresh ? fresh.rights : reconcileImportedRights(fresh.rights, mergeById(fresh.rights, stored.rights, "dataset_id"), fresh.rights),
     splits: needsValidationRefresh ? fresh.splits : mergeById(fresh.splits, stored.splits, "dataset_id"),
     kgClaims: needsValidationRefresh ? fresh.kgClaims : mergeById(fresh.kgClaims, stored.kgClaims, "claim_id"),
     evidenceFiles: needsValidationRefresh ? fresh.evidenceFiles : mergeById(fresh.evidenceFiles, stored.evidenceFiles, "evidence_file_id"),
@@ -1329,6 +1336,13 @@ function importResearchPackage(file) {
   reader.readAsText(file, "utf-8");
 }
 
+// Where the current state is saved. The server mirror is asynchronous, so its result reflects the previous write.
+function storageStatus() {
+  const browser = Storage.lastWriteError ? `browser NOT SAVED (${Storage.lastWriteError})` : "browser saved";
+  if (!Storage.serverAvailable && !Storage.lastServerWriteError) return Storage.lastWriteError ? `NOT SAVED (${Storage.lastWriteError})` : "saved in browser";
+  const server = Storage.lastServerWriteError ? `server NOT SAVED (${Storage.lastServerWriteError})` : "server saved";
+  return `${browser}; ${server}`;
+}
 function renderOverview() {
   if (!els.kpiGrid) return;
   const report = validatedPlatformReport();
@@ -1366,6 +1380,7 @@ function renderOverview() {
       [t("summary.pendingEvidence"), t("summary.count", { n: pendingEvidence })],
       [t("summary.holdout"), t("summary.count", { n: holdoutCount })],
       ["Audit hash-chain", verifyAuditChain().pass ? "verified" : "broken"],
+      ["Storage", storageStatus()],
     ];
     els.governanceSummary.innerHTML = items
       .map(([label, value]) => `<li><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></li>`)
@@ -1551,6 +1566,6 @@ if (typeof module !== "undefined" && module.exports) {
     generationGate, reconcileImportedEvidence, reconcileImportedRights, reconcileImportedSplits, validateImportedPackage, sampleLeakage, splitMove, setSplit, reuseGateState,
     findDataset, createRightsRecord, createInitialState, replaceState, getState,
     evidenceFor, verifiedEvidenceFor, authenticEvidenceFor, imageEvidenceFor,
-    normalizeStoredState, mergeById, Storage, loadState, loadInitialState,
+    normalizeStoredState, mergeById, Storage, loadState, loadInitialState, storageStatus,
   };
 }

@@ -1,0 +1,494 @@
+{
+  "objects": 2000,
+  "sample_rows": 20000,
+  "leak_fraction": 0.1,
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "results": [
+    {
+      "mode": "missing",
+      "rate": 0,
+      "keys": "object_id only",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 149,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0,
+      "keys": "object + event + session",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 419,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 717,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0.1,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.911,
+      "found_min": 0.875,
+      "alerts": 136,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0.1,
+      "keys": "object + event + session",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 381,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0.1,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 620,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0.3,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.721,
+      "found_min": 0.667,
+      "alerts": 107,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0.3,
+      "keys": "object + event + session",
+      "leaking_objects_found": 0.987,
+      "found_min": 0.98,
+      "alerts": 298,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0.3,
+      "keys": "all five keys",
+      "leaking_objects_found": 0.996,
+      "found_min": 0.993,
+      "alerts": 446,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0.5,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.495,
+      "found_min": 0.431,
+      "alerts": 74,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0.5,
+      "keys": "object + event + session",
+      "leaking_objects_found": 0.907,
+      "found_min": 0.885,
+      "alerts": 216,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "missing",
+      "rate": 0.5,
+      "keys": "all five keys",
+      "leaking_objects_found": 0.952,
+      "found_min": 0.932,
+      "alerts": 293,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0,
+      "keys": "object_id only",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 149,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0,
+      "keys": "object + event + session",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 419,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 717,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0.1,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.904,
+      "found_min": 0.887,
+      "alerts": 135,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0.1,
+      "keys": "object + event + session",
+      "leaking_objects_found": 0.904,
+      "found_min": 0.887,
+      "alerts": 380,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0.1,
+      "keys": "all five keys",
+      "leaking_objects_found": 0.904,
+      "found_min": 0.887,
+      "alerts": 650,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0.3,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.668,
+      "found_min": 0.635,
+      "alerts": 100,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0.3,
+      "keys": "object + event + session",
+      "leaking_objects_found": 0.668,
+      "found_min": 0.635,
+      "alerts": 286,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0.3,
+      "keys": "all five keys",
+      "leaking_objects_found": 0.668,
+      "found_min": 0.635,
+      "alerts": 485,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0.5,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.481,
+      "found_min": 0.444,
+      "alerts": 72,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0.5,
+      "keys": "object + event + session",
+      "leaking_objects_found": 0.481,
+      "found_min": 0.444,
+      "alerts": 207,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "session missing",
+      "rate": 0.5,
+      "keys": "all five keys",
+      "leaking_objects_found": 0.481,
+      "found_min": 0.444,
+      "alerts": 350,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0,
+      "keys": "object_id only",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 149,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0,
+      "keys": "object + event + session",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 419,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 717,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0.1,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.961,
+      "found_min": 0.944,
+      "alerts": 143,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0.1,
+      "keys": "object + event + session",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 413,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0.1,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 654,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0.3,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.984,
+      "found_min": 0.961,
+      "alerts": 147,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0.3,
+      "keys": "object + event + session",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 427,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0.3,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 599,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0.5,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.997,
+      "found_min": 0.988,
+      "alerts": 149,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0.5,
+      "keys": "object + event + session",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 432,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "inconsistent",
+      "rate": 0.5,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 581,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "wrong",
+      "rate": 0,
+      "keys": "object_id only",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 149,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "wrong",
+      "rate": 0,
+      "keys": "object + event + session",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 419,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "wrong",
+      "rate": 0,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 717,
+      "spurious_alerts": 0,
+      "clean_objects_falsely_flagged": 0
+    },
+    {
+      "mode": "wrong",
+      "rate": 0.1,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.918,
+      "found_min": 0.868,
+      "alerts": 706,
+      "spurious_alerts": 571,
+      "clean_objects_falsely_flagged": 0.569
+    },
+    {
+      "mode": "wrong",
+      "rate": 0.1,
+      "keys": "object + event + session",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 1752,
+      "spurious_alerts": 1375,
+      "clean_objects_falsely_flagged": 0.946
+    },
+    {
+      "mode": "wrong",
+      "rate": 0.1,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 3153,
+      "spurious_alerts": 2531,
+      "clean_objects_falsely_flagged": 0.985
+    },
+    {
+      "mode": "wrong",
+      "rate": 0.3,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.749,
+      "found_min": 0.709,
+      "alerts": 1287,
+      "spurious_alerts": 1183,
+      "clean_objects_falsely_flagged": 0.958
+    },
+    {
+      "mode": "wrong",
+      "rate": 0.3,
+      "keys": "object + event + session",
+      "leaking_objects_found": 0.989,
+      "found_min": 0.98,
+      "alerts": 2988,
+      "spurious_alerts": 2693,
+      "clean_objects_falsely_flagged": 1
+    },
+    {
+      "mode": "wrong",
+      "rate": 0.3,
+      "keys": "all five keys",
+      "leaking_objects_found": 1,
+      "found_min": 1,
+      "alerts": 5518,
+      "spurious_alerts": 5073,
+      "clean_objects_falsely_flagged": 1
+    },
+    {
+      "mode": "wrong",
+      "rate": 0.5,
+      "keys": "object_id only",
+      "leaking_objects_found": 0.552,
+      "found_min": 0.519,
+      "alerts": 1588,
+      "spurious_alerts": 1519,
+      "clean_objects_falsely_flagged": 0.999
+    },
+    {
+      "mode": "wrong",
+      "rate": 0.5,
+      "keys": "object + event + session",
+      "leaking_objects_found": 0.977,
+      "found_min": 0.965,
+      "alerts": 3580,
+      "spurious_alerts": 3372,
+      "clean_objects_falsely_flagged": 1
+    },
+    {
+      "mode": "wrong",
+      "rate": 0.5,
+      "keys": "all five keys",
+      "leaking_objects_found": 0.988,
+      "found_min": 0.974,
+      "alerts": 6683,
+      "spurious_alerts": 6394,
+      "clean_objects_falsely_flagged": 1
+    }
+  ]
+}

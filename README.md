@@ -201,10 +201,44 @@ Notes on the real data:
   convenience with no authentication (see [`docs/persistence-design.md`](./docs/persistence-design.md)).
 - Dataset names, categories and analyses in `data/*.json` are shown in their original
   language (mostly Chinese); only the interface is translated.
+- **What "authentic" means.** The gate checks that an evidence file is stored with the data and
+  unchanged since its digest was recorded. It cannot tell whether a consent form is genuine,
+  legally valid or signed by someone entitled to decide for a community; that judgement stays
+  with the curator and the community, and should itself be stored as an evidence file.
+- **Revocation, revision and conflicts.** Clearing a scope in the interface is logged and applies
+  from the next attempted use, but it stays in that browser profile (or the local server's
+  `state/`) and is not written back to `src/data/*.json`. A revocation meant for everyone is an edit
+  of the manifests (clear the scope or set `rights_gate: "blocked"`, register the revocation
+  document as evidence, rebuild the bundle); it is recorded in the repository history, not in the
+  browser hash-chain. Since v1.0.8 a block or narrowed scope in the bundled manifests overrides a
+  more permissive record saved in the browser on the next load, so a scope widened in the interface
+  beyond the bundled record does not survive a reload. There is no dedicated revocation status. When two authentic rights files disagree the
+  gate reads the union of their scopes, so the superseded file must be removed. Each rights record
+  names one consent form; collective consent with several signatories or roles is not modelled.
+- **Audit chain.** The local SHA-256 chain exposes edits to entries it holds. Anyone who can
+  rewrite the whole log can also recompute it, so replacement or deletion of the complete history
+  is not detected without an external anchor (an exported chain head, a timestamp, a signed
+  checkpoint or a second party). It assumes one curator writing at a time.
+- **Privacy and security.** Browser state and server files are stored unencrypted. The local
+  server binds to 127.0.0.1 by default (override with `HOST`), has no authentication and, since
+  v1.0.8, answers requests (API and static files) only when the Host header names this machine
+  (extend with `ALLOWED_HOSTS`), which blocks DNS-rebinding reads from other web pages. Do not commit consent
+  forms or other personal or community-sensitive files to a public repository; keep them in
+  access-controlled storage. Exported packages contain all rights and evidence records and should
+  be shared accordingly.
+- **Scale.** The application is intended for single curators and small teams that exchange
+  exported packages, one curator writing at a time. In the benchmarks (`benchmarks/`) the
+  leakage check, a split move and the rights gate each took under 0.1 s at 100,000 sample rows and verifying a 100,000-entry audit chain
+  about 1 s; interface rendering was not measured. Browser `localStorage` (about 5.2 million
+  characters in Chromium) holds about 20,000 sample rows with a short audit log, but only about
+  9,500 if every row has one logged action, and the log grows with every action. The local server
+  (10 MB per request) holds about twice as much. Larger collections should run the validators from
+  Node.js on the manifests. Since v1.0.8 a failed browser or server write is shown on the
+  Overview ("Storage: ... NOT SAVED").
 
 ## Testing
 
-`npm test` runs 57 tests with Node's built-in test runner:
+`npm test` runs 61 tests with Node's built-in test runner:
 
 - `test/validation.test.js`: Rights Gate, audit hash-chain (including tamper detection),
   split leakage, schema, checksum registry and evidence authenticity, run against the
@@ -214,14 +248,21 @@ Notes on the real data:
   bundled photographs of one Cooper Hewitt object across train and eval is caught.
 - `test/integrity.test.js`: fails if any registered file's bytes change, if any file-backed evidence record does not match its file, if
   `manifest_bundle.js` is stale, or if a KG claim breaks the vocabulary.
-- `test/storage-adapter.test.js`: the optional persistence adapter and its
-  `localStorage` fallback.
+- `test/storage-adapter.test.js`: the optional persistence adapter, its
+  `localStorage` fallback, and the visible status for a failed browser (over-quota) or server (HTTP error) write.
 - `test/i18n.test.js`: every interface string exists in both English and Chinese.
 - `test/state-migration.test.js`: stale browser state from an older revision is replaced
   by the bundled manifests, and the head of the discarded audit chain is recorded.
+- `test/manifest-revocation.test.js`: a block or narrowed scope in the bundled manifests
+  overrides a more permissive record saved in the browser.
+- `test/server-host.test.js`: the optional server refuses API and static requests addressed to
+  another host name.
 
 GitHub Actions runs the suite on Ubuntu and Windows with Node 22 and 24
 (`.github/workflows/ci.yml`).
+
+Scalability and leakage-robustness benchmarks, added for v1.0.8, are described in
+[`benchmarks/README.md`](./benchmarks/README.md) (`npm run bench:scale`, `npm run bench:leakage`).
 
 ## Project structure
 
@@ -258,7 +299,8 @@ See [`ARCHIVING.md`](./ARCHIVING.md) for the release and Zenodo archiving checkl
 
 If you use this software, please cite it using [`CITATION.cff`](./CITATION.cff).
 Archived on Zenodo: concept DOI (all versions)
-[10.5281/zenodo.23121468](https://doi.org/10.5281/zenodo.23121468); v1.0.7
+[10.5281/zenodo.23121468](https://doi.org/10.5281/zenodo.23121468); v1.0.8
+(DOI to be added at release); v1.0.7
 [10.5281/zenodo.23135299](https://doi.org/10.5281/zenodo.23135299); v1.0.6
 [10.5281/zenodo.23134086](https://doi.org/10.5281/zenodo.23134086); v1.0.5
 [10.5281/zenodo.23133327](https://doi.org/10.5281/zenodo.23133327); v1.0.4

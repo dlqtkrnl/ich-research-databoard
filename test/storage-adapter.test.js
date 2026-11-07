@@ -98,3 +98,36 @@ test("Storage.list falls back to jxich_-prefixed localStorage keys when the serv
   assert.ok(keys.includes("jxich_test_storage_list_a"));
   assert.ok(keys.every((key) => key.startsWith("jxich_")));
 });
+
+test("a localStorage write that fails (e.g. quota exceeded) is recorded in Storage.lastWriteError, and cleared by the next successful write", () => {
+  resetStorage();
+  const original = global.localStorage;
+  global.localStorage = { setItem: () => { const e = new Error("quota"); e.name = "QuotaExceededError"; throw e; }, getItem: () => null, removeItem: () => {} };
+  const warn = console.warn; console.warn = () => {};
+  try {
+    app.Storage.set("jxich_test_quota", { big: true });
+    assert.equal(app.Storage.lastWriteError, "QuotaExceededError");
+  } finally {
+    console.warn = warn;
+    global.localStorage = original;
+  }
+  app.Storage.set("jxich_test_quota", { big: false });
+  assert.equal(app.Storage.lastWriteError, null);
+});
+
+test("a server mirror rejected with an HTTP error (e.g. 413, state over 10 MB) is reported, not shown as saved", async () => {
+  resetStorage();
+  const originalFetch = global.fetch;
+  global.fetch = async () => ({ ok: false, status: 413 });
+  try {
+    app.Storage.serverAvailable = true;
+    app.Storage.set("jxich_test_server_reject", { big: true });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    assert.equal(app.Storage.lastServerWriteError, "HTTP 413");
+    assert.match(app.storageStatus(), /server NOT SAVED \(HTTP 413\)/);
+  } finally {
+    global.fetch = originalFetch;
+    app.Storage.serverAvailable = false;
+    app.Storage.lastServerWriteError = null;
+  }
+});

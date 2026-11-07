@@ -1,0 +1,1 @@
+{"browser": "153.0.8010.12", "rows": [{"n": 1000, "leakage_ms": 0.3, "chain_ms": 9.6}, {"n": 10000, "leakage_ms": 2.7, "chain_ms": 96.2}, {"n": 100000, "leakage_ms": 22.6, "chain_ms": 1081}]}
