@@ -300,7 +300,7 @@ See [`ARCHIVING.md`](./ARCHIVING.md) for the release and Zenodo archiving checkl
 If you use this software, please cite it using [`CITATION.cff`](./CITATION.cff).
 Archived on Zenodo: concept DOI (all versions)
 [10.5281/zenodo.23121468](https://doi.org/10.5281/zenodo.23121468); v1.0.8
-(DOI to be added at release); v1.0.7
+[10.5281/zenodo.24034239](https://doi.org/10.5281/zenodo.24034239); v1.0.7
 [10.5281/zenodo.23135299](https://doi.org/10.5281/zenodo.23135299); v1.0.6
 [10.5281/zenodo.23134086](https://doi.org/10.5281/zenodo.23134086); v1.0.5
 [10.5281/zenodo.23133327](https://doi.org/10.5281/zenodo.23133327); v1.0.4
